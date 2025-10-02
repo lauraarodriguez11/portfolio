@@ -7,6 +7,13 @@ import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
+// Importar fuentes de Google
+const styleSheet = document.createElement("style");
+styleSheet.textContent = `
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Space+Grotesk:wght@700&display=swap');
+`;
+document.head.appendChild(styleSheet);
+
 // =====================
 //  PORTFOLIO LITE ++
 //  - Tabs (Tecnología / Arte)
@@ -774,7 +781,7 @@ export default function Portfolio() {
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-4 pt-10 pb-6">
         <motion.h1 initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{duration:0.5}} className="text-3xl md:text-4xl font-extrabold tracking-tight">
-          {view === "home" && "Laura Rodríguez · CV"}
+          {view === "home" }
           {view === "tech" && "Ciencia de Datos e IA"}
           {view === "art" && "Diseño de Moda & Arte"}
         </motion.h1>
