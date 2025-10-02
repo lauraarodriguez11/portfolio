@@ -367,7 +367,7 @@ const RESUME_CARDS = [
   {
     id: "cv-exp-1",
     title: "Data & Automation — Correos",
-    role: "Experiencia laboral",
+    role: "Experiencia",
     year: 2025,
     tags: ["RPA", "UiPath", "n8n", "Make", "Data"],
     blurb:
@@ -813,7 +813,7 @@ export default function Portfolio() {
         <section className="max-w-6xl mx-auto px-4 py-6 space-y-6">
           {/* Experiencia laboral */}
           <div className="rounded-2xl border p-4 bg-white/70">
-            <h2 className="text-lg font-semibold mb-2">Experiencia laboral</h2>
+            <h2 className="text-lg font-semibold mb-2">Experiencia</h2>
 
             <div className="flex justify-between mt-2">
               <div className="font-medium mr-4">Programa Jóven Talento - Correos (Equipo DALIA)</div>
@@ -875,7 +875,7 @@ export default function Portfolio() {
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>TFM: Autenticación de autoría pictórica mediante IA explicable.</li>
-              <li>Proyectos con datasets reales y despliegue de modelos.</li>
+              <li>🏆 Premio al mejor proyecto final de máster (Competición de Becas UCM – NTIC Master).</li>
             </ul>
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: SQL · NoSQL · Python · ML · DL · NLP · Spark · MLflow · Explainable AI</div>
 
