@@ -109,7 +109,7 @@ const PROJECTS = [
     ],
     blurb:
       "Trabajo Fin de Grado centrado en la clasificación automática de emociones en textos cortos de redes sociales (ira, asco, miedo, alegría, tristeza y sorpresa). Incluye un marco teórico detallado de IA, aprendizaje automático y redes neuronales, seguido de una aplicación práctica en Python. Se implementaron modelos ML (SVM, Random Forest, Naive Bayes) y DL (RNN, LSTM y Transformers con XLM-Roberta), con un exhaustivo preprocesamiento textual y técnicas de optimización (GridSearch, RandomSearch). La evaluación utilizó métricas como precisión, recall, F1-score y accuracy, comparando enfoques clásicos y de deep learning. El documento completo recoge resultados, discusión crítica, limitaciones y posibles líneas de mejora.",
-    image: "/cover_tfg.png",
+    image: `${import.meta.env.BASE_URL}cover_tfg.png`,
     links: [
       { label: "GitHub", href: "https://github.com/lauraarodriguez11/TFG_clasificacion_emociones" },
       {
@@ -127,7 +127,7 @@ const PROJECTS = [
     tags: ["MySQL", "Modelo E-R", "SQL Scripts", "Triggers", "Vistas", "SQL"],
     blurb:
       "Diseño e implementación de una base de datos relacional para gestionar eventos culturales. Incluye modelo entidad-relación, paso a modelo lógico, creación en MySQL con restricciones y relaciones, inserción de datos variados, 10+ consultas avanzadas, vistas y triggers automáticos.",
-    image: "/cover1.png",
+    image: `${import.meta.env.BASE_URL}cover1.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/1" }],
     category: "tech",
   },
@@ -139,7 +139,7 @@ const PROJECTS = [
     tags: ["MongoDB", "JavaScript", "Agregación", "Filtrado", "Data Analysis"],
     blurb:
       "Interacción con un catálogo de moda en MongoDB mediante inserciones, actualizaciones, filtrado y consultas de agregación. Se incluyen scripts en JS y Python para gestionar y visualizar datos, con un informe PDF explicando dataset, queries y conclusiones analíticas.",
-    image: "/cover2.png",
+    image: `${import.meta.env.BASE_URL}cover2.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/2" }],
     category: "tech",
   },
@@ -151,7 +151,7 @@ const PROJECTS = [
     tags: ["Python", "Pandas", "NumPy", "SciPy", "Matplotlib", "ML"],
     blurb:
       "Análisis estadístico de anchura de cráneos egipcios en dos periodos históricos. Incluye medidas descriptivas, boxplots, test de normalidad (Kolmogorov-Smirnov), intervalos de confianza y contraste de hipótesis mediante test t, con interpretación rigurosa y contextualizada.",
-    image: "/cover3.png",
+    image: `${import.meta.env.BASE_URL}cover3.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/3" }],
     category: "tech",
   },
@@ -163,7 +163,7 @@ const PROJECTS = [
     tags: ["Python", "Pandas", "PEP-8", "Pruebas Unitarias", "Automatización", "MapReduce"],
     blurb:
       "Proyecto de programación en Python orientado a la correcta estructuración del código, uso de funciones y clases, y aplicación de pruebas exhaustivas. Se trabajó con un dataset de películas, desarrollando procesos de análisis, automatización de tareas y visualización de resultados. Incluye la implementación de un script independiente con técnica MapReduce, además de buenas prácticas como documentación clara y cumplimiento de PEP-8.",
-    image: "/cover4.png",
+    image: `${import.meta.env.BASE_URL}cover4.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/4" }],
     category: "tech",
   },
@@ -175,7 +175,7 @@ const PROJECTS = [
     tags: ["Tableau", "Business Intelligence", "Dashboards", "Data Visualization", "KPIs"],
     blurb:
       "Desarrollo de un análisis financiero en Tableau para la empresa Easy Loans, enfocado en detectar patrones de comportamiento, evaluar la calidad de los préstamos y proponer recomendaciones estratégicas. Incluye la creación de dashboards interactivos, cálculos personalizados y visualizaciones avanzadas que permiten extraer insights accionables para la toma de decisiones.",
-    image: "/cover5.png",
+    image: `${import.meta.env.BASE_URL}cover5.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/5" }],
     category: "tech",
   },
@@ -195,7 +195,7 @@ const PROJECTS = [
     ],
     blurb:
       "Construcción de modelos predictivos con regresión lineal y logística en Python. Incluye depuración de datos, tratamiento de outliers, variables perdidas y creación de funciones auxiliares. Los modelos fueron optimizados con selección clásica y aleatoria, evaluados mediante métricas de desempeño y acompañados de una interpretación de coeficientes clave.",
-    image: "/cover6.png",
+    image: `${import.meta.env.BASE_URL}cover6.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/6" }],
     category: "tech",
   },
@@ -207,7 +207,7 @@ const PROJECTS = [
     tags: ["Python", "Pandas", "Statsmodels", "ARIMA", "Holt-Winters", "Validación de Modelos", "ML"],
     blurb:
       "Análisis y modelización de series temporales con estacionalidad en Python. Se aplicaron técnicas de descomposición, pruebas de estacionariedad (ADF, KPSS), modelos de suavizado exponencial de Holt y ARIMA/Auto-ARIMA. El rendimiento fue evaluado mediante métricas MSE y MAE, comparando enfoques clásicos y automatizados de predicción.",
-    image: "/cover7.png",
+    image: `${import.meta.env.BASE_URL}cover7.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/7" }],
     category: "tech",
   },
@@ -219,7 +219,7 @@ const PROJECTS = [
     tags: ["Python", "Seaborn", "Scikit-learn", "PCA", "K-Means", "Clustering Jerárquico", "Silhouette Score", "ML"],
     blurb:
       "Aplicación de técnicas de minería de datos para análisis multivariado. Se utilizó PCA para reducción de dimensionalidad e interpretación de componentes principales, seguido de clustering jerárquico y K-Means. Se evaluó la calidad de los grupos mediante el método del codo y la puntuación de silueta, comparando la eficacia de los diferentes enfoques.",
-    image: "/cover8.png",
+    image: `${import.meta.env.BASE_URL}cover8.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/8" }],
     category: "tech",
   },
@@ -231,7 +231,7 @@ const PROJECTS = [
     tags: ["Python", "Scikit-learn", "XGBoost", "Random Forest", "GridSearchCV", "Cross Validation", "Feature Importance", "ML"],
     blurb:
       "Construcción de modelos predictivos en Python para determinar el color original de vehículos usados a partir de características técnicas. Se entrenaron y evaluaron árboles de decisión, Random Forest y XGBoost, aplicando GridSearchCV con validación cruzada para optimizar hiperparámetros. El desempeño fue medido con métricas como accuracy, precision, recall, F1-score y AUC, junto con un análisis de importancia de variables.",
-    image: "/cover9.png",
+    image: `${import.meta.env.BASE_URL}cover9.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/9" }],
     category: "tech",
   },
@@ -243,7 +243,7 @@ const PROJECTS = [
     tags: ["Python", "Scikit-learn", "Pipelines", "Preprocesamiento", "Validación Cruzada", "GridSearchCV", "ML"],
     blurb:
       "Desarrollo de un flujo de modelización predictiva end-to-end en Python con scikit-learn. Incluye la construcción de pipelines con transformadores personalizados, aplicación de técnicas de preprocesamiento, ajuste de hiperparámetros y comparación de múltiples algoritmos de clasificación. Se presentan métricas de evaluación y visualizaciones que permiten interpretar el rendimiento de los modelos.",
-    image: "/cover10.png",
+    image: `${import.meta.env.BASE_URL}cover10.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/10" }],
     category: "tech",
   },
@@ -255,7 +255,7 @@ const PROJECTS = [
     tags: ["Python", "TensorFlow", "Keras", "Redes Neuronales Densas", "CNN", "Clasificación", "Regresión", "DL"],
     blurb:
       "Implementación de modelos de deep learning aplicando tanto redes densas como convolucionales para resolver problemas de clasificación y regresión. El trabajo incluye el diseño, entrenamiento y evaluación de las arquitecturas en TensorFlow/Keras, interpretando métricas y comparando el rendimiento de ambos enfoques.",
-    image: "/cover11.png",
+    image: `${import.meta.env.BASE_URL}cover11.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/11" }],
     category: "tech",
   },
@@ -267,7 +267,7 @@ const PROJECTS = [
     tags: ["Python", "TensorFlow", "Keras", "RNN", "Series Temporales", "Predicción", "DL"],
     blurb:
       "Construcción de un modelo de red neuronal recurrente (RNN) en TensorFlow/Keras para predecir temperaturas mínimas diarias en Melbourne con un horizonte de dos días. Se aplicaron técnicas de modelado de series temporales, entrenamiento supervisado y evaluación de predicciones en datos reales.",
-    image: "/cover12.png",
+    image: `${import.meta.env.BASE_URL}cover12.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/12" }],
     category: "tech",
   },
@@ -279,7 +279,7 @@ const PROJECTS = [
     tags: ["Python", "Transformers", "Hugging Face", "Fine-Tuning", "Text Classification", "Question Answering", "DL"],
     blurb:
       "Aplicación de fine-tuning sobre modelos de lenguaje preentrenados para resolver tareas de procesamiento de lenguaje natural. Se desarrollaron experimentos en clasificación de textos y en respuesta automática a preguntas, evaluando el rendimiento de los modelos ajustados con técnicas supervisadas.",
-    image: "/cover13.png",
+    image: `${import.meta.env.BASE_URL}cover13.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/13" }],
     category: "tech",
   },
@@ -291,7 +291,7 @@ const PROJECTS = [
     tags: ["Python", "PySpark", "Databricks", "Big Data", "ETL", "Data Analysis", "Spark", "ML"],
     blurb:
       "Procesamiento y análisis de datos de micropréstamos de Kiva mediante PySpark en entorno Databricks. Incluye transformaciones, limpieza y agregaciones a gran escala para explorar patrones en montos, sectores y países, aplicando técnicas de Big Data para el análisis eficiente de grandes volúmenes de información.",
-    image: "/cover14.png",
+    image: `${import.meta.env.BASE_URL}cover14.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/14" }],
     category: "tech",
   },
@@ -303,7 +303,7 @@ const PROJECTS = [
     tags: ["UiPath", "JSON", "RPA", "Logs"],
     blurb:
       "Diseño e implementación de una librería modular en UiPath para estandarizar la generación de logs en formato JSON. Integrada en todos los robots en producción de Correos, mejoró la trazabilidad, el diagnóstico de incidencias y la observabilidad de procesos, alimentando además dashboards de Power BI para monitorizar la ejecución de los robots.",
-    image: "/correos.png",
+    image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
   },
@@ -315,7 +315,7 @@ const PROJECTS = [
     tags: ["n8n", "Make", "Automatización", "RPA"],
     blurb:
       "Configuración de entornos locales con n8n y Make como laboratorio de orquestación de procesos. Desarrollo de flujos de prueba para evaluar integraciones con robots UiPath y explorar la escalabilidad de soluciones de automatización en Correos.",
-    image: "/correos.png",
+    image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
   },
@@ -327,7 +327,7 @@ const PROJECTS = [
     tags: ["Neo4j", "Grafos", "Análisis de datos"],
     blurb:
       "Experimentación con Neo4j como base de datos orientada a grafos, desarrollando pequeños esquemas de nodos y relaciones en entorno de laboratorio. El objetivo fue familiarizarme con el modelado de grafos y evaluar su utilidad en escenarios de análisis y automatización.",
-    image: "/correos.png",
+    image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
   },
@@ -339,7 +339,7 @@ const PROJECTS = [
     tags: ["RPA", "UiPath", "Mantenimiento", "Colaboración"],
     blurb:
       "Apoyo operativo en la resolución de incidencias y tareas transversales en distintos procesos de negocio. Participación en la puesta en marcha y seguimiento de proyectos desplegados en producción junto a ATOS, coordinando con equipos técnicos y de negocio.",
-    image: "/correos.png",
+    image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
   },
@@ -354,7 +354,7 @@ const PROJECTS = [
     ],
     blurb:
       "Colaboración con la marca Balteus en el diseño de una colección Otoño-Invierno 2025 de hebillas de cinturón modulares. Desarrollo de propuestas estéticas y funcionales, explorando nuevas posibilidades en el diseño de accesorios de moda.",
-    image: "/balteus.webp", // opcional (coloca la imagen en /public/)
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [
       // { label: "Proyecto", href: "#" },
     ],
@@ -450,7 +450,7 @@ const RESUME_CARDS = [
     tags: ["CV", "PDF"],
     blurb: "Descarga mi CV completo en PDF (mixto tecnología + arte).",
     image: "",
-    links: [{ label: "Descargar CV", href: "/CV_mixto.pdf" }],
+    links: [{ label: "Descargar CV", href: `${import.meta.env.BASE_URL}CV_mixto.pdf` }],
     category: "home",
   },
   {
@@ -461,7 +461,7 @@ const RESUME_CARDS = [
     tags: ["Arte", "PDF"],
     blurb: "Selección de trabajos visuales y moda. Disponible también en vista flipbook.",
     image: "",
-    links: [{ label: "Descargar Portfolio", href: "/portfolio.pdf" }],
+    links: [{ label: "Descargar Portfolio", href: `${import.meta.env.BASE_URL}portfolio.pdf` }],
     category: "home",
   },
 ];
@@ -677,7 +677,7 @@ export default function Portfolio() {
   const dq = useDebouncedValue(q, 250);
 
   // PDF + flipbook medidas
-  const pdfImages = usePDFImages("/portfolio.pdf");
+  const pdfImages = usePDFImages(`${import.meta.env.BASE_URL}portfolio.pdf`);
   const [pageAspect, setPageAspect] = useState(1.414); // A4 aprox
   useEffect(() => {
     if (!pdfImages.length) return;
@@ -938,10 +938,10 @@ export default function Portfolio() {
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Descargas</h2>
             <div className="flex flex-wrap gap-2">
-              <a href="/CV_LR.pdf" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
-              <a href="/CV_ENG_LR.pdf" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
-              <a href="/CV_mixto.pdf" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
-              <a href="/portfolio.pdf" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_ENG_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mixto.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}portfolio.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
             </div>
           </div>
         </section>
