@@ -779,7 +779,7 @@ export default function Portfolio() {
           {view === "art" && "Diseño de Moda & Arte"}
         </motion.h1>
         <p className="mt-3 w-full text-[hsl(215_16%_40%)]">
-          {view === "home" && <>Creative Technologist | Data Scientist with a Passion for Fashion</>}
+          {view === "home" && <>*</>}
           {view === "tech" && <>Integro <strong>análisis de datos</strong> e <strong>IA</strong> para crear soluciones robustas, explicables y útiles.</>}
           {view === "art" && <>Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y visualización creativa con un enfoque funcional.</>}
         </p>
