@@ -779,7 +779,7 @@ export default function Portfolio() {
           {view === "art" && "Diseño de Moda & Arte"}
         </motion.h1>
         <p className="mt-3 w-full text-[hsl(215_16%_40%)]">
-          {view === "home" && <>*</>}
+          {view === "home" && <></>}
           {view === "tech" && <>Integro <strong>análisis de datos</strong> e <strong>IA</strong> para crear soluciones robustas, explicables y útiles.</>}
           {view === "art" && <>Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y visualización creativa con un enfoque funcional.</>}
         </p>
@@ -810,7 +810,7 @@ export default function Portfolio() {
 
       {/* HOME: CV secciones (texto estático) */}
       {view === "home" && (
-        <section className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+        <section className="max-w-6xl mx-auto px-4 py-0 space-y-6">
           {/* Experiencia laboral */}
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Experiencia</h2>
