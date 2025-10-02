@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* ===== Tokens base + modo oscuro + ACENTO ===== */
+:root{
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(222.2 84% 4.9%);
+  --color-muted-foreground: hsl(215 16% 52%);
+  --color-border: hsl(214.3 31.8% 91.4%);
+  /* acento por defecto (amarillo estilo referencia) */
+  --accent: #FFD23F;
+}
+.dark{
+  --color-background: hsl(222.2 84% 4.9%);
+  --color-foreground: hsl(210 40% 98%);
+  --color-muted-foreground: hsl(217 16% 72%);
+  --color-border: hsl(217.2 32.6% 17.5%);
+}
+
+/* Suavizado y ritmo base */
+html,body,#root{height:100%}
+*{box-sizing:border-box}
