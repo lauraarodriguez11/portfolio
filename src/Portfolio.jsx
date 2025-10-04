@@ -957,7 +957,15 @@ export default function Portfolio() {
       {/* === ARTE: Flipbook primero === */}
       {view === "art" && pdfImages.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 pb-2">
-          <div ref={wrapRef} className="border rounded-2xl px-3 py-4 bg-white overflow-hidden">
+          {/* Mensaje solo visible en móvil vertical */}
+          <div className="md:hidden landscape:hidden mb-4 rounded-2xl border p-4 bg-amber-50 text-amber-900 text-sm flex items-center gap-3">
+            <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span>Para una mejor experiencia, <strong>gira tu dispositivo horizontalmente</strong> para ver el portfolio.</span>
+          </div>
+          
+          <div ref={wrapRef} className="border rounded-2xl px-3 py-4 bg-white overflow-hidden">            
             {(() => {
               const innerW = Math.max(wrapW - 24, 360); // restar padding aprox (px-3)
               const pageW = Math.floor(innerW / 2);      // tamaño de UNA página (spread = 2 páginas)
@@ -997,8 +1005,7 @@ export default function Portfolio() {
       {/* SEARCH BAR + TAGS (solo en Tech) */}
       {view === "tech" && (
         <section className="max-w-6xl mx-auto px-4 pb-2">
-          <div className="border rounded-2xl p-4 grid gap-3 md:grid-cols-[1fr_auto_auto] items-center bg-white/70">
-            <div className="relative">
+          <div className="border rounded-2xl p-4 flex flex-col gap-3 md:grid md:grid-cols-[1fr_auto_auto] items-stretch md:items-center bg-white/70">             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[hsl(215_16%_40%)]"/>
               <input
                 value={q}
@@ -1030,8 +1037,7 @@ export default function Portfolio() {
             {filtered.length === 0 ? (
               <p className="text-[hsl(215_16%_40%)]">No se han encontrado proyectos.</p>
             ) : (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {filtered.map((p) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">                {filtered.map((p) => (
                   <motion.div
                     key={p.id}
                     layout
