@@ -748,45 +748,45 @@ export default function Portfolio() {
       {/* HEADER */}
       <header className="sticky top-0 z-30 backdrop-blur bg-white/80 border-b">
         <div className="max-w-6xl mx-auto flex items-center justify-between py-3 px-4">
-          <div className="flex items-center gap-3">
-            <div>
-              <div className="font-semibold leading-tight">Laura Rodríguez</div>
-              <div className="text-xs text-[hsl(215_16%_40%)]">Creative Technologist | Data Scientist with a Passion for Fashion</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <nav className="hidden sm:flex items-center rounded-2xl border overflow-hidden">
-              <button
-                onClick={() => { setView("tech"); scrollToProjects(); }}
-                className={`h-10 px-3 text-sm ${view==="tech" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
-              >Tech</button>
-              <div className="w-px self-stretch bg-black/80" aria-hidden />
-              <button
-                onClick={() => { setView("art"); }}
-                className={`h-10 px-3 text-sm ${view==="art" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
-              >Art</button>
-            </nav>
+          
+          {/* IZQUIERDA: Tech / Art */}
+          <nav className="flex items-center rounded-2xl border overflow-hidden">
             <button
-              onClick={() => setView("home")}
-              aria-label="Inicio"
-              title="Inicio"
-              className={`h-10 px-3 flex items-center justify-center text-sm border rounded-2xl ${view==="home" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
+              onClick={() => { setView("tech"); scrollToProjects(); }}
+              className={`h-10 px-3 text-sm ${view==="tech" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
             >
-              <HomeIcon className="w-4 h-4" />
+              Tech
             </button>
-          </div>
+            <div className="w-px self-stretch bg-black/80" aria-hidden />
+            <button
+              onClick={() => { setView("art"); }}
+              className={`h-10 px-3 text-sm ${view==="art" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
+            >
+              Art
+            </button>
+          </nav>
+
+          {/* DERECHA: Home */}
+          <button
+            onClick={() => setView("home")}
+            aria-label="Inicio"
+            title="Inicio"
+            className={`h-10 px-3 flex items-center justify-center text-sm border rounded-2xl ${view==="home" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
+          >
+            <HomeIcon className="w-4 h-4" />
+          </button>
         </div>
       </header>
 
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-4 pt-10 pb-6">
+      <section className="max-w-6xl mx-auto px-6 pt-6 pb-6">
         <motion.h1 initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{duration:0.5}} className="text-3xl md:text-4xl font-extrabold tracking-tight">
-          {view === "home" }
+          {view === "home" && "Laura Rodríguez · CV"}
           {view === "tech" && "Ciencia de Datos e IA"}
           {view === "art" && "Diseño de Moda & Arte"}
         </motion.h1>
         <p className="mt-3 w-full text-[hsl(215_16%_40%)]">
-          {view === "home" && <></>}
+          {view === "home" && <>Creative Technologist | Data Scientist with a Passion for Fashion</>}
           {view === "tech" && <>Integro <strong>análisis de datos</strong> e <strong>IA</strong> para crear soluciones robustas, explicables y útiles.</>}
           {view === "art" && <>Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y visualización creativa con un enfoque funcional.</>}
         </p>
