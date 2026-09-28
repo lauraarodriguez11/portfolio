@@ -338,7 +338,6 @@ const PROJECTS = [
     image: `${import.meta.env.BASE_URL}Lineup.png`,
     gallery: [
       `${import.meta.env.BASE_URL}Moodboard.png`,
-      // Añade aquí el moodboard o imágenes de rapports si los tienes
     ],
     pdf: `${import.meta.env.BASE_URL}portfolio.pdf`,
     links: [],
@@ -351,12 +350,35 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía"],
     blurb:
-      "Pieza superior y cuello construidos en dos partes independientes que admiten múltiples configuraciones de estilismo, alterando la silueta en torno al cuerpo. Dirección creativa y diseño: Ura Wenyers. Fotografía: Kerlyn Micaela Cueva y Santiago Yáñez.",
-    image: `${import.meta.env.BASE_URL}yute_verde_cover.jpg`, // Pon la foto principal del look verde
-    gallery: [
-      `${import.meta.env.BASE_URL}yute_verde_1.jpg`,
-      `${import.meta.env.BASE_URL}yute_verde_2.jpg`,
-      `${import.meta.env.BASE_URL}yute_verde_3.jpg`,
+      "Pieza superior y cuello construidos en dos partes independientes que admiten múltiples configuraciones de estilismo, alterando la silueta en torno al cuerpo. Dirección creativa y diseño: Ura Wenyers. Fotografía: Kerlyn Micaela Cueva y Santiago Yáñez. Modelos: David Rapado y Ura Wenyers. Estilismo: Santiago Yáñez. Asistencia: David Rapado y Mariam Davtyan.",
+    image: `${import.meta.env.BASE_URL}yute_verde_cover.jpg`,
+    galleries: [
+      {
+        title: "Female",
+        images: [
+          `${import.meta.env.BASE_URL}yute_verde_ed_1.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_2.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_3.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_4.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_5.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_6.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_7.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_8.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_9.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_10.jpg`,
+        ],
+      },
+      {
+        title: "Male",
+        images: [
+          `${import.meta.env.BASE_URL}yute_verde_det_1.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_det_2.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_det_3.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_det_4.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_det_5.jpg`,
+          `${import.meta.env.BASE_URL}yute_verde_det_6.jpg`,
+        ],
+      },
     ],
     links: [],
     category: "art",
@@ -368,11 +390,31 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño de Moda", "Patronaje", "Confección", "Textil", "Fotografía"],
     blurb:
-      "Exploración volumétrica sobre yute rígido. Top de tirantes con panel trasero acordonado combinado con pantalón ancho que integra sobrefalda abullonada tipo globo. La densidad del material sostiene la silueta arquitectónica. Dirección creativa y diseño: Ura Wenyers. Modelo: Lucía Fenoll.",
-    image: `${import.meta.env.BASE_URL}yute_arpillera_cover.jpg`, // Pon la foto con la horca campesina
-    gallery: [
-      `${import.meta.env.BASE_URL}yute_arpillera_1.jpg`,
-      `${import.meta.env.BASE_URL}yute_arpillera_2.jpg`,
+      "Exploración volumétrica sobre yute rígido. Top de tirantes con panel trasero acordonado combinado con pantalón ancho que integra sobrefalda abullonada tipo globo. La densidad del tejido sostiene el volumen arquitectónico de la silueta. Dirección creativa y diseño: Ura Wenyers. Fotografía: Ura Wenyers. Modelo: Lucía Fenoll.",
+    image: `${import.meta.env.BASE_URL}yute_arpillera_cover.jpg`,
+    galleries: [
+      {
+        title: "Ver 01",
+        images: [
+          `${import.meta.env.BASE_URL}yute_arp_ed_1.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_2.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_3.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_4.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_5.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_6.jpg`,
+        ],
+      },
+      {
+        title: "Ver 02",
+        images: [
+          `${import.meta.env.BASE_URL}yute_arp_mas.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_det_1.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_det_2.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_det_3.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_det_4.jpg`,
+          `${import.meta.env.BASE_URL}yute_arp_det_5.jpg`,
+        ],
+      },
     ],
     links: [],
     category: "art",
@@ -399,16 +441,13 @@ const PROJECTS = [
   },
   {
     id: "manemane-fall26",
-    title: "Cápsula MANÉMANÉ Fall 26",
-    role: "Diseño de Moda · Confección en Satén",
+    title: "Cápsula MANÉMANÉ Fall 26 — Pantalón con Aletas",
+    role: "Diseño de Colección · Confección en Satén",
     year: 2026,
     tags: ["Diseño de Moda", "Confección", "Patronaje", "Pasarela"],
     blurb:
-      "Propuesta de 10 looks inspirados en los códigos de Miguel Becer tras su presentación en MBFWM. Confección técnica de pantalón sastre con volantes integrados en satén bicolor.",
-    image: `${import.meta.env.BASE_URL}manemane_cover.jpg`,
-    gallery: [
-      `${import.meta.env.BASE_URL}manemane_1.jpg`,
-    ],
+      "Proyecto cápsula desarrollado a partir del universo conceptual de Miguel Becer tras su presentación en MBFWM. Confección técnica de pantalón sastre con aletas y volantes laterales ondulantes integrados en satén bicolor.",
+    image: `${import.meta.env.BASE_URL}manemane_aletas_1.png`,
     links: [],
     category: "art",
   },
@@ -427,7 +466,7 @@ const PROJECTS = [
     links: [],
     category: "art",
   },
-]
+];
 
 function useDebouncedValue(value, delay = 250) {
   const [v, setV] = useState(value);
@@ -512,7 +551,9 @@ export default function Portfolio() {
 
   useEffect(() => {
     if (active) {
-      setActiveImage(active.image || (active.gallery && active.gallery[0]) || "");
+      // Prioridad: imagen directa -> primera de galleries -> primera de gallery
+      const firstGalleryImg = active.galleries?.[0]?.images?.[0];
+      setActiveImage(active.image || firstGalleryImg || (active.gallery && active.gallery[0]) || "");
     }
   }, [active]);
 
@@ -647,7 +688,7 @@ export default function Portfolio() {
             {pdfLoading ? (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-zinc-400 bg-white">
                 <Loader2 className="size-6 animate-spin" />
-                <span className="text-xs uppercase tracking-wider">Cargando Atelier...</span>
+                <span className="text-xs uppercase tracking-wider">Cargando Portfolio...</span>
               </div>
             ) : pdfImages.length > 0 ? (
               <div
@@ -872,7 +913,7 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* GRID PROYECTOS */}
+      {/* GRID PROYECTOS (PASO 3: Contador inteligente de fotos en tarjetas) */}
       {view !== "home" && (
         <section id="projects" className="max-w-6xl mx-auto px-4 py-6">
           <AnimatePresence mode="popLayout">
@@ -880,89 +921,98 @@ export default function Portfolio() {
               <p className="text-[hsl(215_16%_40%)]">No se han encontrado proyectos.</p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {filtered.map((p) => (
-                  <motion.div
-                    key={p.id}
-                    layout
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                  >
-                    <article
-                      onClick={() => {
-                        setActive(p);
-                        setOpen(true);
-                      }}
-                      className="group aspect-square overflow-hidden rounded-2xl border hover:shadow-xl transition-shadow cursor-pointer bg-white/70 flex flex-col"
+                {filtered.map((p) => {
+                  // Cálculo de fotos totales considerando tanto 'galleries' como 'gallery'
+                  const totalFotos = p.galleries
+                    ? p.galleries.reduce((acc, g) => acc + (g.images?.length || 0), 0)
+                    : p.gallery?.length || 0;
+
+                  return (
+                    <motion.div
+                      key={p.id}
+                      layout
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
                     >
-                      <div className="relative h-[46%] overflow-hidden">
-                        {p.image ? (
-                          <img
-                            src={p.image}
-                            alt={p.title}
-                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <div className="absolute inset-0 grid place-items-center bg-[hsl(214.3_31.8%_91.4%)]">
-                            <span className="text-sm text-[hsl(215_16%_40%)]">Sin imagen</span>
-                          </div>
-                        )}
-                        {p.gallery && p.gallery.length > 1 && (
-                          <div className="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
-                            <ImageIcon className="size-3" /> {p.gallery.length} fotos
-                          </div>
-                        )}
-                      </div>
+                      <article
+                        onClick={() => {
+                          setActive(p);
+                          setOpen(true);
+                        }}
+                        className="group aspect-square overflow-hidden rounded-2xl border hover:shadow-xl transition-shadow cursor-pointer bg-white/70 flex flex-col"
+                      >
+                        <div className="relative h-[46%] overflow-hidden">
+                          {p.image ? (
+                            <img
+                              src={p.image}
+                              alt={p.title}
+                              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 grid place-items-center bg-[hsl(214.3_31.8%_91.4%)]">
+                              <span className="text-sm text-[hsl(215_16%_40%)]">Sin imagen</span>
+                            </div>
+                          )}
 
-                      <div className="h-[55%] p-4 pb-3 grid grid-rows-[auto_auto_1fr_auto] gap-2 min-h-0">
-                        <h3
-                          className={`font-semibold leading-tight ${
-                            p.title.length > 38 ? "text-base line-clamp-3" : "text-lg line-clamp-2"
-                          }`}
-                        >
-                          {p.title}
-                        </h3>
-                        <div className="text-xs text-[hsl(215_16%_40%)] flex items-center justify-between gap-2 mt-1 flex-none min-w-0">
-                          <span className="truncate flex-1 min-w-0">{p.role}</span>
-                          <span className="shrink-0 font-medium">{p.year}</span>
+                          {/* PASO 3: Indicador de fotos totales */}
+                          {totalFotos > 1 && (
+                            <div className="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+                              <ImageIcon className="size-3" /> {totalFotos} fotos
+                            </div>
+                          )}
                         </div>
 
-                        <p className="mt-2 text-sm text-[hsl(215_16%_28%)] line-clamp-3 flex-none">
-                          {p.blurb}
-                        </p>
+                        <div className="h-[55%] p-4 pb-3 grid grid-rows-[auto_auto_1fr_auto] gap-2 min-h-0">
+                          <h3
+                            className={`font-semibold leading-tight ${
+                              p.title.length > 38 ? "text-base line-clamp-3" : "text-lg line-clamp-2"
+                            }`}
+                          >
+                            {p.title}
+                          </h3>
+                          <div className="text-xs text-[hsl(215_16%_40%)] flex items-center justify-between gap-2 mt-1 flex-none min-w-0">
+                            <span className="truncate flex-1 min-w-0">{p.role}</span>
+                            <span className="shrink-0 font-medium">{p.year}</span>
+                          </div>
 
-                        <div className="flex flex-wrap gap-1.5 items-center -mb-1">
-                          {(p.tags || []).map((t) => {
-                            const isActive = tag === t;
-                            return (
-                              <button
-                                key={t}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setTag(isActive ? "Todas" : t);
-                                  scrollToProjects();
-                                }}
-                                className={`rounded-2xl border px-2.5 py-0.5 text-xs ${
-                                  isActive ? "bg-black text-white" : "bg-white hover:shadow"
-                                }`}
-                              >
-                                {t}
-                              </button>
-                            );
-                          })}
+                          <p className="mt-2 text-sm text-[hsl(215_16%_28%)] line-clamp-3 flex-none">
+                            {p.blurb}
+                          </p>
+
+                          <div className="flex flex-wrap gap-1.5 items-center -mb-1">
+                            {(p.tags || []).map((t) => {
+                              const isActive = tag === t;
+                              return (
+                                <button
+                                  key={t}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setTag(isActive ? "Todas" : t);
+                                    scrollToProjects();
+                                  }}
+                                  className={`rounded-2xl border px-2.5 py-0.5 text-xs ${
+                                    isActive ? "bg-black text-white" : "bg-white hover:shadow"
+                                  }`}
+                                >
+                                  {t}
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    </article>
-                  </motion.div>
-                ))}
+                      </article>
+                    </motion.div>
+                  );
+                })}
               </div>
             )}
           </AnimatePresence>
         </section>
       )}
 
-      {/* MODAL DETALLES MULTIFOTO Y PDF */}
+      {/* MODAL DETALLES MULTIFOTO (PASO 2: Múltiples Galerías y Visor Activo) */}
       {open && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 backdrop-blur-sm p-4" onClick={() => setOpen(false)}>
           <div
@@ -986,13 +1036,58 @@ export default function Portfolio() {
                 </div>
 
                 <div className="p-4 overflow-y-auto space-y-4">
+                  {/* Visor principal de la imagen actualmente seleccionada */}
                   {activeImage && (
-                    <div className="rounded-xl overflow-hidden ring-1 ring-[hsl(214.3_31.8%_91.4%)] bg-zinc-50">
-                      <img src={activeImage} alt={active.title} className="w-full h-auto max-h-[50vh] object-contain mx-auto" loading="lazy" />
+                    <div className="rounded-xl overflow-hidden ring-1 ring-[hsl(214.3_31.8%_91.4%)] bg-zinc-50 flex items-center justify-center p-1">
+                      <img
+                        src={activeImage}
+                        alt={active.title}
+                        className="w-full h-auto max-h-[52vh] object-contain mx-auto rounded-lg shadow-sm"
+                        loading="lazy"
+                      />
                     </div>
                   )}
 
-                  {active.gallery && active.gallery.length > 1 && (
+                  {/* PASO 2: Múltiples Galerías divididas por categorías / títulos */}
+                  {active.galleries && active.galleries.length > 0 && (
+                    <div className="space-y-4 pt-1">
+                      {active.galleries.map((sec, secIdx) => (
+                        <div key={secIdx} className="space-y-2">
+                          <div className="flex items-center justify-between border-b pb-1">
+                            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-600">
+                              {sec.title}
+                            </span>
+                            <span className="text-[11px] text-zinc-400">
+                              {sec.images.length} fotos
+                            </span>
+                          </div>
+
+                          <div className="flex gap-2 overflow-x-auto pb-1 pt-1">
+                            {sec.images.map((imgUrl, imgIdx) => (
+                              <button
+                                key={imgIdx}
+                                onClick={() => setActiveImage(imgUrl)}
+                                className={`relative shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
+                                  activeImage === imgUrl
+                                    ? "border-black scale-95 shadow-md ring-2 ring-black/10"
+                                    : "border-transparent opacity-70 hover:opacity-100"
+                                }`}
+                              >
+                                <img
+                                  src={imgUrl}
+                                  alt={`${sec.title} ${imgIdx + 1}`}
+                                  className="w-full h-full object-cover"
+                                />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Galería simple (para proyectos que usan gallery plana) */}
+                  {!active.galleries && active.gallery && active.gallery.length > 1 && (
                     <div>
                       <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block mb-2">Galería del proyecto</span>
                       <div className="flex gap-2 overflow-x-auto pb-2">
@@ -1013,6 +1108,7 @@ export default function Portfolio() {
 
                   <p className="text-sm leading-relaxed text-zinc-800">{active.blurb}</p>
 
+                  {/* Enlace para ver/descargar PDF si existe */}
                   {active.pdf && (
                     <div className="pt-2">
                       <a
