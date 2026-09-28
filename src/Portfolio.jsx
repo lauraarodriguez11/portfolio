@@ -351,7 +351,7 @@ const PROJECTS = [
     title: "GreenWalk Awards V Edición",
     role: "Convocatoria de Moda Sostenible · Candidatura Oficial",
     year: 2026,
-    tags: ["Moda Sostenible", "Upcycling", "Biomateriales", "Fashion Film", "Dirección Creativa", "Illustrator", "Premiere", "InDesign", "Photoshop", "Diseño de Moda"],
+    tags: ["Moda Sostenible", "Biomateriales", "Fashion Film", "Dirección Creativa", "Illustrator", "Premiere", "InDesign", "Photoshop", "Diseño de Moda"],
     blurb:
       "Candidatura presentada a la 5ª Edición de los GreenWalk Awards. Proyecto integral que aúna patronaje zero-waste, deconstrucción textil de sacos de arpillera y desarrollo de biomateriales moldeados. Incluye la memoria técnica completa en PDF, el lookbook editorial oficial, fashion film y documentación audiovisual del proceso en taller.",
     image: `${import.meta.env.BASE_URL}greenwalk_cover.png`,
