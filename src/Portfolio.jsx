@@ -860,6 +860,24 @@ export default function Portfolio() {
             <h2 className="text-lg font-semibold mb-2">Experiencia</h2>
 
             <div className="flex justify-between mt-2">
+              <div className="font-medium mr-4">
+                Vestidora y Asistencia en Backstage | MBFW Madrid &amp; OMODA Madrid es Moda
+              </div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Septiembre 2026</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>
+                Asistencia de vestuario y cambios rápidos en desfiles oficiales de la temporada SS27 para <strong>Dolores Cortés</strong> (OMODA Madrid es Moda) y <strong>Apolineo Studio</strong> (MBFWM).
+              </li>
+              <li>
+                Cuidado integral de prendas, orden de salida en backstage y coordinación bajo alta presión con regiduría, peluquería, maquillaje y equipos de estilismo[cite: 4].
+              </li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">
+              Áreas: Backstage · Pasarela · Styling · Fitting · Gestión de vestuario
+            </div>
+
+            <div className="flex justify-between mt-4">
               <div className="font-medium mr-4">Profesora de Matemática Aplicada | UNIE Universidad</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Enero 2026 - En curso</div>
             </div>
