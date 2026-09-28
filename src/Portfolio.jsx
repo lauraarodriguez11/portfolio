@@ -730,97 +730,58 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* === ARTE: CASCADA INTERAKTIBO TI PANID TI REVISTA / PORTFOLIO === */}
+      {/* === ARTE: Visor PDF en Cascada Continua (Scroll-Snap Diapositiva por Diapositiva) === */}
       {view === "art" && pdfImages.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 pt-2 pb-8">
-          <div className="flex items-center justify-between mb-4 border-b pb-2">
+        <section className="max-w-5xl mx-auto px-4 pt-2 pb-6">
+          {/* Cabecera del visor con contador y botón PDF */}
+          <div className="flex items-center justify-between mb-3 px-1">
             <div>
               <h2 className="text-xl font-bold tracking-tight">Portfolio Editorial · Ura Wenyers[cite: 2]</h2>
-              <p className="text-xs text-[hsl(215_16%_40%)]">Cascada continua ti panid · I-click ti panid tapno ag-expand</p>
+              <p className="text-xs text-[hsl(215_16%_40%)]">
+                Desliza verticalmente para avanzar entre diapositivas
+              </p>
             </div>
             <a
-              href={`${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`}
+              href={`${import.meta.env.BASE_URL}portfolio.pdf`}
               target="_blank"
               rel="noreferrer"
-              className="text-xs border px-3 py-1.5 rounded-xl hover:bg-zinc-100 flex items-center gap-1.5 font-medium"
+              className="text-xs border px-3 py-1.5 rounded-xl hover:bg-zinc-100 flex items-center gap-1.5 font-medium bg-white"
             >
-              <FileText className="size-3.5" /> PDF Kompleto
+              <FileText className="size-3.5" /> Descargar PDF
             </a>
           </div>
 
-          {/* Waterfall / Cascada Grid ti Panid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pdfImages.map((src, index) => (
-              <motion.div
-                key={`page-${index}`}
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-                whileHover={{ y: -6, scale: 1.01 }}
-                onClick={() => setSelectedPage({ src, pageNum: index + 1 })}
-                className="group relative cursor-pointer rounded-2xl border bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
-              >
-                <div className="relative w-full overflow-hidden bg-zinc-50 flex items-center justify-center p-3">
+          {/* Marco contenedor único tipo presentación */}
+          <div className="relative border rounded-2xl bg-zinc-950 shadow-2xl overflow-hidden">
+            {/* Contenedor con scroll snap vertical */}
+            <div 
+              className="h-[82vh] overflow-y-auto scroll-smooth snap-y snap-mandatory divide-y divide-zinc-900 focus:outline-none"
+              tabIndex={0}
+            >
+              {pdfImages.map((src, index) => (
+                <div
+                  key={`slide-${index}`}
+                  className="w-full h-full snap-start snap-always flex items-center justify-center p-3 md:p-6 bg-zinc-950 relative select-none"
+                >
+                  {/* Diapositiva ajustada a pantalla */}
                   <img
                     src={src}
-                    alt={`Panid ${index + 1}`}
+                    alt={`Diapositiva ${index + 1}`}
                     loading="lazy"
-                    className="w-full h-auto object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="max-w-full max-h-full object-contain rounded-lg shadow-lg pointer-events-none"
                   />
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 text-white">
-                    <Maximize2 className="size-5" />
-                    <span className="text-xs font-semibold uppercase tracking-wider">Palawaen</span>
-                  </div>
-                </div>
-                <div className="p-2.5 px-4 bg-zinc-50/70 border-t flex items-center justify-between text-xs text-[hsl(215_16%_40%)]">
-                  <span>Panid {index + 1}</span>
-                  <span className="font-mono text-[10px] bg-zinc-200/80 px-2 py-0.5 rounded-full">
-                    {index === 0 ? "Cover" : `P. ${index + 1}`}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
 
-          {/* Modal para iti Expanded View ti Panid */}
-          <AnimatePresence>
-            {selectedPage && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setSelectedPage(null)}
-                className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm p-4 flex items-center justify-center"
-              >
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  onClick={(e) => e.stopPropagation()}
-                  className="relative max-w-4xl max-h-[92vh] flex flex-col items-center bg-transparent"
-                >
-                  <button
-                    onClick={() => setSelectedPage(null)}
-                    className="absolute -top-10 right-0 text-white hover:text-zinc-300 flex items-center gap-1 text-sm bg-black/40 px-3 py-1 rounded-xl"
-                  >
-                    <X className="size-4" /> Irikep
-                  </button>
-                  <img
-                    src={selectedPage.src}
-                    alt={`Panid ${selectedPage.pageNum}`}
-                    className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl bg-white"
-                  />
-                  <div className="mt-3 text-white text-xs bg-black/60 px-4 py-1.5 rounded-full">
-                    Panid {selectedPage.pageNum} iti {pdfImages.length}
+                  {/* Indicador flotante de diapositiva */}
+                  <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full border border-white/10 font-mono">
+                    {index + 1} / {pdfImages.length}
                   </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
       )}
-
+      
       {/* SEARCH BAR (solo en Tech) */}
       {view === "tech" && (
         <section className="max-w-6xl mx-auto px-4 pb-2">
