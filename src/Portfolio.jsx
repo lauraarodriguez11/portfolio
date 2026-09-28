@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Github, Linkedin, Mail, ExternalLink, Star, Home as HomeIcon, FileText } from "lucide-react";
+import { Search, Github, Linkedin, Mail, ExternalLink, Home as HomeIcon, FileText, Loader2 } from "lucide-react";
 import * as pdfjsLib from "pdfjs-dist";
-import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
+// Worker vía CDN para garantizar compatibilidad total en despliegues estáticos con Vite
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
-// Importar fuentes de Google
+// Fuentes tipográficas
 const styleSheet = document.createElement("style");
 styleSheet.textContent = `
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Space+Grotesk:wght@700&display=swap');
@@ -15,7 +15,7 @@ document.head.appendChild(styleSheet);
 
 const GH_USERNAME = "lauraarodriguez11";
 
-// Sugerencias por pestaña
+// Sugerencias disciplinares por sección
 const SUGGESTED_TAGS_TECH = [
   "Python",
   "SQL",
@@ -39,24 +39,12 @@ const SUGGESTED_TAGS_ART = [
   "Textil",
 ];
 
-// Categorías para Tech
+// Categorías para Data & AI (Tech)
 const CATEGORIES_TECH = [
   { name: "Todas", tags: [] },
   {
     name: "Bases de Datos",
-    tags: [
-      "MySQL",
-      "PostgreSQL",
-      "MongoDB",
-      "Neo4j",
-      "NoSQL",
-      "Modelo E-R",
-      "SQL Scripts",
-      "Triggers",
-      "Vistas",
-      "XML",
-      "SQL",
-    ],
+    tags: ["MySQL", "PostgreSQL", "MongoDB", "Neo4j", "NoSQL", "Modelo E-R", "SQL Scripts", "Triggers", "Vistas", "XML", "SQL"],
   },
   {
     name: "Estadística & Ciencia de Datos",
@@ -64,21 +52,7 @@ const CATEGORIES_TECH = [
   },
   {
     name: "Machine Learning & Deep Learning",
-    tags: [
-      "Scikit-learn",
-      "Random Forest",
-      "XGBoost",
-      "PCA",
-      "K-Means",
-      "ARIMA",
-      "Holt-Winters",
-      "CNN",
-      "RNN",
-      "Transformers",
-      "ViT",
-      "NLP",
-      "XAI",
-    ],
+    tags: ["Scikit-learn", "Random Forest", "XGBoost", "PCA", "K-Means", "ARIMA", "Holt-Winters", "CNN", "RNN", "Transformers", "ViT", "NLP", "XAI"],
   },
   {
     name: "Visualización & BI",
@@ -90,7 +64,7 @@ const CATEGORIES_TECH = [
   },
 ];
 
-// Categorías para Arte
+// Categorías disciplinares para Atelier (Arte)
 const CATEGORIES_ART = [
   { name: "Todas", tags: [] },
   {
@@ -119,35 +93,20 @@ const CATEGORIES_ART = [
   },
 ];
 
-// ======= Proyectos =======
+// ======= Catálogo de Proyectos =======
 const PROJECTS = [
   {
     id: "tfg-emociones",
     title: "Clasificación de Emociones mediante Aprendizaje Automático",
     role: "TFG · NLP · ML/DL",
     year: 2024,
-    tags: [
-      "Python",
-      "NLP",
-      "ML",
-      "DL",
-      "SVM",
-      "Random Forest",
-      "Naive Bayes",
-      "RNN",
-      "LSTM",
-      "Transformers",
-      "XLM-Roberta",
-    ],
+    tags: ["Python", "NLP", "ML", "DL", "SVM", "Random Forest", "Naive Bayes", "RNN", "LSTM", "Transformers", "XLM-Roberta"],
     blurb:
-      "Trabajo Fin de Grado centrado en la clasificación automática de emociones en textos cortos de redes sociales (ira, asco, miedo, alegría, tristeza y sorpresa). Incluye un marco teórico detallado de IA, aprendizaje automático y redes neuronales, seguido de una aplicación práctica en Python con modelos clásicos y Transformers.",
+      "Trabajo Fin de Grado centrado en la clasificación automática de emociones en textos cortos de redes sociales. Marco teórico de IA y aplicación práctica en Python con modelos clásicos y Transformers.",
     image: `${import.meta.env.BASE_URL}cover_tfg.png`,
     links: [
       { label: "GitHub", href: "https://github.com/lauraarodriguez11/TFG_clasificacion_emociones" },
-      {
-        label: "PDF TFG",
-        href: "https://github.com/lauraarodriguez11/TFG_clasificacion_emociones/blob/main/TFG-Laura-Rodriguez-Ropero_signed.pdf",
-      },
+      { label: "PDF TFG", href: "https://github.com/lauraarodriguez11/TFG_clasificacion_emociones/blob/main/TFG-Laura-Rodriguez-Ropero_signed.pdf" },
     ],
     category: "tech",
   },
@@ -157,8 +116,7 @@ const PROJECTS = [
     role: "SQL · Modelado de Datos",
     year: 2024,
     tags: ["MySQL", "Modelo E-R", "SQL Scripts", "Triggers", "Vistas", "SQL"],
-    blurb:
-      "Diseño e implementación de una base de datos relacional para gestionar eventos culturales. Incluye modelo entidad-relación, paso a modelo lógico, creación en MySQL con restricciones, vistas y triggers automáticos.",
+    blurb: "Diseño e implementación de base de datos relacional para eventos culturales con restricciones, vistas y triggers.",
     image: `${import.meta.env.BASE_URL}cover1.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/1" }],
     category: "tech",
@@ -169,8 +127,7 @@ const PROJECTS = [
     role: "NoSQL · MongoDB",
     year: 2024,
     tags: ["MongoDB", "JavaScript", "Agregación", "Filtrado", "Data Analysis"],
-    blurb:
-      "Interacción con un catálogo de moda en MongoDB mediante inserciones, actualizaciones, filtrado y consultas de agregación. Scripts en JS y Python con conclusiones analíticas.",
+    blurb: "Interacción con catálogo en MongoDB mediante queries de agregación y análisis en JS y Python.",
     image: `${import.meta.env.BASE_URL}cover2.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/2" }],
     category: "tech",
@@ -181,8 +138,7 @@ const PROJECTS = [
     role: "Estadística · Python",
     year: 2024,
     tags: ["Python", "Pandas", "NumPy", "SciPy", "Matplotlib", "ML"],
-    blurb:
-      "Análisis estadístico de anchura de cráneos egipcios en dos periodos históricos. Medidas descriptivas, tests de normalidad, intervalos de confianza y contraste de hipótesis con test t.",
+    blurb: "Análisis inferencial y contraste de hipótesis con test t sobre datos craneométricos.",
     image: `${import.meta.env.BASE_URL}cover3.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/3" }],
     category: "tech",
@@ -190,11 +146,10 @@ const PROJECTS = [
   {
     id: "ucm-04",
     title: "Proyecto de Programación con Python",
-    role: "Python · Programación Estructurada · Buenas Prácticas",
+    role: "Python · Programación Estructurada",
     year: 2024,
     tags: ["Python", "Pandas", "PEP-8", "Pruebas Unitarias", "Automatización", "MapReduce"],
-    blurb:
-      "Estructuración de código, clases, funciones y pruebas unitarias con dataset de películas. Incluye script MapReduce y cumplimiento riguroso de PEP-8.",
+    blurb: "Estructuración de código, pruebas unitarias y script independiente con MapReduce.",
     image: `${import.meta.env.BASE_URL}cover4.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/4" }],
     category: "tech",
@@ -202,11 +157,10 @@ const PROJECTS = [
   {
     id: "ucm-05",
     title: "Análisis Financiero de Easy Loans",
-    role: "Business Intelligence · Visualización de Datos",
+    role: "Business Intelligence · Visualización",
     year: 2025,
     tags: ["Tableau", "Business Intelligence", "Dashboards", "Data Visualization", "KPIs"],
-    blurb:
-      "Desarrollo de análisis financiero en Tableau para Easy Loans: detección de patrones de comportamiento, evaluación de calidad de préstamos y dashboards de KPI accionables.",
+    blurb: "Dashboard ejecutivo en Tableau con KPIs accionables sobre calidad crediticia.",
     image: `${import.meta.env.BASE_URL}cover5.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/5" }],
     category: "tech",
@@ -214,19 +168,10 @@ const PROJECTS = [
   {
     id: "ucm-06",
     title: "Modelos de Regresión Lineal y Logística",
-    role: "Python · Estadística · Modelización Predictiva",
+    role: "Python · Estadística Predictiva",
     year: 2025,
-    tags: [
-      "Python",
-      "Pandas",
-      "Scikit-learn",
-      "Regresión Lineal",
-      "Regresión Logística",
-      "Selección de Modelos",
-      "ML",
-    ],
-    blurb:
-      "Modelos predictivos en Python: depuración, outliers, selección de variables clásica y aleatoria, y evaluación con métricas de rendimiento e interpretación de coeficientes.",
+    tags: ["Python", "Pandas", "Scikit-learn", "Regresión Lineal", "Regresión Logística", "ML"],
+    blurb: "Construcción y optimización de modelos lineales y logísticos con selección de variables.",
     image: `${import.meta.env.BASE_URL}cover6.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/6" }],
     category: "tech",
@@ -234,11 +179,10 @@ const PROJECTS = [
   {
     id: "ucm-07",
     title: "Series Temporales de Temperaturas Oceánicas",
-    role: "Python · Series Temporales · Modelización Predictiva",
+    role: "Python · Series Temporales",
     year: 2025,
-    tags: ["Python", "Pandas", "Statsmodels", "ARIMA", "Holt-Winters", "Validación de Modelos", "ML"],
-    blurb:
-      "Modelización de series temporales con estacionalidad: descomposición, tests ADF/KPSS, Holt exponencial y modelos ARIMA/Auto-ARIMA comparados con MSE y MAE.",
+    tags: ["Python", "Pandas", "Statsmodels", "ARIMA", "Holt-Winters", "ML"],
+    blurb: "Modelización estacional con ARIMA/Auto-ARIMA y suavizado exponencial de Holt.",
     image: `${import.meta.env.BASE_URL}cover7.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/7" }],
     category: "tech",
@@ -246,11 +190,10 @@ const PROJECTS = [
   {
     id: "ucm-08",
     title: "ACP y Clustering",
-    role: "Python · Reducción de Dimensionalidad · Machine Learning",
+    role: "Python · Reducción de Dimensionalidad",
     year: 2025,
-    tags: ["Python", "Seaborn", "Scikit-learn", "PCA", "K-Means", "Clustering Jerárquico", "Silhouette Score", "ML"],
-    blurb:
-      "Análisis multivariado: PCA para reducción de dimensionalidad seguido de K-Means y clustering jerárquico evaluados mediante el método del codo y Silhouette Score.",
+    tags: ["Python", "Seaborn", "Scikit-learn", "PCA", "K-Means", "Clustering Jerárquico", "ML"],
+    blurb: "PCA multivariado y clustering comparado mediante método del codo y Silhouette Score.",
     image: `${import.meta.env.BASE_URL}cover8.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/8" }],
     category: "tech",
@@ -258,35 +201,32 @@ const PROJECTS = [
   {
     id: "ucm-09",
     title: "RandomForest y XGBoost",
-    role: "Python · Machine Learning · Modelos Ensemble",
+    role: "Python · Modelos Ensemble",
     year: 2025,
-    tags: ["Python", "Scikit-learn", "XGBoost", "Random Forest", "GridSearchCV", "Cross Validation", "Feature Importance", "ML"],
-    blurb:
-      "Modelos predictivos en Python con árboles de decisión, Random Forest y XGBoost. Optimización con GridSearchCV y evaluación con métricas de clasificación y feature importance.",
+    tags: ["Python", "Scikit-learn", "XGBoost", "Random Forest", "GridSearchCV", "ML"],
+    blurb: "Modelos ensemble optimizados con GridSearchCV y análisis de importancia de variables.",
     image: `${import.meta.env.BASE_URL}cover9.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/9" }],
     category: "tech",
   },
   {
     id: "ucm-10",
-    title: "Modelización Predictiva End2End con Scikit-learn",
-    role: "Python · Machine Learning · Pipelines",
+    title: "Modelización Predictiva End2End",
+    role: "Python · Pipelines Scikit-learn",
     year: 2025,
-    tags: ["Python", "Scikit-learn", "Pipelines", "Preprocesamiento", "Validación Cruzada", "GridSearchCV", "ML"],
-    blurb:
-      "Flujo end-to-end con Pipelines de scikit-learn, transformadores personalizados, preprocesamiento y benchmarking de múltiples clasificadores con validación cruzada.",
+    tags: ["Python", "Scikit-learn", "Pipelines", "Preprocesamiento", "ML"],
+    blurb: "Pipelines integrales con transformadores custom y benchmarking con validación cruzada.",
     image: `${import.meta.env.BASE_URL}cover10.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/10" }],
     category: "tech",
   },
   {
     id: "ucm-11",
-    title: "Deep Learning: Redes Densas y Convolucionales",
-    role: "Python · Deep Learning · Redes Neuronales",
+    title: "Deep Learning: Densas y Convolucionales",
+    role: "Python · Deep Learning",
     year: 2025,
-    tags: ["Python", "TensorFlow", "Keras", "Redes Neuronales Densas", "CNN", "Clasificación", "Regresión", "DL"],
-    blurb:
-      "Diseño y entrenamiento de arquitecturas densas y convolucionales en TensorFlow/Keras aplicadas a tareas de visión y regresión.",
+    tags: ["Python", "TensorFlow", "Keras", "CNN", "DL"],
+    blurb: "Modelos densos y convolucionales en Keras para visión artificial y regresión.",
     image: `${import.meta.env.BASE_URL}cover11.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/11" }],
     category: "tech",
@@ -294,11 +234,10 @@ const PROJECTS = [
   {
     id: "ucm-12",
     title: "Predicción de Temperaturas con RNN",
-    role: "Python · Deep Learning · Series Temporales",
+    role: "Python · Redes Recurrentes",
     year: 2025,
-    tags: ["Python", "TensorFlow", "Keras", "RNN", "Series Temporales", "Predicción", "DL"],
-    blurb:
-      "Redes recurrentes (RNN) en Keras para series temporales y predicción de temperaturas mínimas con horizonte multietapa.",
+    tags: ["Python", "TensorFlow", "Keras", "RNN", "DL"],
+    blurb: "Redes neuronales recurrentes para series temporales multietapa.",
     image: `${import.meta.env.BASE_URL}cover12.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/12" }],
     category: "tech",
@@ -306,11 +245,10 @@ const PROJECTS = [
   {
     id: "ucm-13",
     title: "Fine-Tuning en NLP: Clasificación y QA",
-    role: "Python · NLP · Transfer Learning",
+    role: "Python · NLP · Transformers",
     year: 2025,
-    tags: ["Python", "Transformers", "Hugging Face", "Fine-Tuning", "Text Classification", "Question Answering", "DL"],
-    blurb:
-      "Fine-tuning sobre modelos preentrenados de Hugging Face para clasificación textual y question answering supervisado.",
+    tags: ["Python", "Transformers", "Hugging Face", "Fine-Tuning", "DL"],
+    blurb: "Fine-tuning con arquitecturas preentrenadas para tareas de NLP.",
     image: `${import.meta.env.BASE_URL}cover13.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/13" }],
     category: "tech",
@@ -318,23 +256,21 @@ const PROJECTS = [
   {
     id: "ucm-14",
     title: "Análisis de Préstamos con PySpark",
-    role: "Big Data · PySpark · Databricks",
+    role: "Big Data · PySpark",
     year: 2025,
-    tags: ["Python", "PySpark", "Databricks", "Big Data", "ETL", "Data Analysis", "Spark", "ML"],
-    blurb:
-      "Limpieza, transformación y agregación de micropréstamos a gran escala con PySpark sobre Databricks.",
+    tags: ["Python", "PySpark", "Databricks", "Big Data", "Spark", "ML"],
+    blurb: "Procesamiento a gran escala de micropréstamos en entorno Databricks.",
     image: `${import.meta.env.BASE_URL}cover14.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/14" }],
     category: "tech",
   },
   {
     id: "correos-logs-json",
-    title: "Librería de logging en JSON para robots RPA",
+    title: "Librería de logging en JSON para RPA",
     role: "UiPath · RPA",
     year: 2025,
     tags: ["UiPath", "JSON", "RPA", "Logs"],
-    blurb:
-      "Librería modular en UiPath para estandarizar logs en JSON integrada en robots en producción de Correos, alimentando dashboards de Power BI.",
+    blurb: "Librería modular en UiPath para logs JSON y observabilidad de robots en producción.",
     image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
@@ -342,11 +278,10 @@ const PROJECTS = [
   {
     id: "correos-n8n-make",
     title: "Orquestación experimental con n8n y Make",
-    role: "Automatización · Orquestación",
+    role: "Automatización",
     year: 2025,
     tags: ["n8n", "Make", "Automatización", "RPA"],
-    blurb:
-      "Entornos locales con n8n y Make para flujos de integración y escalabilidad con robots UiPath.",
+    blurb: "Flujos de integración y orquestación híbrida con UiPath.",
     image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
@@ -357,8 +292,7 @@ const PROJECTS = [
     role: "Bases de datos · I+D",
     year: 2025,
     tags: ["Neo4j", "Grafos", "Análisis de datos"],
-    blurb:
-      "Modelado de esquemas de nodos y relaciones en Neo4j para análisis complejo y automatización.",
+    blurb: "Modelado de nodos y relaciones en entornos de laboratorio.",
     image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
@@ -369,8 +303,7 @@ const PROJECTS = [
     role: "Operaciones · Producción",
     year: 2025,
     tags: ["RPA", "UiPath", "Mantenimiento", "Colaboración"],
-    blurb:
-      "Resolución de incidencias y seguimiento de proyectos desplegados en producción coordinando con equipos técnicos y de negocio.",
+    blurb: "Resolución de incidencias y producción colaborando con equipos técnicos y de negocio.",
     image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
@@ -382,7 +315,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Accesorios", "Modular", "Prototipado", "Edición Digital", "Illustrator"],
     blurb:
-      "Colaboración con la marca Balteus en el diseño de una colección de hebillas de cinturón modulares. Exploración formal, optimización de anclajes y fichas técnicas para producción.",
+      "Colaboración con la marca Balteus en el diseño de una colección de hebillas modulares[cite: 2]. Exploración formal, optimización de anclajes y dibujo técnico para producción[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -394,7 +327,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía", "Dirección Creativa", "Textil"],
     blurb:
-      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'[cite: 2]. Prendas con piezas modulares desmontables[cite: 2], exploración de volúmenes globo[cite: 2] y desarrollo de estampados continuos por repetición modular[cite: 2].",
+      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'[cite: 2]. Siluetas modulares con piezas desmontables[cite: 2], volúmenes globo[cite: 2] y estampación textil modular[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -406,7 +339,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Upcycling", "Moda Sostenible", "Confección", "Patronaje", "Premio"],
     blurb:
-      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-[cite: 1, 2]. Reinterpretación del traje castizo madrileño confeccionado íntegramente a partir de 3 prendas recuperadas y textiles de segunda mano[cite: 2].",
+      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-[cite: 1, 2]. Traje castizo contemporáneo confeccionado al 100% con 3 prendas recuperadas y textiles de segunda mano[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -418,7 +351,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño de Moda", "Confección", "Patronaje", "Pasarela"],
     blurb:
-      "Serie de 10 propuestas de diseño inspiradas en el universo de Miguel Becer tras su desfile en MBFWM[cite: 2]. Confección artesanal de pantalón sastre con volantes integrados en satén bicolor[cite: 2].",
+      "Propuesta de 10 looks inspirados en los códigos de Miguel Becer tras su presentación en MBFWM[cite: 2]. Confección técnica de pantalón sastre con volantes integrados en satén bicolor[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -430,14 +363,13 @@ const PROJECTS = [
     year: 2026,
     tags: ["Edición Digital", "Patronaje", "Moulage", "Sastrería", "Fotografía"],
     blurb:
-      "Co-diseño junto a Santiago Yáñez[cite: 2]. Experimentación volumétrica mediante moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica[cite: 2].",
+      "Co-diseño junto a Santiago Yáñez[cite: 2]. Moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
   },
 ];
 
-// Utility: Debounce
 function useDebouncedValue(value, delay = 250) {
   const [v, setV] = useState(value);
   useEffect(() => {
@@ -447,37 +379,59 @@ function useDebouncedValue(value, delay = 250) {
   return v;
 }
 
-// Utility: PDF a lista de imágenes
-function usePDFImages(pdfUrl) {
+// Hook de PDF ultra-robusto con múltiples alternativas de nombre
+function usePDFImages(pdfFilename = "portfolio.pdf") {
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      if (!pdfUrl) return;
-      try {
-        const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
-        const out = [];
-        for (let i = 1; i <= pdf.numPages; i++) {
-          const page = await pdf.getPage(i);
-          const viewport = page.getViewport({ scale: 1.5 });
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-          await page.render({ canvasContext: ctx, viewport }).promise;
-          out.push(canvas.toDataURL("image/webp", 0.9));
+      setLoading(true);
+      const candidates = [
+        `${import.meta.env.BASE_URL}${pdfFilename}`,
+        `${import.meta.env.BASE_URL}PORTFOLIO.pdf`,
+        `${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`,
+      ];
+
+      for (const url of candidates) {
+        try {
+          const loadingTask = pdfjsLib.getDocument({
+            url,
+            cMapUrl: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/",
+            cMapPacked: true,
+          });
+          const pdf = await loadingTask.promise;
+          const out = [];
+
+          for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const viewport = page.getViewport({ scale: 1.5 });
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            await page.render({ canvasContext: ctx, viewport }).promise;
+            out.push(canvas.toDataURL("image/webp", 0.9));
+          }
+
+          if (!cancelled && out.length > 0) {
+            setImages(out);
+            setLoading(false);
+            return;
+          }
+        } catch {
+          // Prueba con la siguiente opción de nombre
         }
-        if (!cancelled) setImages(out);
-      } catch (e) {
-        console.error("PDF render error", e);
-        setImages([]);
       }
+      if (!cancelled) setLoading(false);
     })();
     return () => {
       cancelled = true;
     };
-  }, [pdfUrl]);
-  return images;
+  }, [pdfFilename]);
+
+  return { images, loading };
 }
 
 export default function Portfolio() {
@@ -490,7 +444,14 @@ export default function Portfolio() {
   const [view, setView] = useState("home"); // home | tech | art
   const [category, setCategory] = useState("Todas");
 
-  // Selección de categorías según la pestaña actual
+  // Título dinámico de la pestaña del navegador
+  useEffect(() => {
+    if (view === "home") document.title = "URA WENYERS · Archive";
+    else if (view === "tech") document.title = "URA WENYERS · Data & AI";
+    else if (view === "art") document.title = "URA WENYERS · Atelier";
+  }, [view]);
+
+  // Selección de categorías por pestaña
   const activeCategories = useMemo(() => {
     return view === "art" ? CATEGORIES_ART : CATEGORIES_TECH;
   }, [view]);
@@ -498,8 +459,8 @@ export default function Portfolio() {
   const CATEGORY_NAMES = useMemo(() => activeCategories.map((c) => c.name), [activeCategories]);
   const dq = useDebouncedValue(q, 250);
 
-  // Carga de diapositivas del PDF
-  const pdfImages = usePDFImages(`${import.meta.env.BASE_URL}portfolio.pdf`);
+  // Visor de PDF
+  const { images: pdfImages, loading: pdfLoading } = usePDFImages("portfolio.pdf");
 
   const scrollToProjects = () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
 
@@ -550,18 +511,22 @@ export default function Portfolio() {
                 setView("tech");
                 scrollToProjects();
               }}
-              className={`h-10 px-3 text-sm ${view === "tech" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
+              className={`h-10 px-4 text-xs font-semibold uppercase tracking-wider ${
+                view === "tech" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"
+              }`}
             >
-              Tech
+              Data &amp; AI
             </button>
             <div className="w-px self-stretch bg-black/80" aria-hidden />
             <button
               onClick={() => {
                 setView("art");
               }}
-              className={`h-10 px-3 text-sm ${view === "art" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
+              className={`h-10 px-4 text-xs font-semibold uppercase tracking-wider ${
+                view === "art" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"
+              }`}
             >
-              Art
+              Atelier
             </button>
           </nav>
 
@@ -586,22 +551,14 @@ export default function Portfolio() {
           transition={{ duration: 0.5 }}
           className="text-3xl md:text-4xl font-extrabold tracking-tight"
         >
-          {view === "home" && "Laura Rodríguez · CV"}
-          {view === "tech" && "Ciencia de Datos e IA"}
-          {view === "art" && "Diseño de Moda & Arte"}
+          {view === "home" && "Ura Wenyers · Dossier"}
+          {view === "tech" && "Data Science & Machine Learning"}
+          {view === "art" && "Atelier · Moda & Artesanía Técnica"}
         </motion.h1>
         <p className="mt-3 w-full text-[hsl(215_16%_40%)]">
-          {view === "home" && <>Creative Technologist | Data Scientist with a Passion for Fashion</>}
-          {view === "tech" && (
-            <>
-              Integro <strong>análisis de datos</strong> e <strong>IA</strong> para crear soluciones robustas, explicables y útiles.
-            </>
-          )}
-          {view === "art" && (
-            <>
-              Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y experimentación textil con enfoque de vanguardia.
-            </>
-          )}
+          {view === "home" && <>Creative Technologist | Intersección entre modelado algorítmico y patronaje industrial[cite: 1, 2].</>}
+          {view === "tech" && <>Desarrollo de modelos predictivos, interpretabilidad (XAI) y automatización de procesos complejos[cite: 1].</>}
+          {view === "art" && <>Construcción técnica, experimentación textil con biomateriales, upcycling y colecciones modulares[cite: 1, 2].</>}
         </p>
         {view !== "home" && (
           <div className="mt-4 flex flex-wrap gap-2">
@@ -629,7 +586,6 @@ export default function Portfolio() {
       {/* HOME: CV secciones */}
       {view === "home" && (
         <section className="max-w-6xl mx-auto px-4 py-0 space-y-6">
-          {/* Experiencia laboral */}
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Experiencia</h2>
 
@@ -655,7 +611,7 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: UiPath · n8n · Make · JSON · Git · RPA[cite: 1]</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Colaboración de diseño - Balteus (colección Otoño-Invierno 2025)[cite: 2]</div>
+              <div className="font-medium mr-4">Colaboración de diseño - Balteus[cite: 2]</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo - Julio 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
@@ -674,7 +630,6 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Gestión de eventos · Comunicación · Diseño gráfico</div>
           </div>
 
-          {/* Educación */}
           <div className="rounded-2xl border p-4 bg-white/70 mt-4">
             <h2 className="text-lg font-semibold mb-2">Educación</h2>
 
@@ -707,7 +662,6 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Álgebra · Estadística · Geometría · Topología · Análisis Matemático</div>
           </div>
 
-          {/* Premios y Reconocimientos */}
           <div className="rounded-2xl border p-4 bg-white/70 mt-4">
             <h2 className="text-lg font-semibold mb-2">Premios y Reconocimientos</h2>
 
@@ -730,7 +684,6 @@ export default function Portfolio() {
             <p className="text-sm mt-1">Propuesta de solución tecnológica circular con impacto en sostenibilidad y trazabilidad de residuos.</p>
           </div>
 
-          {/* Habilidades */}
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Habilidades</h2>
             <ul className="list-disc pl-5 text-sm space-y-1">
@@ -743,7 +696,6 @@ export default function Portfolio() {
             </ul>
           </div>
 
-          {/* Idiomas */}
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Idiomas</h2>
             <ul className="text-sm list-none space-y-1">
@@ -753,7 +705,6 @@ export default function Portfolio() {
             </ul>
           </div>
 
-          {/* Descargas */}
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Descargas</h2>
             <div className="flex flex-wrap gap-2">
@@ -766,33 +717,44 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* === ARTE: Visor Vertical de Diapositivas Limpio === */}
-      {view === "art" && pdfImages.length > 0 && (
+      {/* === ATELIER: Visor Vertical de Diapositivas sin bordes negros ni números === */}
+      {view === "art" && (
         <section className="max-w-5xl mx-auto px-4 pt-1 pb-6">
-          <div className="border rounded-2xl bg-white shadow-sm overflow-hidden">
-            <div 
-              className="h-[82vh] overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
-              tabIndex={0}
-            >
-              {pdfImages.map((src, index) => (
-                <div
-                  key={`slide-${index}`}
-                  className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none p-0"
-                >
-                  <img
-                    src={src}
-                    alt={`Diapositiva ${index + 1}`}
-                    loading="lazy"
-                    className="w-full h-full object-contain pointer-events-none"
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="border rounded-2xl bg-white shadow-sm overflow-hidden min-h-[60vh] flex items-center justify-center">
+            {pdfLoading ? (
+              <div className="flex flex-col items-center gap-2 py-20 text-zinc-400">
+                <Loader2 className="size-6 animate-spin" />
+                <span className="text-xs uppercase tracking-wider">Cargando Atelier...</span>
+              </div>
+            ) : pdfImages.length > 0 ? (
+              <div 
+                className="w-full h-[82vh] overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
+                tabIndex={0}
+              >
+                {pdfImages.map((src, index) => (
+                  <div
+                    key={`slide-${index}`}
+                    className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none p-0"
+                  >
+                    <img
+                      src={src}
+                      alt={`Diapositiva ${index + 1}`}
+                      loading="lazy"
+                      className="w-full h-full object-contain pointer-events-none"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="p-8 text-center text-sm text-zinc-400">
+                No se ha podido cargar el archivo PDF. Comprueba que el archivo se encuentre en la carpeta public.
+              </div>
+            )}
           </div>
         </section>
       )}
 
-      {/* SEARCH BAR + CATEGORÍAS (Para Tech y para Art) */}
+      {/* SEARCH BAR + CATEGORÍAS (Para Data & AI y para Atelier) */}
       {view !== "home" && (
         <section className="max-w-6xl mx-auto px-4 pb-2">
           <div className="border rounded-2xl p-4 flex flex-col gap-3 md:grid md:grid-cols-[1fr_auto_auto] items-stretch md:items-center bg-white/70">
@@ -996,8 +958,8 @@ export default function Portfolio() {
       <footer className="mt-10 border-t">
         <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <div className="font-semibold">¿Hablamos?</div>
-            <div className="text-sm text-[hsl(215_16%_40%)]">Disponible desde las 12pm · Madrid</div>
+            <div className="font-semibold tracking-tight">Ura Wenyers</div>
+            <div className="text-sm text-[hsl(215_16%_40%)]">Atelier &amp; Data Studio · Madrid</div>
           </div>
           <div className="flex gap-2">
             <a href="mailto:lauraarodriguez11@gmail.com" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]">
