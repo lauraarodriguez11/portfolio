@@ -779,8 +779,7 @@ export default function Portfolio() {
       </header>
 
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 pt-6 pb-6">
-        <motion.h1 initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{duration:0.5}} className="text-3xl md:text-4xl font-extrabold tracking-tight">
+      <section className="max-w-6xl mx-auto px-6 pt-6 pb-6">        <motion.h1 initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{duration:0.5}} className="text-3xl md:text-4xl font-extrabold tracking-tight">
           {view === "home" && "Laura Rodríguez · CV"}
           {view === "tech" && "Ciencia de Datos e IA"}
           {view === "art" && "Diseño de Moda & Arte"}
@@ -824,7 +823,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-2">
               <div className="font-medium mr-4">Programa Jóven Talento - Correos (Equipo DALIA)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Febrero - Agosto 2025</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">feb.-ag. 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Desarrollo modular en UiPath, automatización de procesos (RPA), orquestación con n8n y Make.</li>
@@ -835,7 +834,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Colaboración de diseño - Balteus (colección Otoño-Invierno 2025)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo - Julio 2025</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">may.-jul. 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Diseño y evaluación de variantes modulares de hebillas; equilibrio estética-funcionalidad.</li>
@@ -845,7 +844,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Ganadora del reto de Tirme - II Circular Innovation Hackathon (Palma de Mallorca)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Noviembre 2024</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">nov. 2024</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Propuesta de solución tecnológica circular con impacto en sostenibilidad y trazabilidad de residuos.</li>
@@ -855,7 +854,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Miembro de comité organizador del XXIV Encuentro Nacional de Estudiantes de Matemáticas</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Julio 2023</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">jul. 2023</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Coordinación logística y gestión de comunicaciones con más de 300 asistentes.</li>
@@ -869,7 +868,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-2">
               <div className="font-medium mr-4">Título Superior en Diseño de Moda - Universidad Europea | IADE</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025 - En curso</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025-en curso</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Proyectos de diseño experimental con enfoque en sostenibilidad y técnicas mixtas.</li>
@@ -878,7 +877,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Máster en Big Data, Data Science e IA - Universidad Complutense de Madrid</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024 - 2025</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024-2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>TFM: Autenticación de autoría pictórica mediante IA explicable.</li>
@@ -888,7 +887,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Grado en Matemáticas - Universidad de Extremadura</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019 - 2024</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019-2024</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>TFG: Clasificación de emociones mediante Deep Learning.</li>
@@ -898,7 +897,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Tres cursos anuales de Teatro - Escuela de Interpretación y compañía Createatro</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2016 - 2019</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2016-2019</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Expresión corporal, improvisación, trabajo en grupo y puesta en escena.</li>
@@ -907,7 +906,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Enseñanzas Elementales de Música (Piano y Lenguaje Musical) - Escuelas Municipales de Música</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2006 - 2013</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2006-2013</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Formación instrumental básica y teoría musical elemental.</li>
@@ -956,7 +955,7 @@ export default function Portfolio() {
 
       {/* === ARTE: Flipbook primero === */}
       {view === "art" && pdfImages.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 pb-2">
+        <section className="max-w-6xl mx-auto px-4 pt-0 pb-2">
           {/* Mensaje solo visible en móvil vertical */}
           <div className="md:hidden landscape:hidden mb-4 rounded-2xl border p-4 bg-amber-50 text-amber-900 text-sm flex items-center gap-3">
             <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1074,9 +1073,9 @@ export default function Portfolio() {
                         >
                           {p.title}
                         </h3>
-                        <div className="text-xs text-[hsl(215_16%_40%)] flex items-center justify-between mt-1 flex-none">
-                          <span className="truncate max-w-[70%]">{p.role}</span>
-                          <span>{p.year}</span>
+                        <div className="text-xs text-[hsl(215_16%_40%)] flex items-center justify-between gap-2 mt-1 flex-none min-w-0">
+                          <span className="truncate flex-1 min-w-0">{p.role}</span>
+                          <span className="shrink-0 font-medium">{p.year}</span>
                         </div>
 
                         {/* un pelín más de texto, pero controlado */}
@@ -1166,19 +1165,17 @@ export default function Portfolio() {
                     </div>
                   )}
 
-                  {(active.links?.length ?? 0) > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {active.links.map((l) => (
+                  <div className="mt-6 pb-2 flex items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {(active.links?.length ?? 0) > 0 && active.links.map((l) => (
                         <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]">
                           <ExternalLink className="size-4" />
                           {l.label}
                         </a>
                       ))}
                     </div>
-                  )}
-
-                  <div className="mt-6 pb-2 flex justify-end">
-                    <button onClick={() => setOpen(false)} className="rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]">
+                    
+                    <button onClick={() => setOpen(false)} className="rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)] shrink-0">
                       Cerrar
                     </button>
                   </div>
