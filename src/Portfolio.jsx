@@ -351,32 +351,32 @@ const PROJECTS = [
     tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía"],
     blurb:
       "Pieza superior y cuello construidos en dos partes independientes que admiten múltiples configuraciones de estilismo, alterando la silueta en torno al cuerpo. Dirección creativa y diseño: Ura Wenyers. Fotografía: Kerlyn Micaela Cueva y Santiago Yáñez. Modelos: David Rapado y Ura Wenyers. Estilismo: Santiago Yáñez. Asistencia: David Rapado y Mariam Davtyan.",
-    image: `${import.meta.env.BASE_URL}yute_verde_cover.png`,
+    image: `${import.meta.env.BASE_URL}yute_verde_cover.PNG`,
     galleries: [
       {
         title: "Female",
         images: [
-          `${import.meta.env.BASE_URL}yute_verde_ed_1.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_2.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_3.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_4.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_5.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_6.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_7.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_8.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_9.png`,
-          `${import.meta.env.BASE_URL}yute_verde_ed_10.png`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_1.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_2.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_3.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_4.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_5.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_6.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_7.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_8.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_9.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_ed_10.PNG`,
         ],
       },
       {
         title: "Male",
         images: [
-          `${import.meta.env.BASE_URL}yute_verde_det_1.png`,
-          `${import.meta.env.BASE_URL}yute_verde_det_2.png`,
-          `${import.meta.env.BASE_URL}yute_verde_det_3.png`,
-          `${import.meta.env.BASE_URL}yute_verde_det_4.png`,
-          `${import.meta.env.BASE_URL}yute_verde_det_5.png`,
-          `${import.meta.env.BASE_URL}yute_verde_det_6.png`,
+          `${import.meta.env.BASE_URL}yute_verde_det_1.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_det_2.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_det_3.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_det_4.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_det_5.PNG`,
+          `${import.meta.env.BASE_URL}yute_verde_det_6.PNG`,
         ],
       },
     ],
@@ -391,28 +391,28 @@ const PROJECTS = [
     tags: ["Diseño de Moda", "Patronaje", "Confección", "Textil", "Fotografía"],
     blurb:
       "Exploración volumétrica sobre yute rígido. Top de tirantes con panel trasero acordonado combinado con pantalón ancho que integra sobrefalda abullonada tipo globo. La densidad del tejido sostiene el volumen arquitectónico de la silueta. Dirección creativa y diseño: Ura Wenyers. Fotografía: Ura Wenyers. Modelo: Lucía Fenoll.",
-    image: `${import.meta.env.BASE_URL}yute_arpillera_cover.png`,
+    image: `${import.meta.env.BASE_URL}yute_arpillera_cover.PNG`,
     galleries: [
       {
-        title: "Ver 01",
+        title: "V01",
         images: [
-          `${import.meta.env.BASE_URL}yute_arp_ed_1.png`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_1.PNG`,
           `${import.meta.env.BASE_URL}yute_arp_ed_2.png`,
-          `${import.meta.env.BASE_URL}yute_arp_ed_3.png`,
-          `${import.meta.env.BASE_URL}yute_arp_ed_4.png`,
-          `${import.meta.env.BASE_URL}yute_arp_ed_5.png`,
-          `${import.meta.env.BASE_URL}yute_arp_ed_6.png`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_3.PNG`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_4.PNG`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_5.PNG`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_6.PNG`,
         ],
       },
       {
-        title: "Ver 02",
+        title: "V02",
         images: [
-          `${import.meta.env.BASE_URL}yute_arp_mas.png`,
-          `${import.meta.env.BASE_URL}yute_arp_det_1.png`,
-          `${import.meta.env.BASE_URL}yute_arp_det_2.png`,
-          `${import.meta.env.BASE_URL}yute_arp_det_3.png`,
-          `${import.meta.env.BASE_URL}yute_arp_det_4.png`,
-          `${import.meta.env.BASE_URL}yute_arp_det_5.png`,
+          `${import.meta.env.BASE_URL}yute_arp_mas.PNG`,
+          `${import.meta.env.BASE_URL}yute_arp_det_1.PNG`,
+          `${import.meta.env.BASE_URL}yute_arp_det_2.PNG`,
+          `${import.meta.env.BASE_URL}yute_arp_det_3.PNG`,
+          `${import.meta.env.BASE_URL}yute_arp_det_4.PNG`,
+          `${import.meta.env.BASE_URL}yute_arp_det_5.PNG`,
         ],
       },
     ],
@@ -669,7 +669,7 @@ export default function Portfolio() {
           {view === "art" && "Atelier · Moda & Artesanía Técnica"}
         </motion.h1>
         <p className="mt-3 w-full text-[hsl(215_16%_40%)]">
-          {view === "home" && <>Creative Technologist | Intersección entre modelado algorítmico y patronaje industrial.</>}
+          {view === "home" && <>Creative Technologist | Data Scientist with a Passion for Fashion.</>}
           {view === "tech" && <>Desarrollo de modelos predictivos, interpretabilidad (XAI) y automatización de procesos complejos.</>}
           {view === "art" && <>Construcción técnica, experimentación textil con biomateriales, upcycling y colecciones modulares.</>}
         </p>
