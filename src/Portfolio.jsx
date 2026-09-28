@@ -318,7 +318,11 @@ const PROJECTS = [
       "Colaboración con la marca Balteus en el diseño de una colección de hebillas modulares. Exploración formal, optimización de anclajes y dibujo técnico para producción[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     gallery: [
-      `${import.meta.env.BASE_URL}balteus.webp`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS1.png`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS2.png`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS3.png`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS4.png`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS5.png`,
     ],
     links: [],
     category: "art",
@@ -331,11 +335,10 @@ const PROJECTS = [
     tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía", "Dirección Creativa", "Textil"],
     blurb:
       "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'[cite: 2]. Siluetas modulares con piezas desmontables[cite: 2], volúmenes globo[cite: 2] y estampación textil modular[cite: 2].",
-    image: `${import.meta.env.BASE_URL}balteus.webp`,
+    image: `${import.meta.env.BASE_URL}Lineup.png`,
     gallery: [
       `${import.meta.env.BASE_URL}balteus.webp`,
     ],
-    pdf: `${import.meta.env.BASE_URL}portfolio.pdf`,
     links: [],
     category: "art",
   },
@@ -347,9 +350,9 @@ const PROJECTS = [
     tags: ["Upcycling", "Moda Sostenible", "Confección", "Patronaje", "Premio"],
     blurb:
       "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-[cite: 1, 2]. Traje castizo contemporáneo confeccionado al 100% con 3 prendas recuperadas y textiles de segunda mano[cite: 2].",
-    image: `${import.meta.env.BASE_URL}balteus.webp`,
+    image: `${import.meta.env.BASE_URL}RECH0.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}balteus.webp`,
+      `${import.meta.env.BASE_URL}RECH1.jpeg`,
     ],
     links: [],
     category: "art",
@@ -362,7 +365,7 @@ const PROJECTS = [
     tags: ["Diseño de Moda", "Confección", "Patronaje", "Pasarela"],
     blurb:
       "Propuesta de 10 looks inspirados en los códigos de Miguel Becer tras su presentación en MBFWM[cite: 2]. Confección técnica de pantalón sastre con volantes integrados en satén bicolor[cite: 2].",
-    image: `${import.meta.env.BASE_URL}balteus.webp`,
+    image: `${import.meta.env.BASE_URL}Levedad.png`,
     gallery: [
       `${import.meta.env.BASE_URL}balteus.webp`,
     ],
@@ -377,10 +380,7 @@ const PROJECTS = [
     tags: ["Edición Digital", "Patronaje", "Moulage", "Sastrería", "Fotografía"],
     blurb:
       "Co-diseño junto a Santiago Yáñez[cite: 2]. Moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica[cite: 2].",
-    image: `${import.meta.env.BASE_URL}balteus.webp`,
-    gallery: [
-      `${import.meta.env.BASE_URL}balteus.webp`,
-    ],
+    image: `${import.meta.env.BASE_URL}blazer.png`,
     links: [],
     category: "art",
   },
