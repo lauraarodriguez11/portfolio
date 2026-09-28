@@ -367,7 +367,7 @@ const PROJECTS = [
       `${import.meta.env.BASE_URL}greenwalk_lb_9.jpg`,
       `${import.meta.env.BASE_URL}greenwalk_lb_10.jpg`,
     ],
-pdf: `${import.meta.env.BASE_URL}entrega_final_greenwalk_compressed.pdf`,
+    pdf: `${import.meta.env.BASE_URL}entrega_final_greenwalk_compressed.pdf`,
     links: [
       {
         label: "Ver Fashion Film",
