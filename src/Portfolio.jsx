@@ -318,7 +318,11 @@ const PROJECTS = [
       "Colaboración con la marca Balteus en el diseño de una colección de hebillas modulares. Exploración formal, optimización de anclajes y dibujo técnico para producción.",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     gallery: [
-      `${import.meta.env.BASE_URL}balteus.webp`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS1.png`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS2.png`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS3.png`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS4.png`,
+      `${import.meta.env.BASE_URL}FT_BALTEUS5.png`,
     ],
     links: [],
     category: "art",
@@ -326,16 +330,50 @@ const PROJECTS = [
   {
     id: "yute-culture",
     title: "Yute Culture — Colección Cápsula",
-    role: "Diseño de Moda · Patronaje Modular · Textil",
+    role: "Dirección Creativa · Concepto & Superficies",
     year: 2026,
-    tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía", "Dirección Creativa", "Textil"],
+    tags: ["Diseño de Moda", "Dirección Creativa", "Textil", "Edición Digital"],
     blurb:
-      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'. Siluetas modulares con piezas desmontables, volúmenes globo y estampación textil modular.",
-    image: `${import.meta.env.BASE_URL}balteus.webp`,
+      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el juego conceptual 'yute' / 'youth'. Tensión entre aspereza rural y estructura urbana, integrando desarrollo de estampados propios (rapports continuos de inspiración folclórica) y dirección de arte.",
+    image: `${import.meta.env.BASE_URL}Lineup.png`,
     gallery: [
-      `${import.meta.env.BASE_URL}balteus.webp`,
+      `${import.meta.env.BASE_URL}Moodboard.png`,
+      // Añade aquí el moodboard o imágenes de rapports si los tienes
     ],
     pdf: `${import.meta.env.BASE_URL}portfolio.pdf`,
+    links: [],
+    category: "art",
+  },
+  {
+    id: "yute-culture-look-verde",
+    title: "Yute Culture — Look Modular Verde",
+    role: "Patronaje Modular · Confección · Editorial",
+    year: 2026,
+    tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía"],
+    blurb:
+      "Pieza superior y cuello construidos en dos partes independientes que admiten múltiples configuraciones de estilismo, alterando la silueta en torno al cuerpo. Dirección creativa y diseño: Ura Wenyers. Fotografía: Kerlyn Micaela Cueva y Santiago Yáñez.",
+    image: `${import.meta.env.BASE_URL}yute_verde_cover.jpg`, // Pon la foto principal del look verde
+    gallery: [
+      `${import.meta.env.BASE_URL}yute_verde_1.jpg`,
+      `${import.meta.env.BASE_URL}yute_verde_2.jpg`,
+      `${import.meta.env.BASE_URL}yute_verde_3.jpg`,
+    ],
+    links: [],
+    category: "art",
+  },
+  {
+    id: "yute-culture-look-arpillera",
+    title: "Yute Culture — Look Estructural Arpillera",
+    role: "Patronaje Estructural · Confección Artesanal",
+    year: 2026,
+    tags: ["Diseño de Moda", "Patronaje", "Confección", "Textil", "Fotografía"],
+    blurb:
+      "Exploración volumétrica sobre yute rígido. Top de tirantes con panel trasero acordonado combinado con pantalón ancho que integra sobrefalda abullonada tipo globo. La densidad del material sostiene la silueta arquitectónica. Dirección creativa y diseño: Ura Wenyers. Modelo: Lucía Fenoll.",
+    image: `${import.meta.env.BASE_URL}yute_arpillera_cover.jpg`, // Pon la foto con la horca campesina
+    gallery: [
+      `${import.meta.env.BASE_URL}yute_arpillera_1.jpg`,
+      `${import.meta.env.BASE_URL}yute_arpillera_2.jpg`,
+    ],
     links: [],
     category: "art",
   },
@@ -346,12 +384,17 @@ const PROJECTS = [
     year: 2026,
     tags: ["Upcycling", "Moda Sostenible", "Confección", "Patronaje", "Premio"],
     blurb:
-      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-. Traje castizo contemporáneo confeccionado al 100% con 3 prendas recuperadas y textiles de segunda mano.",
-    image: `${import.meta.env.BASE_URL}balteus.webp`,
+      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) organizado por moda-re-. Reinterpretación del traje castizo madrileño confeccionado al 100% con tres prendas de segunda mano y textiles recuperados, desfilado en pasarela abierta. Incluye entrevista en la revista Circoolar de moda-re-.",
+    image: `${import.meta.env.BASE_URL}RECH0.jpeg`,
     gallery: [
-      `${import.meta.env.BASE_URL}balteus.webp`,
+      `${import.meta.env.BASE_URL}RECH1.jpeg`,
     ],
-    links: [],
+    links: [
+      {
+        label: "Entrevista en Circoolar Mag (moda-re-)",
+        href: "https://modare.org/magazine/circular/re-chulos-desfile-moda-circular-san-isidro/",
+      },
+    ],
     category: "art",
   },
   {
@@ -362,9 +405,9 @@ const PROJECTS = [
     tags: ["Diseño de Moda", "Confección", "Patronaje", "Pasarela"],
     blurb:
       "Propuesta de 10 looks inspirados en los códigos de Miguel Becer tras su presentación en MBFWM. Confección técnica de pantalón sastre con volantes integrados en satén bicolor.",
-    image: `${import.meta.env.BASE_URL}balteus.webp`,
+    image: `${import.meta.env.BASE_URL}manemane_cover.jpg`,
     gallery: [
-      `${import.meta.env.BASE_URL}balteus.webp`,
+      `${import.meta.env.BASE_URL}manemane_1.jpg`,
     ],
     links: [],
     category: "art",
@@ -377,14 +420,14 @@ const PROJECTS = [
     tags: ["Edición Digital", "Patronaje", "Moulage", "Sastrería", "Fotografía"],
     blurb:
       "Co-diseño junto a Santiago Yáñez. Moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica.",
-    image: `${import.meta.env.BASE_URL}balteus.webp`,
+    image: `${import.meta.env.BASE_URL}blazer.png`,
     gallery: [
-      `${import.meta.env.BASE_URL}balteus.webp`,
+      `${import.meta.env.BASE_URL}blazer.png`,
     ],
     links: [],
     category: "art",
   },
-];
+]
 
 function useDebouncedValue(value, delay = 250) {
   const [v, setV] = useState(value);
