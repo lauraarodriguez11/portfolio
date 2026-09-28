@@ -315,14 +315,10 @@ const PROJECTS = [
     year: 2025,
     tags: ["Accesorios", "Modular", "Prototipado", "Edición Digital", "Illustrator"],
     blurb:
-      "Colaboración con la marca Balteus en el diseño de una colección de hebillas modulares. Exploración formal, optimización de anclajes y dibujo técnico para producción[cite: 2].",
+      "Colaboración con la marca Balteus en el diseño de una colección de hebillas modulares. Exploración formal, optimización de anclajes y dibujo técnico para producción.",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     gallery: [
-      `${import.meta.env.BASE_URL}FT_BALTEUS1.png`,
-      `${import.meta.env.BASE_URL}FT_BALTEUS2.png`,
-      `${import.meta.env.BASE_URL}FT_BALTEUS3.png`,
-      `${import.meta.env.BASE_URL}FT_BALTEUS4.png`,
-      `${import.meta.env.BASE_URL}FT_BALTEUS5.png`,
+      `${import.meta.env.BASE_URL}balteus.webp`,
     ],
     links: [],
     category: "art",
@@ -334,11 +330,12 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía", "Dirección Creativa", "Textil"],
     blurb:
-      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'[cite: 2]. Siluetas modulares con piezas desmontables[cite: 2], volúmenes globo[cite: 2] y estampación textil modular[cite: 2].",
-    image: `${import.meta.env.BASE_URL}Lineup.png`,
+      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'. Siluetas modulares con piezas desmontables, volúmenes globo y estampación textil modular.",
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
     gallery: [
       `${import.meta.env.BASE_URL}balteus.webp`,
     ],
+    pdf: `${import.meta.env.BASE_URL}portfolio.pdf`,
     links: [],
     category: "art",
   },
@@ -349,10 +346,10 @@ const PROJECTS = [
     year: 2026,
     tags: ["Upcycling", "Moda Sostenible", "Confección", "Patronaje", "Premio"],
     blurb:
-      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-[cite: 1, 2]. Traje castizo contemporáneo confeccionado al 100% con 3 prendas recuperadas y textiles de segunda mano[cite: 2].",
-    image: `${import.meta.env.BASE_URL}RECH0.jpeg`,
+      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-. Traje castizo contemporáneo confeccionado al 100% con 3 prendas recuperadas y textiles de segunda mano.",
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
     gallery: [
-      `${import.meta.env.BASE_URL}RECH1.jpeg`,
+      `${import.meta.env.BASE_URL}balteus.webp`,
     ],
     links: [],
     category: "art",
@@ -364,8 +361,8 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño de Moda", "Confección", "Patronaje", "Pasarela"],
     blurb:
-      "Propuesta de 10 looks inspirados en los códigos de Miguel Becer tras su presentación en MBFWM[cite: 2]. Confección técnica de pantalón sastre con volantes integrados en satén bicolor[cite: 2].",
-    image: `${import.meta.env.BASE_URL}Levedad.png`,
+      "Propuesta de 10 looks inspirados en los códigos de Miguel Becer tras su presentación en MBFWM. Confección técnica de pantalón sastre con volantes integrados en satén bicolor.",
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
     gallery: [
       `${import.meta.env.BASE_URL}balteus.webp`,
     ],
@@ -379,8 +376,11 @@ const PROJECTS = [
     year: 2026,
     tags: ["Edición Digital", "Patronaje", "Moulage", "Sastrería", "Fotografía"],
     blurb:
-      "Co-diseño junto a Santiago Yáñez[cite: 2]. Moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica[cite: 2].",
-    image: `${import.meta.env.BASE_URL}blazer.png`,
+      "Co-diseño junto a Santiago Yáñez. Moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica.",
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
+    gallery: [
+      `${import.meta.env.BASE_URL}balteus.webp`,
+    ],
     links: [],
     category: "art",
   },
@@ -399,7 +399,7 @@ function useDebouncedValue(value, delay = 250) {
 function usePDFImages(pdfFilename = "portfolio.pdf") {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [aspectRatio, setAspectRatio] = useState(16 / 9); // Fallback panorámico
+  const [aspectRatio, setAspectRatio] = useState(16 / 9);
 
   useEffect(() => {
     let cancelled = false;
@@ -573,7 +573,7 @@ export default function Portfolio() {
       </header>
 
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 pt-6 pb-6">
+      <section className="max-w-6xl mx-auto px-6 pt-6 pb-2">
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -585,170 +585,15 @@ export default function Portfolio() {
           {view === "art" && "Atelier · Moda & Artesanía Técnica"}
         </motion.h1>
         <p className="mt-3 w-full text-[hsl(215_16%_40%)]">
-          {view === "home" && <>Creative Technologist | Intersección entre modelado algorítmico y patronaje industrial[cite: 1, 2].</>}
-          {view === "tech" && <>Desarrollo de modelos predictivos, interpretabilidad (XAI) y automatización de procesos complejos[cite: 1].</>}
-          {view === "art" && <>Construcción técnica, experimentación textil con biomateriales, upcycling y colecciones modulares[cite: 1, 2].</>}
+          {view === "home" && <>Creative Technologist | Intersección entre modelado algorítmico y patronaje industrial.</>}
+          {view === "tech" && <>Desarrollo de modelos predictivos, interpretabilidad (XAI) y automatización de procesos complejos.</>}
+          {view === "art" && <>Construcción técnica, experimentación textil con biomateriales, upcycling y colecciones modulares.</>}
         </p>
-        {view !== "home" && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {(view === "tech" ? SUGGESTED_TAGS_TECH : SUGGESTED_TAGS_ART).map((k) => {
-              const isActive = tag === k;
-              return (
-                <button
-                  key={k}
-                  onClick={() => {
-                    setTag(isActive ? "Todas" : k);
-                    scrollToProjects();
-                  }}
-                  className={`rounded-2xl border px-2.5 py-1 text-sm ${
-                    isActive ? "bg-black text-white" : "bg-white hover:shadow"
-                  }`}
-                >
-                  {k}
-                </button>
-              );
-            })}
-          </div>
-        )}
       </section>
 
-      {/* HOME: CV secciones */}
-      {view === "home" && (
-        <section className="max-w-6xl mx-auto px-4 py-0 space-y-6">
-          <div className="rounded-2xl border p-4 bg-white/70">
-            <h2 className="text-lg font-semibold mb-2">Experiencia</h2>
-
-            <div className="flex justify-between mt-2">
-              <div className="font-medium mr-4">Profesora de Matemática Aplicada | UNIE Universidad[cite: 1]</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Enero 2026 - En curso[cite: 1]</div>
-            </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Docente del módulo de Minería de Datos para alumnos de 4º curso del Grado de Matemáticas[cite: 1].</li>
-              <li>Diseño de casos prácticos de análisis multivariante, validación cruzada y modelado predictivo.</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Minería de Datos · Python · R · Estadística · Machine Learning</div>
-
-            <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Programa Jóven Talento - Correos (Equipo DALIA)[cite: 1]</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Febrero - Agosto 2025[cite: 1]</div>
-            </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Desarrollo modular en UiPath, automatización de procesos (RPA), orquestación con n8n y Make[cite: 1].</li>
-              <li>Trazabilidad en JSON y trabajo técnico en entornos corporativos complejos[cite: 1].</li>
-              <li>Colaboración transversal con equipos técnicos y de negocio; mejora de la escalabilidad de robots en producción[cite: 1].</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: UiPath · n8n · Make · JSON · Git · RPA[cite: 1]</div>
-
-            <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Colaboración de diseño - Balteus[cite: 2]</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo - Julio 2025</div>
-            </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Diseño y evaluación de variantes modulares de hebillas; equilibrio estética-funcionalidad[cite: 2].</li>
-              <li>Colaboración con fundadores y dirección creativa para alineación con identidad de marca.</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Illustrator · Photoshop · Diseño industrial · Dibujo técnico</div>
-
-            <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Miembro de comité organizador del XXIV Encuentro Nacional de Estudiantes de Matemáticas</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Julio 2023</div>
-            </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Coordinación logística y gestión de comunicaciones con más de 300 asistentes.</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Gestión de eventos · Comunicación · Diseño gráfico</div>
-          </div>
-
-          <div className="rounded-2xl border p-4 bg-white/70 mt-4">
-            <h2 className="text-lg font-semibold mb-2">Educación</h2>
-
-            <div className="flex justify-between mt-2">
-              <div className="font-medium mr-4">Título Superior en Diseño de Moda - Universidad Europea | IADE[cite: 1]</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025 - En curso[cite: 1]</div>
-            </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Proyectos de diseño experimental con enfoque en sostenibilidad y técnicas mixtas.</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Dibujo técnico · Patronaje · Estilismo · Photoshop · Illustrator</div>
-
-            <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Máster en Big Data, Data Science e IA - Universidad Complutense de Madrid[cite: 1]</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024 - 2025[cite: 1]</div>
-            </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>TFM: Autenticación de autoría pictórica mediante IA explicable[cite: 1].</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: SQL · NoSQL · Python · ML · DL · NLP · Spark · MLflow · Explainable AI[cite: 1]</div>
-
-            <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Grado en Matemáticas - Universidad de Extremadura[cite: 1]</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019 - 2024[cite: 1]</div>
-            </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>TFG: Clasificación de emociones mediante Deep Learning[cite: 1].</li>
-              <li>Erasmus: Universidad de Zielona Góra, Polonia (2023–2024)[cite: 1].</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Álgebra · Estadística · Geometría · Topología · Análisis Matemático</div>
-          </div>
-
-          <div className="rounded-2xl border p-4 bg-white/70 mt-4">
-            <h2 className="text-lg font-semibold mb-2">Premios y Reconocimientos</h2>
-
-            <div className="flex justify-between mt-2">
-              <div className="font-medium mr-4">Premio al Mejor Proyecto de Upcycling — Concurso 'Re-Chulos' de San Isidro[cite: 1]</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo 2026[cite: 1]</div>
-            </div>
-            <p className="text-sm mt-1">Concurso de moda sostenible organizado con moda-re- reinterpretando el traje castizo madrileño[cite: 2].</p>
-
-            <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">1.ᵉʳ Premio – Competición de Becas Máster Big Data, Data Science e IA (UCM – NTIC Master)[cite: 1]</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Septiembre 2025[cite: 1]</div>
-            </div>
-            <p className="text-sm mt-1">Reconocimiento al mejor proyecto final de máster por autenticación pictórica con XAI[cite: 1].</p>
-
-            <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Ganadora del reto de Tirme - II Circular Innovation Hackathon (Palma de Mallorca)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Noviembre 2024</div>
-            </div>
-            <p className="text-sm mt-1">Propuesta de solución tecnológica circular con impacto en sostenibilidad y trazabilidad de residuos.</p>
-          </div>
-
-          <div className="rounded-2xl border p-4 bg-white/70">
-            <h2 className="text-lg font-semibold mb-2">Habilidades</h2>
-            <ul className="list-disc pl-5 text-sm space-y-1">
-              <li><strong>Ciclo completo del dato:</strong> adquisición, limpieza, análisis, modelado predictivo y visualización[cite: 1].</li>
-              <li><strong>Programación:</strong> Python, R, SQL, control de versiones Git en entornos colaborativos[cite: 1].</li>
-              <li><strong>Big Data & Bases de Datos:</strong> Apache Spark, PostgreSQL, MySQL, MongoDB, Neo4j[cite: 1].</li>
-              <li><strong>ML, Deep Learning & XAI:</strong> scikit-learn, TensorFlow, Keras, Hugging Face, SHAP[cite: 1].</li>
-              <li><strong>Automatización & RPA:</strong> UiPath, n8n, Make, trazabilidad JSON[cite: 1].</li>
-              <li><strong>Diseño & Moda:</strong> Patronaje industrial, técnicas de confección, upcycling, Adobe Illustrator y Photoshop[cite: 1].</li>
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border p-4 bg-white/70">
-            <h2 className="text-lg font-semibold mb-2">Idiomas</h2>
-            <ul className="text-sm list-none space-y-1">
-              <li><strong>Español:</strong> Nativo[cite: 1]</li>
-              <li><strong>Inglés:</strong> B2 (Cambridge)[cite: 1]</li>
-              <li><strong>Francés:</strong> B1 (DELF-EOI)[cite: 1]</li>
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border p-4 bg-white/70">
-            <h2 className="text-lg font-semibold mb-2">Descargas</h2>
-            <div className="flex flex-wrap gap-2">
-              <a href={`${import.meta.env.BASE_URL}CV_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}CV_ENG_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}CV_mixto.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}portfolio.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* === ATELIER: Visor Vertical de Diapositivas sin márgenes arriba ni abajo === */}
+      {/* === ATELIER: VISOR DE DIAPOSITIVAS ANTES DE LAS SUGGESTED TAGS === */}
       {view === "art" && (
-        <section className="max-w-5xl mx-auto px-4 pt-1 pb-6">
+        <section className="max-w-5xl mx-auto px-6 pt-4 pb-4">
           <div
             className="border rounded-2xl bg-white shadow-sm overflow-hidden w-full relative"
             style={{
@@ -785,6 +630,165 @@ export default function Portfolio() {
                 No se ha podido cargar el archivo PDF. Comprueba que el archivo se encuentre en la carpeta public.
               </div>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* SUGGESTED TAGS (después del portfolio en Atelier) */}
+      {view !== "home" && (
+        <section className="max-w-6xl mx-auto px-6 pt-2 pb-4">
+          <div className="flex flex-wrap gap-2">
+            {(view === "tech" ? SUGGESTED_TAGS_TECH : SUGGESTED_TAGS_ART).map((k) => {
+              const isActive = tag === k;
+              return (
+                <button
+                  key={k}
+                  onClick={() => {
+                    setTag(isActive ? "Todas" : k);
+                    scrollToProjects();
+                  }}
+                  className={`rounded-2xl border px-2.5 py-1 text-sm ${
+                    isActive ? "bg-black text-white" : "bg-white hover:shadow"
+                  }`}
+                >
+                  {k}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* HOME: CV secciones */}
+      {view === "home" && (
+        <section className="max-w-6xl mx-auto px-4 py-0 space-y-6">
+          <div className="rounded-2xl border p-4 bg-white/70">
+            <h2 className="text-lg font-semibold mb-2">Experiencia</h2>
+
+            <div className="flex justify-between mt-2">
+              <div className="font-medium mr-4">Profesora de Matemática Aplicada | UNIE Universidad</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Enero 2026 - En curso</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>Docente del módulo de Minería de Datos para alumnos de 4º curso del Grado de Matemáticas.</li>
+              <li>Diseño de casos prácticos de análisis multivariante, validación cruzada y modelado predictivo.</li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Minería de Datos · Python · R · Estadística · Machine Learning</div>
+
+            <div className="flex justify-between mt-3">
+              <div className="font-medium mr-4">Programa Jóven Talento - Correos (Equipo DALIA)</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Febrero - Agosto 2025</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>Desarrollo modular en UiPath, automatización de procesos (RPA), orquestación con n8n y Make.</li>
+              <li>Trazabilidad en JSON y trabajo técnico en entornos corporativos complejos.</li>
+              <li>Colaboración transversal con equipos técnicos y de negocio; mejora de la escalabilidad de robots en producción.</li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: UiPath · n8n · Make · JSON · Git · RPA</div>
+
+            <div className="flex justify-between mt-3">
+              <div className="font-medium mr-4">Colaboración de diseño - Balteus</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo - Julio 2025</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>Diseño y evaluación de variantes modulares de hebillas; equilibrio estética-funcionalidad.</li>
+              <li>Colaboración con fundadores y dirección creativa para alineación con identidad de marca.</li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Illustrator · Photoshop · Diseño industrial · Dibujo técnico</div>
+
+            <div className="flex justify-between mt-3">
+              <div className="font-medium mr-4">Miembro de comité organizador del XXIV Encuentro Nacional de Estudiantes de Matemáticas</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Julio 2023</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>Coordinación logística y gestión de comunicaciones con más de 300 asistentes.</li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Gestión de eventos · Comunicación · Diseño gráfico</div>
+          </div>
+
+          <div className="rounded-2xl border p-4 bg-white/70 mt-4">
+            <h2 className="text-lg font-semibold mb-2">Educación</h2>
+
+            <div className="flex justify-between mt-2">
+              <div className="font-medium mr-4">Título Superior en Diseño de Moda - Universidad Europea | IADE</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025 - En curso</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>Proyectos de diseño experimental con enfoque en sostenibilidad y técnicas mixtas.</li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Dibujo técnico · Patronaje · Estilismo · Photoshop · Illustrator</div>
+
+            <div className="flex justify-between mt-3">
+              <div className="font-medium mr-4">Máster en Big Data, Data Science e IA - Universidad Complutense de Madrid</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024 - 2025</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>TFM: Autenticación de autoría pictórica mediante IA explicable.</li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: SQL · NoSQL · Python · ML · DL · NLP · Spark · MLflow · Explainable AI</div>
+
+            <div className="flex justify-between mt-3">
+              <div className="font-medium mr-4">Grado en Matemáticas - Universidad de Extremadura</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019 - 2024</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>TFG: Clasificación de emociones mediante Deep Learning.</li>
+              <li>Erasmus: Universidad de Zielona Góra, Polonia (2023–2024).</li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Álgebra · Estadística · Geometría · Topología · Análisis Matemático</div>
+          </div>
+
+          <div className="rounded-2xl border p-4 bg-white/70 mt-4">
+            <h2 className="text-lg font-semibold mb-2">Premios y Reconocimientos</h2>
+
+            <div className="flex justify-between mt-2">
+              <div className="font-medium mr-4">Premio al Mejor Proyecto de Upcycling — Concurso 'Re-Chulos' de San Isidro</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo 2026</div>
+            </div>
+            <p className="text-sm mt-1">Concurso de moda sostenible organizado con moda-re- reinterpretando el traje castizo madrileño.</p>
+
+            <div className="flex justify-between mt-3">
+              <div className="font-medium mr-4">1.ᵉʳ Premio – Competición de Becas Máster Big Data, Data Science e IA (UCM – NTIC Master)</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Septiembre 2025</div>
+            </div>
+            <p className="text-sm mt-1">Reconocimiento al mejor proyecto final de máster por autenticación pictórica con XAI.</p>
+
+            <div className="flex justify-between mt-3">
+              <div className="font-medium mr-4">Ganadora del reto de Tirme - II Circular Innovation Hackathon (Palma de Mallorca)</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Noviembre 2024</div>
+            </div>
+            <p className="text-sm mt-1">Propuesta de solución tecnológica circular con impacto en sostenibilidad y trazabilidad de residuos.</p>
+          </div>
+
+          <div className="rounded-2xl border p-4 bg-white/70">
+            <h2 className="text-lg font-semibold mb-2">Habilidades</h2>
+            <ul className="list-disc pl-5 text-sm space-y-1">
+              <li><strong>Ciclo completo del dato:</strong> adquisición, limpieza, análisis, modelado predictivo y visualización.</li>
+              <li><strong>Programación:</strong> Python, R, SQL, control de versiones Git en entornos colaborativos.</li>
+              <li><strong>Big Data & Bases de Datos:</strong> Apache Spark, PostgreSQL, MySQL, MongoDB, Neo4j.</li>
+              <li><strong>ML, Deep Learning & XAI:</strong> scikit-learn, TensorFlow, Keras, Hugging Face, SHAP.</li>
+              <li><strong>Automatización & RPA:</strong> UiPath, n8n, Make, trazabilidad JSON.</li>
+              <li><strong>Diseño & Moda:</strong> Patronaje industrial, técnicas de confección, upcycling, Adobe Illustrator y Photoshop.</li>
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border p-4 bg-white/70">
+            <h2 className="text-lg font-semibold mb-2">Idiomas</h2>
+            <ul className="text-sm list-none space-y-1">
+              <li><strong>Español:</strong> Nativo</li>
+              <li><strong>Inglés:</strong> B2 (Cambridge)</li>
+              <li><strong>Francés:</strong> B1 (DELF-EOI)</li>
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border p-4 bg-white/70">
+            <h2 className="text-lg font-semibold mb-2">Descargas</h2>
+            <div className="flex flex-wrap gap-2">
+              <a href={`${import.meta.env.BASE_URL}CV_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_ENG_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mixto.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}portfolio.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
+            </div>
           </div>
         </section>
       )}
@@ -939,14 +943,12 @@ export default function Portfolio() {
                 </div>
 
                 <div className="p-4 overflow-y-auto space-y-4">
-                  {/* Visor principal de la imagen seleccionada */}
                   {activeImage && (
                     <div className="rounded-xl overflow-hidden ring-1 ring-[hsl(214.3_31.8%_91.4%)] bg-zinc-50">
                       <img src={activeImage} alt={active.title} className="w-full h-auto max-h-[50vh] object-contain mx-auto" loading="lazy" />
                     </div>
                   )}
 
-                  {/* Carrusel/Miniaturas de la Galería Multifoto */}
                   {active.gallery && active.gallery.length > 1 && (
                     <div>
                       <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block mb-2">Galería del proyecto</span>
@@ -968,7 +970,6 @@ export default function Portfolio() {
 
                   <p className="text-sm leading-relaxed text-zinc-800">{active.blurb}</p>
 
-                  {/* Enlace para ver/descargar PDF si existe */}
                   {active.pdf && (
                     <div className="pt-2">
                       <a
