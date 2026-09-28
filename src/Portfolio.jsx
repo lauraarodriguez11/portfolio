@@ -14,14 +14,6 @@ styleSheet.textContent = `
 `;
 document.head.appendChild(styleSheet);
 
-// =====================
-//  PORTFOLIO LITE ++
-//  - Tabs (Tecnología / Arte)
-//  - Chips de etiquetas clicables (filtran y hacen scroll)
-//  - Import auto de GitHub + división de "master_ucm" en subproyectos (directorios)
-//  - Flipbook PDF en la sección de Arte (ajustado a ancho, sin marco negro, sin scroll)
-// =====================
-
 const GH_USERNAME = "lauraarodriguez11";
 
 // Sugerencias por pestaña
@@ -36,12 +28,19 @@ const SUGGESTED_TAGS_TECH = [
   "RPA",
   "Scikit-learn",
 ];
-const SUGGESTED_TAGS_ART = [];
+const SUGGESTED_TAGS_ART = [
+  "Moda",
+  "Ura Wenyers",
+  "Yute Culture",
+  "Upcycling",
+  "Patronaje Modular",
+  "Accesorios",
+  "Dirección Creativa",
+];
 
-// Catálogo de categorías (cada una lista sus tags oficiales)
+// Catálogo de categorías
 const CATEGORIES = [
   { name: "Todas", tags: [] },
-
   {
     name: "Bases de Datos",
     tags: [
@@ -58,12 +57,10 @@ const CATEGORIES = [
       "SQL",
     ],
   },
-
   {
     name: "Estadística & Ciencia de Datos",
     tags: ["Pandas", "NumPy", "SciPy", "Statsmodels", "Estadística", "EDA", "Inferencia", "Spark"],
   },
-
   {
     name: "Machine Learning & Deep Learning",
     tags: [
@@ -82,19 +79,17 @@ const CATEGORIES = [
       "XAI",
     ],
   },
-
   {
     name: "Visualización & BI",
     tags: ["Tableau", "Power BI", "Dashboards", "Data Visualization"],
   },
-
   {
     name: "Automatización & RPA",
     tags: ["RPA", "UiPath", "n8n", "Make"],
   },
 ];
 
-// ======= Proyectos MANUALES (edítalos con tus proyectos reales) =======
+// ======= Proyectos MANUALES =======
 const PROJECTS = [
   {
     id: "tfg-emociones",
@@ -115,7 +110,7 @@ const PROJECTS = [
       "XLM-Roberta",
     ],
     blurb:
-      "Trabajo Fin de Grado centrado en la clasificación automática de emociones en textos cortos de redes sociales (ira, asco, miedo, alegría, tristeza y sorpresa). Incluye un marco teórico detallado de IA, aprendizaje automático y redes neuronales, seguido de una aplicación práctica en Python. Se implementaron modelos ML (SVM, Random Forest, Naive Bayes) y DL (RNN, LSTM y Transformers con XLM-Roberta), con un exhaustivo preprocesamiento textual y técnicas de optimización (GridSearch, RandomSearch). La evaluación utilizó métricas como precisión, recall, F1-score y accuracy, comparando enfoques clásicos y de deep learning. El documento completo recoge resultados, discusión crítica, limitaciones y posibles líneas de mejora.",
+      "Trabajo Fin de Grado centrado en la clasificación automática de emociones en textos cortos de redes sociales (ira, asco, miedo, alegría, tristeza y sorpresa). Incluye un marco teórico detallado de IA, aprendizaje automático y redes neuronales, seguido de una aplicación práctica en Python con modelos clásicos y Transformers.",
     image: `${import.meta.env.BASE_URL}cover_tfg.png`,
     links: [
       { label: "GitHub", href: "https://github.com/lauraarodriguez11/TFG_clasificacion_emociones" },
@@ -133,7 +128,7 @@ const PROJECTS = [
     year: 2024,
     tags: ["MySQL", "Modelo E-R", "SQL Scripts", "Triggers", "Vistas", "SQL"],
     blurb:
-      "Diseño e implementación de una base de datos relacional para gestionar eventos culturales. Incluye modelo entidad-relación, paso a modelo lógico, creación en MySQL con restricciones y relaciones, inserción de datos variados, 10+ consultas avanzadas, vistas y triggers automáticos.",
+      "Diseño e implementación de una base de datos relacional para gestionar eventos culturales. Incluye modelo entidad-relación, paso a modelo lógico, creación en MySQL con restricciones, vistas y triggers automáticos.",
     image: `${import.meta.env.BASE_URL}cover1.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/1" }],
     category: "tech",
@@ -145,7 +140,7 @@ const PROJECTS = [
     year: 2024,
     tags: ["MongoDB", "JavaScript", "Agregación", "Filtrado", "Data Analysis"],
     blurb:
-      "Interacción con un catálogo de moda en MongoDB mediante inserciones, actualizaciones, filtrado y consultas de agregación. Se incluyen scripts en JS y Python para gestionar y visualizar datos, con un informe PDF explicando dataset, queries y conclusiones analíticas.",
+      "Interacción con un catálogo de moda en MongoDB mediante inserciones, actualizaciones, filtrado y consultas de agregación. Scripts en JS y Python con conclusiones analíticas.",
     image: `${import.meta.env.BASE_URL}cover2.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/2" }],
     category: "tech",
@@ -157,7 +152,7 @@ const PROJECTS = [
     year: 2024,
     tags: ["Python", "Pandas", "NumPy", "SciPy", "Matplotlib", "ML"],
     blurb:
-      "Análisis estadístico de anchura de cráneos egipcios en dos periodos históricos. Incluye medidas descriptivas, boxplots, test de normalidad (Kolmogorov-Smirnov), intervalos de confianza y contraste de hipótesis mediante test t, con interpretación rigurosa y contextualizada.",
+      "Análisis estadístico de anchura de cráneos egipcios en dos periodos históricos. Medidas descriptivas, tests de normalidad, intervalos de confianza y contraste de hipótesis con test t.",
     image: `${import.meta.env.BASE_URL}cover3.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/3" }],
     category: "tech",
@@ -169,7 +164,7 @@ const PROJECTS = [
     year: 2024,
     tags: ["Python", "Pandas", "PEP-8", "Pruebas Unitarias", "Automatización", "MapReduce"],
     blurb:
-      "Proyecto de programación en Python orientado a la correcta estructuración del código, uso de funciones y clases, y aplicación de pruebas exhaustivas. Se trabajó con un dataset de películas, desarrollando procesos de análisis, automatización de tareas y visualización de resultados. Incluye la implementación de un script independiente con técnica MapReduce, además de buenas prácticas como documentación clara y cumplimiento de PEP-8.",
+      "Estructuración de código, clases, funciones y pruebas unitarias con dataset de películas. Incluye script MapReduce y cumplimiento riguroso de PEP-8.",
     image: `${import.meta.env.BASE_URL}cover4.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/4" }],
     category: "tech",
@@ -181,7 +176,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Tableau", "Business Intelligence", "Dashboards", "Data Visualization", "KPIs"],
     blurb:
-      "Desarrollo de un análisis financiero en Tableau para la empresa Easy Loans, enfocado en detectar patrones de comportamiento, evaluar la calidad de los préstamos y proponer recomendaciones estratégicas. Incluye la creación de dashboards interactivos, cálculos personalizados y visualizaciones avanzadas que permiten extraer insights accionables para la toma de decisiones.",
+      "Desarrollo de análisis financiero en Tableau para Easy Loans: detección de patrones de comportamiento, evaluación de calidad de préstamos y dashboards de KPI accionables.",
     image: `${import.meta.env.BASE_URL}cover5.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/5" }],
     category: "tech",
@@ -201,7 +196,7 @@ const PROJECTS = [
       "ML",
     ],
     blurb:
-      "Construcción de modelos predictivos con regresión lineal y logística en Python. Incluye depuración de datos, tratamiento de outliers, variables perdidas y creación de funciones auxiliares. Los modelos fueron optimizados con selección clásica y aleatoria, evaluados mediante métricas de desempeño y acompañados de una interpretación de coeficientes clave.",
+      "Modelos predictivos en Python: depuración, outliers, selección de variables clásica y aleatoria, y evaluación con métricas de rendimiento e interpretación de coeficientes.",
     image: `${import.meta.env.BASE_URL}cover6.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/6" }],
     category: "tech",
@@ -213,7 +208,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Python", "Pandas", "Statsmodels", "ARIMA", "Holt-Winters", "Validación de Modelos", "ML"],
     blurb:
-      "Análisis y modelización de series temporales con estacionalidad en Python. Se aplicaron técnicas de descomposición, pruebas de estacionariedad (ADF, KPSS), modelos de suavizado exponencial de Holt y ARIMA/Auto-ARIMA. El rendimiento fue evaluado mediante métricas MSE y MAE, comparando enfoques clásicos y automatizados de predicción.",
+      "Modelización de series temporales con estacionalidad: descomposición, tests ADF/KPSS, Holt exponencial y modelos ARIMA/Auto-ARIMA comparados con MSE y MAE.",
     image: `${import.meta.env.BASE_URL}cover7.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/7" }],
     category: "tech",
@@ -225,7 +220,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Python", "Seaborn", "Scikit-learn", "PCA", "K-Means", "Clustering Jerárquico", "Silhouette Score", "ML"],
     blurb:
-      "Aplicación de técnicas de minería de datos para análisis multivariado. Se utilizó PCA para reducción de dimensionalidad e interpretación de componentes principales, seguido de clustering jerárquico y K-Means. Se evaluó la calidad de los grupos mediante el método del codo y la puntuación de silueta, comparando la eficacia de los diferentes enfoques.",
+      "Análisis multivariado: PCA para reducción de dimensionalidad seguido de K-Means y clustering jerárquico evaluados mediante el método del codo y Silhouette Score.",
     image: `${import.meta.env.BASE_URL}cover8.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/8" }],
     category: "tech",
@@ -237,7 +232,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Python", "Scikit-learn", "XGBoost", "Random Forest", "GridSearchCV", "Cross Validation", "Feature Importance", "ML"],
     blurb:
-      "Construcción de modelos predictivos en Python para determinar el color original de vehículos usados a partir de características técnicas. Se entrenaron y evaluaron árboles de decisión, Random Forest y XGBoost, aplicando GridSearchCV con validación cruzada para optimizar hiperparámetros. El desempeño fue medido con métricas como accuracy, precision, recall, F1-score y AUC, junto con un análisis de importancia de variables.",
+      "Modelos predictivos en Python con árboles de decisión, Random Forest y XGBoost. Optimización con GridSearchCV y evaluación con métricas de clasificación y feature importance.",
     image: `${import.meta.env.BASE_URL}cover9.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/9" }],
     category: "tech",
@@ -249,7 +244,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Python", "Scikit-learn", "Pipelines", "Preprocesamiento", "Validación Cruzada", "GridSearchCV", "ML"],
     blurb:
-      "Desarrollo de un flujo de modelización predictiva end-to-end en Python con scikit-learn. Incluye la construcción de pipelines con transformadores personalizados, aplicación de técnicas de preprocesamiento, ajuste de hiperparámetros y comparación de múltiples algoritmos de clasificación. Se presentan métricas de evaluación y visualizaciones que permiten interpretar el rendimiento de los modelos.",
+      "Flujo end-to-end con Pipelines de scikit-learn, transformadores personalizados, preprocesamiento y benchmarking de múltiples clasificadores con validación cruzada.",
     image: `${import.meta.env.BASE_URL}cover10.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/10" }],
     category: "tech",
@@ -261,7 +256,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Python", "TensorFlow", "Keras", "Redes Neuronales Densas", "CNN", "Clasificación", "Regresión", "DL"],
     blurb:
-      "Implementación de modelos de deep learning aplicando tanto redes densas como convolucionales para resolver problemas de clasificación y regresión. El trabajo incluye el diseño, entrenamiento y evaluación de las arquitecturas en TensorFlow/Keras, interpretando métricas y comparando el rendimiento de ambos enfoques.",
+      "Diseño y entrenamiento de arquitecturas densas y convolucionales en TensorFlow/Keras aplicadas a tareas de visión y regresión.",
     image: `${import.meta.env.BASE_URL}cover11.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/11" }],
     category: "tech",
@@ -273,7 +268,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Python", "TensorFlow", "Keras", "RNN", "Series Temporales", "Predicción", "DL"],
     blurb:
-      "Construcción de un modelo de red neuronal recurrente (RNN) en TensorFlow/Keras para predecir temperaturas mínimas diarias en Melbourne con un horizonte de dos días. Se aplicaron técnicas de modelado de series temporales, entrenamiento supervisado y evaluación de predicciones en datos reales.",
+      "Redes recurrentes (RNN) en Keras para series temporales y predicción de temperaturas mínimas con horizonte multietapa.",
     image: `${import.meta.env.BASE_URL}cover12.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/12" }],
     category: "tech",
@@ -285,7 +280,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Python", "Transformers", "Hugging Face", "Fine-Tuning", "Text Classification", "Question Answering", "DL"],
     blurb:
-      "Aplicación de fine-tuning sobre modelos de lenguaje preentrenados para resolver tareas de procesamiento de lenguaje natural. Se desarrollaron experimentos en clasificación de textos y en respuesta automática a preguntas, evaluando el rendimiento de los modelos ajustados con técnicas supervisadas.",
+      "Fine-tuning sobre modelos preentrenados de Hugging Face para clasificación textual y question answering supervisado.",
     image: `${import.meta.env.BASE_URL}cover13.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/13" }],
     category: "tech",
@@ -297,7 +292,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Python", "PySpark", "Databricks", "Big Data", "ETL", "Data Analysis", "Spark", "ML"],
     blurb:
-      "Procesamiento y análisis de datos de micropréstamos de Kiva mediante PySpark en entorno Databricks. Incluye transformaciones, limpieza y agregaciones a gran escala para explorar patrones en montos, sectores y países, aplicando técnicas de Big Data para el análisis eficiente de grandes volúmenes de información.",
+      "Limpieza, transformación y agregación de micropréstamos a gran escala con PySpark sobre Databricks.",
     image: `${import.meta.env.BASE_URL}cover14.png`,
     links: [{ label: "GitHub", href: "https://github.com/lauraarodriguez11/master_ucm/tree/main/trabajos/14" }],
     category: "tech",
@@ -309,7 +304,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["UiPath", "JSON", "RPA", "Logs"],
     blurb:
-      "Diseño e implementación de una librería modular en UiPath para estandarizar la generación de logs en formato JSON. Integrada en todos los robots en producción de Correos, mejoró la trazabilidad, el diagnóstico de incidencias y la observabilidad de procesos, alimentando además dashboards de Power BI para monitorizar la ejecución de los robots.",
+      "Librería modular en UiPath para estandarizar logs en JSON integrada en robots en producción de Correos, alimentando dashboards de Power BI.",
     image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
@@ -321,7 +316,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["n8n", "Make", "Automatización", "RPA"],
     blurb:
-      "Configuración de entornos locales con n8n y Make como laboratorio de orquestación de procesos. Desarrollo de flujos de prueba para evaluar integraciones con robots UiPath y explorar la escalabilidad de soluciones de automatización en Correos.",
+      "Entornos locales con n8n y Make para flujos de integración y escalabilidad con robots UiPath.",
     image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
@@ -333,7 +328,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["Neo4j", "Grafos", "Análisis de datos"],
     blurb:
-      "Experimentación con Neo4j como base de datos orientada a grafos, desarrollando pequeños esquemas de nodos y relaciones en entorno de laboratorio. El objetivo fue familiarizarme con el modelado de grafos y evaluar su utilidad en escenarios de análisis y automatización.",
+      "Modelado de esquemas de nodos y relaciones en Neo4j para análisis complejo y automatización.",
     image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
@@ -345,7 +340,7 @@ const PROJECTS = [
     year: 2025,
     tags: ["RPA", "UiPath", "Mantenimiento", "Colaboración"],
     blurb:
-      "Apoyo operativo en la resolución de incidencias y tareas transversales en distintos procesos de negocio. Participación en la puesta en marcha y seguimiento de proyectos desplegados en producción junto a ATOS, coordinando con equipos técnicos y de negocio.",
+      "Resolución de incidencias y seguimiento de proyectos desplegados en producción coordinando con equipos técnicos y de negocio.",
     image: `${import.meta.env.BASE_URL}correos.png`,
     links: [],
     category: "tech",
@@ -355,128 +350,70 @@ const PROJECTS = [
     title: "Balteus x Wenyers",
     role: "Colaboración · Accesorios",
     year: 2025,
-    tags: [
-      "Accesorios", "Modular", "Diseño", "Prototipado",
-      "Funcionalidad", "Complementos", "Brand Collab"
-    ],
+    tags: ["Accesorios", "Modular", "Diseño", "Prototipado", "Funcionalidad", "Brand Collab"],
     blurb:
-      "Colaboración con la marca Balteus en el diseño de una colección Otoño-Invierno 2025 de hebillas de cinturón modulares. Desarrollo de propuestas estéticas y funcionales, explorando nuevas posibilidades en el diseño de accesorios de moda.",
+      "Colaboración con la marca Balteus en el diseño de una colección Otoño-Invierno 2025 de hebillas modulares explorando la unión entre estética y funcionalidad.",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
-    links: [
-      // { label: "Proyecto", href: "#" },
-    ],
+    links: [],
     category: "art",
   },
-];
-
-// ======= Tarjetas CV/Resumen (Home) =======
-const RESUME_CARDS = [
   {
-    id: "cv-exp-1",
-    title: "Data & Automation — Correos",
-    role: "Experiencia",
-    year: 2025,
-    tags: ["RPA", "UiPath", "n8n", "Make", "Data"],
+    id: "yute-culture",
+    title: "Yute Culture — Colección Cápsula",
+    role: "Dirección Creativa · Diseño de Moda · Patronaje Modular",
+    year: 2026,
+    tags: ["Moda", "Yute Culture", "Ura Wenyers", "Patronaje Modular", "Upcycling", "Estampación", "Dirección Creativa"],
     blurb:
-      "Automatización de procesos con UiPath y orquestación n8n/Make. Trazabilidad JSON, monitorización y resiliencia en producción.",
-    image: "",
-    links: [{ label: "Caso (resumen)", href: "#" }],
-    category: "home",
-  },
-  {
-    id: "cv-exp-2",
-    title: "Proyectos de Datos & Visualización",
-    role: "Experiencia / Proyectos",
-    year: 2025,
-    tags: ["Python", "SQL", "Tableau", "EDA"],
-    blurb: "Análisis exploratorio, modelización clásica y dashboards ejecutivos. Integración con Git/GitHub y buenas prácticas.",
-    image: "",
-    links: [{ label: "GitHub", href: `https://github.com/${GH_USERNAME}` }],
-    category: "home",
-  },
-  {
-    id: "cv-edu-1",
-    title: "Máster Big Data, Data Science e IA — UCM",
-    role: "Educación",
-    year: 2025,
-    tags: ["Máster", "UCM"],
-    blurb: "SQL, NoSQL, Estadística, ML, DL, NLP, Spark. 14 trabajos prácticos desglosados en el portfolio.",
-    image: "",
-    links: [{ label: "Repositorio Máster", href: `https://github.com/${GH_USERNAME}/master_ucm` }],
-    category: "home",
-  },
-  {
-    id: "cv-edu-2",
-    title: "Diseño de Moda (en curso)",
-    role: "Educación",
-    year: 2025,
-    tags: ["Moda", "Diseño"],
-    blurb: "Formación en patronaje, materiales y dirección artística. Enfoque en unión estética–funcionalidad.",
-    image: "",
+      "Colección cápsula nacida de la deconstrucción del saco de patatas de yute tradicional y el juego fonético 'yute' / 'youth'. Tensión entre la aspereza rural y la silueta urbana. Incluye piezas modulares con cuellos y sobrefaldas desmontables, volúmenes arquitectónicos y rapports folclóricos propios.",
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
-    category: "home",
+    category: "art",
   },
   {
-    id: "cv-award-1",
-    title: "Circular Innovation Hackathon (ganadora)",
-    role: "Premios & Méritos",
-    year: 2024,
-    tags: ["Sostenibilidad", "IA", "Hackathon"],
-    blurb: "Solución de IA para optimizar procesos de gestión de residuos y economía circular.",
-    image: "",
-    links: [{ label: "Proyecto", href: "#" }],
-    category: "home",
-  },
-  {
-    id: "cv-skill-1",
-    title: "Habilidades clave",
-    role: "Habilidades",
-    year: 2025,
-    tags: ["Python", "SQL", "Tableau", "RPA", "IA", "XAI", "Fashion"],
-    blurb: "Python (pandas, scikit-learn), SQL, UiPath, n8n/Make, Tableau, Git, XAI (Grad-CAM, IG).",
-    image: "",
+    id: "re-chulos",
+    title: "Re-chulos — Premio al Mejor Proyecto de Upcycling",
+    role: "Upcycling · Concurso San Isidro · Moda Sostenible",
+    year: 2026,
+    tags: ["Upcycling", "Moda Sostenible", "Premio", "moda-re-", "Confección"],
+    blurb:
+      "Premio al Mejor Proyecto de Upcycling en el concurso 'Re-Chulos' de San Isidro (Madrid), organizado con moda-re-. Reinterpretación del traje castizo madrileño confeccionado al 100% con 3 prendas de segunda mano y textiles recuperados, desfilado en pasarela abierta.",
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
-    category: "home",
+    category: "art",
   },
   {
-    id: "cv-lang",
-    title: "Idiomas",
-    role: "Idiomas",
-    year: 2025,
-    tags: ["ES", "EN", "FR"],
-    blurb: "Español (nativa) · Inglés (B2, Cambridge) · Francés (B1, EOI).",
-    image: "",
+    id: "manemane-fall26",
+    title: "Cápsula MANÉMANÉ Fall 26",
+    role: "Diseño de Colección · Confección",
+    year: 2026,
+    tags: ["Diseño", "Confección", "MANÉMANÉ", "Pasarela", "Satén"],
+    blurb:
+      "Propuesta de 10 looks a partir de los recursos conceptuales de Miguel Becer tras su presentación en MBFWM. Confección física de pantalón estructurado con volantes laterales en satén bicolor.",
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
-    category: "home",
+    category: "art",
   },
   {
-    id: "cv-pdf",
-    title: "CV Mixto (PDF)",
-    role: "Documento",
-    year: 2025,
-    tags: ["CV", "PDF"],
-    blurb: "Descarga mi CV completo en PDF (mixto tecnología + arte).",
-    image: "",
-    links: [{ label: "Descargar CV", href: `${import.meta.env.BASE_URL}CV_mixto.pdf` }],
-    category: "home",
-  },
-  {
-    id: "cv-portfolio-art",
-    title: "Portfolio de Arte (PDF)",
-    role: "Documento",
-    year: 2025,
-    tags: ["Arte", "PDF"],
-    blurb: "Selección de trabajos visuales y moda. Disponible también en vista flipbook.",
-    image: "",
-    links: [{ label: "Descargar Portfolio", href: `${import.meta.env.BASE_URL}portfolio.pdf` }],
-    category: "home",
+    id: "blazer-deconstruccion",
+    title: "Deconstrucción Digital de Blazer",
+    role: "Co-diseño con Santiago Yáñez · Moulage Digital",
+    year: 2026,
+    tags: ["Moulage", "Patronaje Digital", "Sastrería", "Experimentación"],
+    blurb:
+      "Experimentación volumétrica partiendo del moulage espontáneo con dos blazers clásicas sobre maniquí y su posterior traducción a entornos digitales mediante manipulación fotográfica.",
+    image: `${import.meta.env.BASE_URL}balteus.webp`,
+    links: [],
+    category: "art",
   },
 ];
 
 // === Utilidades ===
 function useDebouncedValue(value, delay = 250) {
   const [v, setV] = useState(value);
-  useEffect(() => { const t = setTimeout(() => setV(value), delay); return () => clearTimeout(t); }, [value, delay]);
+  useEffect(() => {
+    const t = setTimeout(() => setV(value), delay);
+    return () => clearTimeout(t);
+  }, [value, delay]);
   return v;
 }
 
@@ -505,7 +442,9 @@ function usePDFImages(pdfUrl) {
         setImages([]);
       }
     })();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [pdfUrl]);
   return images;
 }
@@ -515,13 +454,16 @@ function useContainerWidth() {
   const [w, setW] = useState(0);
   useEffect(() => {
     if (!ref.current) return;
-    const ro = new ResizeObserver((entries) => { for (const e of entries) setW(e.contentRect.width); });
+    const ro = new ResizeObserver((entries) => {
+      for (const e of entries) setW(e.contentRect.width);
+    });
     ro.observe(ref.current);
     return () => ro.disconnect();
   }, []);
   return [ref, w];
 }
 
+// Componente OneLineTags corregido (sin duplicaciones)
 function OneLineTags({ tags = [], onTagClick }) {
   const containerRef = React.useRef(null);
   const [count, setCount] = React.useState(tags.length);
@@ -530,76 +472,14 @@ function OneLineTags({ tags = [], onTagClick }) {
     const el = containerRef.current;
     if (!el) return;
 
-
-function OneLineTags({ tags = [], onTagClick }) {
-  const containerRef = React.useRef(null);
-  const [count, setCount] = React.useState(tags.length);
-
-  const recompute = React.useCallback(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    let low = 0, high = tags.length, best = 0;
+    let low = 0,
+      high = tags.length,
+      best = 0;
 
     const test = (n) =>
       new Promise((resolve) => {
         setCount(n);
         requestAnimationFrame(() => {
-          const fits = el.scrollWidth <= el.clientWidth + 1; // tolerancia subpíxeles
-          resolve(fits);
-        });
-      });
-
-    (async () => {
-      while (low <= high) {
-        const mid = Math.floor((low + high) / 2);
-        const fits = await test(mid);
-        if (fits) { best = mid; low = mid + 1; } else { high = mid - 1; }
-      }
-      setCount(best);
-    })();
-  }, [tags]);
-
-  React.useEffect(() => {
-    recompute();
-    const ro = new ResizeObserver(() => recompute());
-    if (containerRef.current) ro.observe(containerRef.current);
-    return () => ro.disconnect();
-  }, [recompute]);
-
-  const visible = tags.slice(0, count);
-  const truncated = count < tags.length;
-
-  return (
-    <div ref={containerRef} className="flex items-center flex-nowrap overflow-hidden min-w-0">
-      {visible.map((t, idx) => (
-        <button
-          key={`${t}-${idx}`}
-          onClick={(e) => { e.stopPropagation(); onTagClick?.(t); }}
-          className="mr-1.5 last:mr-0 rounded-2xl border px-2.5 py-0.5 text-xs bg-white hover:shadow shrink-0"
-          title={t}
-        >
-          {t}
-        </button>
-      ))}
-      {truncated && (
-        <span className="ml-1 text-sm text-[hsl(215_16%_40%)] shrink-0" aria-label="más">
-          …
-        </span>
-      )}
-    </div>
-  );
-}
-
-
-    // Prueba binaria: encuentra el máximo número de chips que caben sin overflow
-    let low = 0, high = tags.length, best = 0;
-
-    const test = (n) =>
-      new Promise((resolve) => {
-        setCount(n);
-        requestAnimationFrame(() => {
-          // Pequeña tolerancia por subpíxeles
           const fits = el.scrollWidth <= el.clientWidth + 1;
           resolve(fits);
         });
@@ -627,9 +507,12 @@ function OneLineTags({ tags = [], onTagClick }) {
     return () => ro.disconnect();
   }, [recompute]);
 
+  const visible = tags.slice(0, count);
+  const truncated = count < tags.length;
+
   return (
     <div ref={containerRef} className="flex items-center flex-nowrap overflow-hidden min-w-0">
-      {tags.slice(0, count).map((t, idx) => (
+      {visible.map((t, idx) => (
         <button
           key={`${t}-${idx}`}
           onClick={(e) => {
@@ -642,10 +525,14 @@ function OneLineTags({ tags = [], onTagClick }) {
           {t}
         </button>
       ))}
+      {truncated && (
+        <span className="ml-1 text-sm text-[hsl(215_16%_40%)] shrink-0" aria-label="más">
+          …
+        </span>
+      )}
     </div>
   );
 }
-
 
 // === Páginas flipbook ===
 function CoverPage() {
@@ -661,6 +548,7 @@ function CoverPage() {
     </div>
   );
 }
+
 function BackCoverPage() {
   return (
     <div className="relative w-full h-full [transform-style:preserve-3d]">
@@ -669,6 +557,32 @@ function BackCoverPage() {
     </div>
   );
 }
+
+// Variantes para animación en cascada fluida
+const cascadeContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const cascadeCardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 24,
+    },
+  },
+};
 
 export default function Portfolio() {
   const [items] = useState(PROJECTS);
@@ -685,32 +599,36 @@ export default function Portfolio() {
 
   // PDF + flipbook medidas
   const pdfImages = usePDFImages(`${import.meta.env.BASE_URL}portfolio.pdf`);
-  const [pageAspect, setPageAspect] = useState(1.414); // A4 aprox
+  const [pageAspect, setPageAspect] = useState(1.414);
   useEffect(() => {
     if (!pdfImages.length) return;
     const img = new Image();
-    img.onload = () => { if (img.naturalWidth && img.naturalHeight) setPageAspect(img.naturalHeight / img.naturalWidth); };
+    img.onload = () => {
+      if (img.naturalWidth && img.naturalHeight) setPageAspect(img.naturalHeight / img.naturalWidth);
+    };
     img.src = pdfImages[0];
   }, [pdfImages]);
 
   const flipPages = React.useMemo(
-    () => pdfImages.map((src, i) => (
-      <div key={`page-${i}`} className="relative w-full h-full [transform-style:preserve-3d]">
-        <div className="absolute inset-0 grid place-items-center bg-white [backface-visibility:hidden]">
-          <img src={src} alt={`Página ${i + 1}`} className="max-w-full max-h-full object-contain" />
+    () =>
+      pdfImages.map((src, i) => (
+        <div key={`page-${i}`} className="relative w-full h-full [transform-style:preserve-3d]">
+          <div className="absolute inset-0 grid place-items-center bg-white [backface-visibility:hidden]">
+            <img src={src} alt={`Página ${i + 1}`} className="max-w-full max-h-full object-contain" />
+          </div>
+          <div className="absolute inset-0 bg-transparent [backface-visibility:hidden] [transform:rotateY(180deg)]" />
         </div>
-        <div className="absolute inset-0 bg-transparent [backface-visibility:hidden] [transform:rotateY(180deg)]" />
-      </div>
-    )),
+      )),
     [pdfImages]
   );
 
-  // Medir ancho del recuadro del flipbook
   const [wrapRef, wrapW] = useContainerWidth();
 
-  // Filtrado
   const scrollToProjects = () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-  useEffect(() => { setTag("Todas"); setCategory("Todas"); }, [view]);
+  useEffect(() => {
+    setTag("Todas");
+    setCategory("Todas");
+  }, [view]);
 
   const filtered = useMemo(() => {
     const norm = (s) => s.toLowerCase();
@@ -733,45 +651,49 @@ export default function Portfolio() {
     return list;
   }, [dq, tag, sort, items, view, category]);
 
-  // Bloquear scroll del body cuando modal abierto
   useEffect(() => {
     if (open) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = prev; };
+      return () => {
+        document.body.style.overflow = prev;
+      };
     }
   }, [open]);
 
-  // === UI ===
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-[hsl(0_0%_98%)] text-black">
       {/* HEADER */}
       <header className="sticky top-0 z-30 backdrop-blur bg-white/80 border-b">
         <div className="max-w-6xl mx-auto flex items-center justify-between py-3 px-4">
-          
-          {/* IZQUIERDA: Tech / Art */}
           <nav className="flex items-center rounded-2xl border overflow-hidden">
             <button
-              onClick={() => { setView("tech"); scrollToProjects(); }}
-              className={`h-10 px-3 text-sm ${view==="tech" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
+              onClick={() => {
+                setView("tech");
+                scrollToProjects();
+              }}
+              className={`h-10 px-3 text-sm ${view === "tech" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
             >
               Tech
             </button>
             <div className="w-px self-stretch bg-black/80" aria-hidden />
             <button
-              onClick={() => { setView("art"); }}
-              className={`h-10 px-3 text-sm ${view==="art" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
+              onClick={() => {
+                setView("art");
+              }}
+              className={`h-10 px-3 text-sm ${view === "art" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
             >
               Art
             </button>
           </nav>
 
-          {/* DERECHA: Home */}
           <button
             onClick={() => setView("home")}
             aria-label="Inicio"
             title="Inicio"
-            className={`h-10 px-3 flex items-center justify-center text-sm border rounded-2xl ${view==="home" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"}`}
+            className={`h-10 px-3 flex items-center justify-center text-sm border rounded-2xl ${
+              view === "home" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"
+            }`}
           >
             <HomeIcon className="w-4 h-4" />
           </button>
@@ -779,31 +701,43 @@ export default function Portfolio() {
       </header>
 
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 pt-6 pb-6">        <motion.h1 initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{duration:0.5}} className="text-3xl md:text-4xl font-extrabold tracking-tight">
+      <section className="max-w-6xl mx-auto px-6 pt-6 pb-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-extrabold tracking-tight"
+        >
           {view === "home" && "Laura Rodríguez · CV"}
           {view === "tech" && "Ciencia de Datos e IA"}
           {view === "art" && "Diseño de Moda & Arte"}
         </motion.h1>
         <p className="mt-3 w-full text-[hsl(215_16%_40%)]">
           {view === "home" && <>Creative Technologist | Data Scientist with a Passion for Fashion</>}
-          {view === "tech" && <>Integro <strong>análisis de datos</strong> e <strong>IA</strong> para crear soluciones robustas, explicables y útiles.</>}
-          {view === "art" && <>Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y visualización creativa con un enfoque funcional.</>}
+          {view === "tech" && (
+            <>
+              Integro <strong>análisis de datos</strong> e <strong>IA</strong> para crear soluciones robustas, explicables y útiles.
+            </>
+          )}
+          {view === "art" && (
+            <>
+              Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y experimentación textil con enfoque vanguardista.
+            </>
+          )}
         </p>
         {view !== "home" && (
           <div className="mt-4 flex flex-wrap gap-2">
-            {(view === "tech" ? SUGGESTED_TAGS_TECH : SUGGESTED_TAGS_ART).map(k => {
+            {(view === "tech" ? SUGGESTED_TAGS_TECH : SUGGESTED_TAGS_ART).map((k) => {
               const isActive = tag === k;
               return (
                 <button
                   key={k}
                   onClick={() => {
-                    setTag(isActive ? "Todas" : k); // toggle
+                    setTag(isActive ? "Todas" : k);
                     scrollToProjects();
                   }}
                   className={`rounded-2xl border px-2.5 py-1 text-sm ${
-                    isActive
-                      ? "bg-black text-white"
-                      : "bg-white hover:shadow"
+                    isActive ? "bg-black text-white" : "bg-white hover:shadow"
                   }`}
                 >
                   {k}
@@ -814,7 +748,7 @@ export default function Portfolio() {
         )}
       </section>
 
-      {/* HOME: CV secciones (texto estático) */}
+      {/* HOME: CV secciones */}
       {view === "home" && (
         <section className="max-w-6xl mx-auto px-4 py-0 space-y-6">
           {/* Experiencia laboral */}
@@ -822,8 +756,18 @@ export default function Portfolio() {
             <h2 className="text-lg font-semibold mb-2">Experiencia</h2>
 
             <div className="flex justify-between mt-2">
+              <div className="font-medium mr-4">Profesora de Matemática Aplicada | UNIE Universidad</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Enero 2026 - En curso</div>
+            </div>
+            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
+              <li>Docente del módulo de Minería de Datos para alumnos de 4º curso del Grado de Matemáticas.</li>
+              <li>Diseño de casos prácticos de análisis multivariante, validación cruzada y modelado predictivo.</li>
+            </ul>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Minería de Datos · Python · R · Estadística · Machine Learning</div>
+
+            <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Programa Jóven Talento - Correos (Equipo DALIA)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">feb.-ag. 2025</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Febrero - Agosto 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Desarrollo modular en UiPath, automatización de procesos (RPA), orquestación con n8n y Make.</li>
@@ -834,7 +778,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Colaboración de diseño - Balteus (colección Otoño-Invierno 2025)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">may.-jul. 2025</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo - Julio 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Diseño y evaluación de variantes modulares de hebillas; equilibrio estética-funcionalidad.</li>
@@ -843,18 +787,8 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Illustrator · Photoshop · Diseño industrial · Dibujo técnico</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Ganadora del reto de Tirme - II Circular Innovation Hackathon (Palma de Mallorca)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">nov. 2024</div>
-            </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Propuesta de solución tecnológica circular con impacto en sostenibilidad y trazabilidad de residuos.</li>
-              <li>Trabajo en equipo multidisciplinar y presentación ante jurado empresarial.</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Innovación · Data · Economía circular · Prototipado</div>
-
-            <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Miembro de comité organizador del XXIV Encuentro Nacional de Estudiantes de Matemáticas</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">jul. 2023</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Julio 2023</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Coordinación logística y gestión de comunicaciones con más de 300 asistentes.</li>
@@ -868,7 +802,7 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-2">
               <div className="font-medium mr-4">Título Superior en Diseño de Moda - Universidad Europea | IADE</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025-en curso</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025 - En curso</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Proyectos de diseño experimental con enfoque en sostenibilidad y técnicas mixtas.</li>
@@ -877,67 +811,68 @@ export default function Portfolio() {
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Máster en Big Data, Data Science e IA - Universidad Complutense de Madrid</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024-2025</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024 - 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>TFM: Autenticación de autoría pictórica mediante IA explicable.</li>
-              <li>🏆 Premio al mejor proyecto final de máster (Competición de Becas UCM – NTIC Master).</li>
             </ul>
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: SQL · NoSQL · Python · ML · DL · NLP · Spark · MLflow · Explainable AI</div>
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Grado en Matemáticas - Universidad de Extremadura</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019-2024</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019 - 2024</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>TFG: Clasificación de emociones mediante Deep Learning.</li>
               <li>Erasmus: Universidad de Zielona Góra, Polonia (2023–2024).</li>
             </ul>
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Álgebra · Estadística · Geometría · Topología · Análisis Matemático</div>
+          </div>
+
+          {/* Premios y Reconocimientos */}
+          <div className="rounded-2xl border p-4 bg-white/70 mt-4">
+            <h2 className="text-lg font-semibold mb-2">Premios y Reconocimientos</h2>
+
+            <div className="flex justify-between mt-2">
+              <div className="font-medium mr-4">Premio al Mejor Proyecto de Upcycling — Concurso 'Re-Chulos' de San Isidro</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo 2026</div>
+            </div>
+            <p className="text-sm mt-1">Concurso de moda sostenible organizado con moda-re- reinterpretando el traje castizo madrileño.</p>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Tres cursos anuales de Teatro - Escuela de Interpretación y compañía Createatro</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2016-2019</div>
+              <div className="font-medium mr-4">1.ᵉʳ Premio – Competición de Becas Máster Big Data, Data Science e IA (UCM – NTIC Master)</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Septiembre 2025</div>
             </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Expresión corporal, improvisación, trabajo en grupo y puesta en escena.</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Escénica · Improvisación · Comunicación · Creatividad</div>
+            <p className="text-sm mt-1">Reconocimiento al mejor proyecto final de máster por autenticación pictórica con XAI.</p>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Enseñanzas Elementales de Música (Piano y Lenguaje Musical) - Escuelas Municipales de Música</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2006-2013</div>
+              <div className="font-medium mr-4">Ganadora del reto de Tirme - II Circular Innovation Hackathon (Palma de Mallorca)</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Noviembre 2024</div>
             </div>
-            <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Formación instrumental básica y teoría musical elemental.</li>
-            </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Piano · Solfeo · Lenguaje musical · Práctica artística</div>
+            <p className="text-sm mt-1">Propuesta de solución tecnológica circular con impacto en sostenibilidad y trazabilidad de residuos.</p>
           </div>
 
           {/* Habilidades */}
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Habilidades</h2>
             <ul className="list-disc pl-5 text-sm space-y-1">
-              <li><strong>Manejo del ciclo completo del dato:</strong> adquisición, limpieza, análisis, modelado y visualización.</li>
-              <li><strong>Programación eficiente en Python, R y SQL,</strong> con control de versiones en Git en entornos colaborativos.</li>
-              <li><strong>Procesamiento de datos a gran escala</strong> con Apache Spark y bases de datos relacionales (<strong>PostgreSQL, MySQL</strong>) y <strong>NoSQL</strong> (MongoDB, Cassandra).</li>
-              <li><strong>Desarrollo e implementación de soluciones</strong> basadas en <strong>Machine Learning, Deep Learning y NLP,</strong> con enfoque en validación, trazabilidad e interpretabilidad.</li>
-              <li>Uso de frameworks como <strong>scikit-learn, TensorFlow, Keras, PyTorch</strong> y <strong>spaCy</strong>.</li>
-              <li><strong>Visualización clara y orientada a negocio</strong> con Tableau, Power BI y bibliotecas de Python (<strong>Matplotlib, Seaborn, Plotly, Streamlit</strong>).</li>
-              <li><strong>Diseño de arquitecturas de datos</strong> y desarrollo de pipelines eficientes con <strong>PySpark</strong> y <strong>Pandas</strong>.</li>
-              <li><strong>Manejo básico de herramientas creativas</strong> como Adobe Photoshop e Illustrator para creación de recursos visuales e infografías.</li>
-              <li><strong>Familiaridad con diseño UI/UX, storytelling visual</strong> y tipografía digital aplicada a dashboards.</li>
+              <li><strong>Ciclo completo del dato:</strong> adquisición, limpieza, análisis, modelado predictivo y visualización.</li>
+              <li><strong>Programación:</strong> Python, R, SQL, control de versiones Git en entornos colaborativos.</li>
+              <li><strong>Big Data & Bases de Datos:</strong> Apache Spark, PostgreSQL, MySQL, MongoDB, Neo4j.</li>
+              <li><strong>ML, Deep Learning & XAI:</strong> scikit-learn, TensorFlow, Keras, Hugging Face, SHAP.</li>
+              <li><strong>Automatización & RPA:</strong> UiPath, n8n, Make, trazabilidad JSON.</li>
+              <li><strong>Diseño & Moda:</strong> Patronaje industrial, técnicas de confección, upcycling, Adobe Illustrator y Photoshop.</li>
             </ul>
           </div>
 
           {/* Idiomas */}
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Idiomas</h2>
-              <ul className="text-sm list-none space-y-1">
-                <li><strong>Español:</strong> Nativo</li>
-                <li><strong>Inglés:</strong> B2 (Cambridge)</li>
-                <li><strong>Francés:</strong> B1 (DELF-EOI)</li>
-              </ul>
+            <ul className="text-sm list-none space-y-1">
+              <li><strong>Español:</strong> Nativo</li>
+              <li><strong>Inglés:</strong> B2 (Cambridge)</li>
+              <li><strong>Francés:</strong> B1 (DELF-EOI)</li>
+            </ul>
           </div>
 
           {/* Descargas */}
@@ -956,18 +891,17 @@ export default function Portfolio() {
       {/* === ARTE: Flipbook primero === */}
       {view === "art" && pdfImages.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 pt-0 pb-2">
-          {/* Mensaje solo visible en móvil vertical */}
           <div className="md:hidden landscape:hidden mb-4 rounded-2xl border p-4 bg-amber-50 text-amber-900 text-sm flex items-center gap-3">
             <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
             <span>Para una mejor experiencia, <strong>gira tu dispositivo horizontalmente</strong> para ver el portfolio.</span>
           </div>
-          
-          <div ref={wrapRef} className="border rounded-2xl px-3 py-4 bg-white overflow-hidden">            
+
+          <div ref={wrapRef} className="border rounded-2xl px-3 py-4 bg-white overflow-hidden">
             {(() => {
-              const innerW = Math.max(wrapW - 24, 360); // restar padding aprox (px-3)
-              const pageW = Math.floor(innerW / 2);      // tamaño de UNA página (spread = 2 páginas)
+              const innerW = Math.max(wrapW - 24, 360);
+              const pageW = Math.floor(innerW / 2);
               const pageH = Math.round(pageW * pageAspect);
               const minPageW = 280;
               const minPageH = Math.round(minPageW * pageAspect);
@@ -1001,11 +935,12 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* SEARCH BAR + TAGS (solo en Tech) */}
+      {/* SEARCH BAR (solo en Tech) */}
       {view === "tech" && (
         <section className="max-w-6xl mx-auto px-4 pb-2">
-          <div className="border rounded-2xl p-4 flex flex-col gap-3 md:grid md:grid-cols-[1fr_auto_auto] items-stretch md:items-center bg-white/70">             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[hsl(215_16%_40%)]"/>
+          <div className="border rounded-2xl p-4 flex flex-col gap-3 md:grid md:grid-cols-[1fr_auto_auto] items-stretch md:items-center bg-white/70">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[hsl(215_16%_40%)]" />
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
@@ -1015,13 +950,20 @@ export default function Portfolio() {
             </div>
             <select
               value={category}
-              onChange={(e) => { setCategory(e.target.value); scrollToProjects(); }}
+              onChange={(e) => {
+                setCategory(e.target.value);
+                scrollToProjects();
+              }}
               className="h-10 rounded-xl border bg-white px-3"
               aria-label="Categoría"
             >
-              {CATEGORY_NAMES.map((name) => (<option key={name} value={name}>{name}</option>))}
+              {CATEGORY_NAMES.map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
             </select>
-            <select value={sort} onChange={(e)=>setSort(e.target.value)} className="h-10 rounded-xl border bg-white px-3">
+            <select value={sort} onChange={(e) => setSort(e.target.value)} className="h-10 rounded-xl border bg-white px-3">
               <option value="recent">Recientes</option>
               <option value="az">A–Z</option>
             </select>
@@ -1029,32 +971,47 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* GRID */}
+      {/* GRID EN CASCADA INTERACTIVA */}
       {view !== "home" && (
         <section id="projects" className="max-w-6xl mx-auto px-4 py-6">
           <AnimatePresence mode="popLayout">
             {filtered.length === 0 ? (
               <p className="text-[hsl(215_16%_40%)]">No se han encontrado proyectos.</p>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">                {filtered.map((p) => (
+              <motion.div
+                key={`${view}-${category}-${tag}-${sort}`}
+                variants={cascadeContainerVariants}
+                initial="hidden"
+                animate="visible"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]"
+              >
+                {filtered.map((p) => (
                   <motion.div
                     key={p.id}
                     layout
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
+                    variants={cascadeCardVariants}
+                    whileHover={{
+                      y: -8,
+                      rotateX: 3,
+                      rotateY: -3,
+                      transition: { duration: 0.25, ease: "easeOut" },
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    className="will-change-transform"
                   >
                     <article
-                      onClick={() => { setActive(p); setOpen(true); }}
-                      className="group aspect-square overflow-hidden rounded-2xl border hover:shadow-xl transition-shadow cursor-pointer bg-white/70 flex flex-col"
+                      onClick={() => {
+                        setActive(p);
+                        setOpen(true);
+                      }}
+                      className="group aspect-square overflow-hidden rounded-2xl border hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm flex flex-col justify-between"
                     >
-                      {/* Imagen ocupa ~46% del alto del cuadrado */}
-                      <div className="relative h-[46%] overflow-hidden">
+                      <div className="relative h-[46%] overflow-hidden bg-zinc-100">
                         {p.image ? (
                           <img
                             src={p.image}
                             alt={p.title}
-                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
                             loading="lazy"
                           />
                         ) : (
@@ -1062,68 +1019,60 @@ export default function Portfolio() {
                             <span className="text-sm text-[hsl(215_16%_40%)]">Sin imagen</span>
                           </div>
                         )}
+                        <span className="absolute top-2.5 right-2.5 bg-black/60 backdrop-blur-md text-white text-[11px] px-2 py-0.5 rounded-full font-medium">
+                          {p.year}
+                        </span>
                       </div>
 
-                      {/* Contenido: ocupa el resto del cuadrado */}
-                      <div className="h-[55%] p-4 pb-3 grid grid-rows-[auto_auto_1fr_auto] gap-2 min-h-0">
-                        <h3
-                          className={`font-semibold leading-tight ${
-                            p.title.length > 38 ? "text-base line-clamp-3" : "text-lg line-clamp-2"
-                          }`}
-                        >
-                          {p.title}
-                        </h3>
-                        <div className="text-xs text-[hsl(215_16%_40%)] flex items-center justify-between gap-2 mt-1 flex-none min-w-0">
-                          <span className="truncate flex-1 min-w-0">{p.role}</span>
-                          <span className="shrink-0 font-medium">{p.year}</span>
+                      <div className="h-[54%] p-4 pb-3 flex flex-col justify-between min-h-0">
+                        <div>
+                          <h3
+                            className={`font-semibold leading-tight text-zinc-900 ${
+                              p.title.length > 38 ? "text-base line-clamp-2" : "text-lg line-clamp-1"
+                            }`}
+                          >
+                            {p.title}
+                          </h3>
+                          <div className="text-xs text-[hsl(215_16%_40%)] truncate mt-0.5">{p.role}</div>
+                          <p className="mt-1.5 text-xs text-[hsl(215_16%_28%)] line-clamp-2 leading-relaxed">
+                            {p.blurb}
+                          </p>
                         </div>
 
-                        {/* un pelín más de texto, pero controlado */}
-                        <p className="mt-2 text-sm text-[hsl(215_16%_28%)] line-clamp-3 flex-none">
-                          {p.blurb}
-                        </p>
-
-                        {/* Fila inferior: TODAS las tags, pegadas abajo y sin hueco */}
-                        <div className="flex flex-wrap gap-1.5 items-center -mb-1">
-                          {(p.tags || []).map((t) => {
+                        <div className="flex flex-wrap gap-1.5 items-center pt-2 border-t border-zinc-100">
+                          {(p.tags || []).slice(0, 3).map((t) => {
                             const isActive = tag === t;
                             return (
                               <button
                                 key={t}
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  setTag(isActive ? "Todas" : t); // toggle on/off
+                                  setTag(isActive ? "Todas" : t);
                                   scrollToProjects();
                                 }}
-                                className={`rounded-2xl border px-2.5 py-0.5 text-xs ${
-                                  isActive
-                                    ? "bg-black text-white"
-                                    : "bg-white hover:shadow"
+                                className={`rounded-xl border px-2 py-0.5 text-[11px] transition-colors ${
+                                  isActive ? "bg-black text-white" : "bg-white hover:bg-zinc-100 text-zinc-700"
                                 }`}
                               >
                                 {t}
                               </button>
                             );
                           })}
-
-                          {typeof p.stars === "number" && (
-                            <span className="ml-auto inline-flex items-center gap-1 text-xs text-[hsl(215_16%_40%)]">
-                              <Star className="size-3" /> {p.stars}
-                            </span>
+                          {(p.tags || []).length > 3 && (
+                            <span className="text-[11px] text-zinc-400">+{(p.tags || []).length - 3}</span>
                           )}
                         </div>
                       </div>
                     </article>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             )}
           </AnimatePresence>
         </section>
       )}
 
-
-      {/* MODAL con scroll interno */}
+      {/* MODAL */}
       {open && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 backdrop-blur-sm p-4" onClick={() => setOpen(false)}>
           <div
@@ -1138,7 +1087,9 @@ export default function Portfolio() {
                 <div className="p-4 border-b sticky top-0 bg-white z-10">
                   <h2 id="project-title" className="text-xl font-semibold">{active.title}</h2>
                   <div className="text-xs text-[hsl(215_16%_40%)] flex gap-2 mt-1">
-                    <span>{active.role}</span><span>•</span><span>{active.year}</span>
+                    <span>{active.role}</span>
+                    <span>•</span>
+                    <span>{active.year}</span>
                   </div>
                 </div>
 
@@ -1156,7 +1107,11 @@ export default function Portfolio() {
                       {active.tags.map((t) => (
                         <button
                           key={t}
-                          onClick={() => { setOpen(false); setTag(t); scrollToProjects(); }}
+                          onClick={() => {
+                            setOpen(false);
+                            setTag(t);
+                            scrollToProjects();
+                          }}
                           className="rounded-2xl border px-2.5 py-0.5 text-xs bg-white hover:shadow"
                         >
                           {t}
@@ -1167,15 +1122,25 @@ export default function Portfolio() {
 
                   <div className="mt-6 pb-2 flex items-center justify-between gap-4">
                     <div className="flex flex-wrap gap-2">
-                      {(active.links?.length ?? 0) > 0 && active.links.map((l) => (
-                        <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]">
-                          <ExternalLink className="size-4" />
-                          {l.label}
-                        </a>
-                      ))}
+                      {(active.links?.length ?? 0) > 0 &&
+                        active.links.map((l) => (
+                          <a
+                            key={l.href}
+                            href={l.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]"
+                          >
+                            <ExternalLink className="size-4" />
+                            {l.label}
+                          </a>
+                        ))}
                     </div>
-                    
-                    <button onClick={() => setOpen(false)} className="rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)] shrink-0">
+
+                    <button
+                      onClick={() => setOpen(false)}
+                      className="rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)] shrink-0"
+                    >
                       Cerrar
                     </button>
                   </div>
@@ -1194,9 +1159,15 @@ export default function Portfolio() {
             <div className="text-sm text-[hsl(215_16%_40%)]">Disponible desde las 12pm · Madrid</div>
           </div>
           <div className="flex gap-2">
-            <a href="mailto:lauraarodriguez11@gmail.com" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]"><Mail className="size-4"/> Email</a>
-            <a href="https://www.linkedin.com/in/laurarodriguezropero" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]"><Linkedin className="size-4"/> LinkedIn</a>
-            <a href={`https://github.com/${GH_USERNAME}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]"><Github className="size-4"/> GitHub</a>
+            <a href="mailto:lauraarodriguez11@gmail.com" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]">
+              <Mail className="size-4" /> Email
+            </a>
+            <a href="https://www.linkedin.com/in/laurarodriguezropero" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]">
+              <Linkedin className="size-4" /> LinkedIn
+            </a>
+            <a href={`https://github.com/${GH_USERNAME}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]">
+              <Github className="size-4" /> GitHub
+            </a>
           </div>
         </div>
       </footer>
