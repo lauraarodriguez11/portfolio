@@ -1,13 +1,12 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Github, Linkedin, Mail, ExternalLink, Star, Home as HomeIcon, FileText } from "lucide-react";
-import HTMLFlipBook from "react-pageflip";
+import { Search, Github, Linkedin, Mail, ExternalLink, Star, Home as HomeIcon, FileText, Maximize2, X } from "lucide-react";
 import * as pdfjsLib from "pdfjs-dist";
 import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
-// Importar fuentes de Google
+// Fuentes
 const styleSheet = document.createElement("style");
 styleSheet.textContent = `
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Space+Grotesk:wght@700&display=swap');
@@ -16,7 +15,6 @@ document.head.appendChild(styleSheet);
 
 const GH_USERNAME = "lauraarodriguez11";
 
-// Sugerencias por pestaña
 const SUGGESTED_TAGS_TECH = [
   "Python",
   "SQL",
@@ -38,7 +36,6 @@ const SUGGESTED_TAGS_ART = [
   "Dirección Creativa",
 ];
 
-// Catálogo de categorías
 const CATEGORIES = [
   { name: "Todas", tags: [] },
   {
@@ -89,7 +86,6 @@ const CATEGORIES = [
   },
 ];
 
-// ======= Proyectos MANUALES =======
 const PROJECTS = [
   {
     id: "tfg-emociones",
@@ -364,7 +360,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Moda", "Yute Culture", "Ura Wenyers", "Patronaje Modular", "Upcycling", "Estampación", "Dirección Creativa"],
     blurb:
-      "Colección cápsula nacida de la deconstrucción del saco de patatas de yute tradicional y el juego fonético 'yute' / 'youth'. Tensión entre la aspereza rural y la silueta urbana. Incluye piezas modulares con cuellos y sobrefaldas desmontables, volúmenes arquitectónicos y rapports folclóricos propios.",
+      "Colección cápsula nacida de la deconstrucción del saco de patatas de yute tradicional y el juego fonético 'yute' / 'youth'[cite: 2]. Tensión entre la aspereza rural y la silueta urbana contemporánea[cite: 2]. Incluye piezas modulares con cuellos y sobrefaldas desmontables[cite: 2], volúmenes arquitectónicos[cite: 2] y rapports folclóricos propios[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -376,7 +372,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Upcycling", "Moda Sostenible", "Premio", "moda-re-", "Confección"],
     blurb:
-      "Premio al Mejor Proyecto de Upcycling en el concurso 'Re-Chulos' de San Isidro (Madrid), organizado con moda-re-. Reinterpretación del traje castizo madrileño confeccionado al 100% con 3 prendas de segunda mano y textiles recuperados, desfilado en pasarela abierta.",
+      "Premio al Mejor Proyecto de Upcycling en el concurso 'Re-Chulos' de San Isidro (Madrid), organizado con moda-re-[cite: 1, 2]. Reinterpretación del traje castizo madrileño confeccionado al 100% con 3 prendas de segunda mano y textiles recuperados, desfilado en pasarela abierta[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -388,7 +384,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño", "Confección", "MANÉMANÉ", "Pasarela", "Satén"],
     blurb:
-      "Propuesta de 10 looks a partir de los recursos conceptuales de Miguel Becer tras su presentación en MBFWM. Confección física de pantalón estructurado con volantes laterales en satén bicolor.",
+      "Propuesta de 10 looks a partir de los recursos conceptuales de Miguel Becer tras su presentación en MBFWM[cite: 2]. Confección física de pantalón estructurado con volantes laterales en satén bicolor[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -400,14 +396,14 @@ const PROJECTS = [
     year: 2026,
     tags: ["Moulage", "Patronaje Digital", "Sastrería", "Experimentación"],
     blurb:
-      "Experimentación volumétrica partiendo del moulage espontáneo con dos blazers clásicas sobre maniquí y su posterior traducción a entornos digitales mediante manipulación fotográfica.",
+      "Experimentación volumétrica partiendo del moulage espontáneo con dos blazers clásicas sobre maniquí y su posterior traducción a entornos digitales mediante manipulación fotográfica[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
   },
 ];
 
-// === Utilidades ===
+// Utility: Debounce
 function useDebouncedValue(value, delay = 250) {
   const [v, setV] = useState(value);
   useEffect(() => {
@@ -417,6 +413,7 @@ function useDebouncedValue(value, delay = 250) {
   return v;
 }
 
+// Utility: PDF a listaan ti imahen
 function usePDFImages(pdfUrl) {
   const [images, setImages] = useState([]);
   useEffect(() => {
@@ -428,13 +425,13 @@ function usePDFImages(pdfUrl) {
         const out = [];
         for (let i = 1; i <= pdf.numPages; i++) {
           const page = await pdf.getPage(i);
-          const viewport = page.getViewport({ scale: 1.25 });
+          const viewport = page.getViewport({ scale: 1.5 });
           const canvas = document.createElement("canvas");
           const ctx = canvas.getContext("2d");
           canvas.width = viewport.width;
           canvas.height = viewport.height;
           await page.render({ canvasContext: ctx, viewport }).promise;
-          out.push(canvas.toDataURL());
+          out.push(canvas.toDataURL("image/webp", 0.9));
         }
         if (!cancelled) setImages(out);
       } catch (e) {
@@ -449,141 +446,6 @@ function usePDFImages(pdfUrl) {
   return images;
 }
 
-function useContainerWidth() {
-  const ref = React.useRef(null);
-  const [w, setW] = useState(0);
-  useEffect(() => {
-    if (!ref.current) return;
-    const ro = new ResizeObserver((entries) => {
-      for (const e of entries) setW(e.contentRect.width);
-    });
-    ro.observe(ref.current);
-    return () => ro.disconnect();
-  }, []);
-  return [ref, w];
-}
-
-// Componente OneLineTags corregido (sin duplicaciones)
-function OneLineTags({ tags = [], onTagClick }) {
-  const containerRef = React.useRef(null);
-  const [count, setCount] = React.useState(tags.length);
-
-  const recompute = React.useCallback(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    let low = 0,
-      high = tags.length,
-      best = 0;
-
-    const test = (n) =>
-      new Promise((resolve) => {
-        setCount(n);
-        requestAnimationFrame(() => {
-          const fits = el.scrollWidth <= el.clientWidth + 1;
-          resolve(fits);
-        });
-      });
-
-    (async () => {
-      while (low <= high) {
-        const mid = Math.floor((low + high) / 2);
-        const fits = await test(mid);
-        if (fits) {
-          best = mid;
-          low = mid + 1;
-        } else {
-          high = mid - 1;
-        }
-      }
-      setCount(best);
-    })();
-  }, [tags]);
-
-  React.useEffect(() => {
-    recompute();
-    const ro = new ResizeObserver(() => recompute());
-    if (containerRef.current) ro.observe(containerRef.current);
-    return () => ro.disconnect();
-  }, [recompute]);
-
-  const visible = tags.slice(0, count);
-  const truncated = count < tags.length;
-
-  return (
-    <div ref={containerRef} className="flex items-center flex-nowrap overflow-hidden min-w-0">
-      {visible.map((t, idx) => (
-        <button
-          key={`${t}-${idx}`}
-          onClick={(e) => {
-            e.stopPropagation();
-            onTagClick?.(t);
-          }}
-          className="mr-1.5 last:mr-0 rounded-2xl border px-2.5 py-0.5 text-xs bg-white hover:shadow shrink-0"
-          title={t}
-        >
-          {t}
-        </button>
-      ))}
-      {truncated && (
-        <span className="ml-1 text-sm text-[hsl(215_16%_40%)] shrink-0" aria-label="más">
-          …
-        </span>
-      )}
-    </div>
-  );
-}
-
-// === Páginas flipbook ===
-function CoverPage() {
-  return (
-    <div className="relative w-full h-full [transform-style:preserve-3d]">
-      <div className="absolute inset-0 grid place-items-center bg-white text-black [backface-visibility:hidden]">
-        <div className="p-6 text-center">
-          <h1 className="text-2xl font-extrabold tracking-tight">Laura Rodríguez</h1>
-          <p className="mt-2 text-sm opacity-80">Portfolio · Data × Moda & Arte</p>
-        </div>
-      </div>
-      <div className="absolute inset-0 bg-white [backface-visibility:hidden] [transform:rotateY(180deg)]" />
-    </div>
-  );
-}
-
-function BackCoverPage() {
-  return (
-    <div className="relative w-full h-full [transform-style:preserve-3d]">
-      <div className="absolute inset-0 bg-white [backface-visibility:hidden]" />
-      <div className="absolute inset-0 bg-white [backface-visibility:hidden] [transform:rotateY(180deg)]" />
-    </div>
-  );
-}
-
-// Variantes para animación en cascada fluida
-const cascadeContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
-    },
-  },
-};
-
-const cascadeCardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.97 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 260,
-      damping: 24,
-    },
-  },
-};
-
 export default function Portfolio() {
   const [items] = useState(PROJECTS);
   const [q, setQ] = useState("");
@@ -594,37 +456,17 @@ export default function Portfolio() {
   const [view, setView] = useState("home"); // home | tech | art
   const [category, setCategory] = useState("Todas");
 
+  // State para iti panangpalawa ti panid iti cascada
+  const [selectedPage, setSelectedPage] = useState(null);
+
   const CATEGORY_NAMES = useMemo(() => CATEGORIES.map((c) => c.name), []);
   const dq = useDebouncedValue(q, 250);
 
-  // PDF + flipbook medidas
-  const pdfImages = usePDFImages(`${import.meta.env.BASE_URL}portfolio.pdf`);
-  const [pageAspect, setPageAspect] = useState(1.414);
-  useEffect(() => {
-    if (!pdfImages.length) return;
-    const img = new Image();
-    img.onload = () => {
-      if (img.naturalWidth && img.naturalHeight) setPageAspect(img.naturalHeight / img.naturalWidth);
-    };
-    img.src = pdfImages[0];
-  }, [pdfImages]);
-
-  const flipPages = React.useMemo(
-    () =>
-      pdfImages.map((src, i) => (
-        <div key={`page-${i}`} className="relative w-full h-full [transform-style:preserve-3d]">
-          <div className="absolute inset-0 grid place-items-center bg-white [backface-visibility:hidden]">
-            <img src={src} alt={`Página ${i + 1}`} className="max-w-full max-h-full object-contain" />
-          </div>
-          <div className="absolute inset-0 bg-transparent [backface-visibility:hidden] [transform:rotateY(180deg)]" />
-        </div>
-      )),
-    [pdfImages]
-  );
-
-  const [wrapRef, wrapW] = useContainerWidth();
+  // PDF cargado
+  const pdfImages = usePDFImages(`${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`);
 
   const scrollToProjects = () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+
   useEffect(() => {
     setTag("Todas");
     setCategory("Todas");
@@ -652,14 +494,14 @@ export default function Portfolio() {
   }, [dq, tag, sort, items, view, category]);
 
   useEffect(() => {
-    if (open) {
+    if (open || selectedPage) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = prev;
       };
     }
-  }, [open]);
+  }, [open, selectedPage]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-[hsl(0_0%_98%)] text-black">
@@ -721,7 +563,7 @@ export default function Portfolio() {
           )}
           {view === "art" && (
             <>
-              Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y experimentación textil con enfoque vanguardista.
+              Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y experimentación textil con enfoque vanguardista[cite: 2].
             </>
           )}
         </p>
@@ -756,32 +598,32 @@ export default function Portfolio() {
             <h2 className="text-lg font-semibold mb-2">Experiencia</h2>
 
             <div className="flex justify-between mt-2">
-              <div className="font-medium mr-4">Profesora de Matemática Aplicada | UNIE Universidad</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Enero 2026 - En curso</div>
+              <div className="font-medium mr-4">Profesora de Matemática Aplicada | UNIE Universidad[cite: 1]</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Enero 2026 - En curso[cite: 1]</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Docente del módulo de Minería de Datos para alumnos de 4º curso del Grado de Matemáticas.</li>
+              <li>Docente del módulo de Minería de Datos para alumnos de 4º curso del Grado de Matemáticas[cite: 1].</li>
               <li>Diseño de casos prácticos de análisis multivariante, validación cruzada y modelado predictivo.</li>
             </ul>
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Minería de Datos · Python · R · Estadística · Machine Learning</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Programa Jóven Talento - Correos (Equipo DALIA)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Febrero - Agosto 2025</div>
+              <div className="font-medium mr-4">Programa Jóven Talento - Correos (Equipo DALIA)[cite: 1]</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Febrero - Agosto 2025[cite: 1]</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Desarrollo modular en UiPath, automatización de procesos (RPA), orquestación con n8n y Make.</li>
-              <li>Trazabilidad en JSON y trabajo técnico en entornos corporativos complejos.</li>
-              <li>Colaboración transversal con equipos técnicos y de negocio; mejora de la escalabilidad de robots en producción.</li>
+              <li>Desarrollo modular en UiPath, automatización de procesos (RPA), orquestación con n8n y Make[cite: 1].</li>
+              <li>Trazabilidad en JSON y trabajo técnico en entornos corporativos complejos[cite: 1].</li>
+              <li>Colaboración transversal con equipos técnicos y de negocio; mejora de la escalabilidad de robots en producción[cite: 1].</li>
             </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: UiPath · n8n · Make · JSON · Git · RPA</div>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: UiPath · n8n · Make · JSON · Git · RPA[cite: 1]</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Colaboración de diseño - Balteus (colección Otoño-Invierno 2025)</div>
+              <div className="font-medium mr-4">Colaboración de diseño - Balteus (colección Otoño-Invierno 2025)[cite: 2]</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo - Julio 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>Diseño y evaluación de variantes modulares de hebillas; equilibrio estética-funcionalidad.</li>
+              <li>Diseño y evaluación de variantes modulares de hebillas; equilibrio estética-funcionalidad[cite: 2].</li>
               <li>Colaboración con fundadores y dirección creativa para alineación con identidad de marca.</li>
             </ul>
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Illustrator · Photoshop · Diseño industrial · Dibujo técnico</div>
@@ -801,8 +643,8 @@ export default function Portfolio() {
             <h2 className="text-lg font-semibold mb-2">Educación</h2>
 
             <div className="flex justify-between mt-2">
-              <div className="font-medium mr-4">Título Superior en Diseño de Moda - Universidad Europea | IADE</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025 - En curso</div>
+              <div className="font-medium mr-4">Título Superior en Diseño de Moda - Universidad Europea | IADE[cite: 1]</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025 - En curso[cite: 1]</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
               <li>Proyectos de diseño experimental con enfoque en sostenibilidad y técnicas mixtas.</li>
@@ -810,21 +652,21 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Dibujo técnico · Patronaje · Estilismo · Photoshop · Illustrator</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Máster en Big Data, Data Science e IA - Universidad Complutense de Madrid</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024 - 2025</div>
+              <div className="font-medium mr-4">Máster en Big Data, Data Science e IA - Universidad Complutense de Madrid[cite: 1]</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024 - 2025[cite: 1]</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>TFM: Autenticación de autoría pictórica mediante IA explicable.</li>
+              <li>TFM: Autenticación de autoría pictórica mediante IA explicable[cite: 1].</li>
             </ul>
-            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: SQL · NoSQL · Python · ML · DL · NLP · Spark · MLflow · Explainable AI</div>
+            <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: SQL · NoSQL · Python · ML · DL · NLP · Spark · MLflow · Explainable AI[cite: 1]</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Grado en Matemáticas - Universidad de Extremadura</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019 - 2024</div>
+              <div className="font-medium mr-4">Grado en Matemáticas - Universidad de Extremadura[cite: 1]</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019 - 2024[cite: 1]</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
-              <li>TFG: Clasificación de emociones mediante Deep Learning.</li>
-              <li>Erasmus: Universidad de Zielona Góra, Polonia (2023–2024).</li>
+              <li>TFG: Clasificación de emociones mediante Deep Learning[cite: 1].</li>
+              <li>Erasmus: Universidad de Zielona Góra, Polonia (2023–2024)[cite: 1].</li>
             </ul>
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Álgebra · Estadística · Geometría · Topología · Análisis Matemático</div>
           </div>
@@ -834,16 +676,16 @@ export default function Portfolio() {
             <h2 className="text-lg font-semibold mb-2">Premios y Reconocimientos</h2>
 
             <div className="flex justify-between mt-2">
-              <div className="font-medium mr-4">Premio al Mejor Proyecto de Upcycling — Concurso 'Re-Chulos' de San Isidro</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo 2026</div>
+              <div className="font-medium mr-4">Premio al Mejor Proyecto de Upcycling — Concurso 'Re-Chulos' de San Isidro[cite: 1]</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo 2026[cite: 1]</div>
             </div>
-            <p className="text-sm mt-1">Concurso de moda sostenible organizado con moda-re- reinterpretando el traje castizo madrileño.</p>
+            <p className="text-sm mt-1">Concurso de moda sostenible organizado con moda-re- reinterpretando el traje castizo madrileño[cite: 2].</p>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">1.ᵉʳ Premio – Competición de Becas Máster Big Data, Data Science e IA (UCM – NTIC Master)</div>
-              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Septiembre 2025</div>
+              <div className="font-medium mr-4">1.ᵉʳ Premio – Competición de Becas Máster Big Data, Data Science e IA (UCM – NTIC Master)[cite: 1]</div>
+              <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Septiembre 2025[cite: 1]</div>
             </div>
-            <p className="text-sm mt-1">Reconocimiento al mejor proyecto final de máster por autenticación pictórica con XAI.</p>
+            <p className="text-sm mt-1">Reconocimiento al mejor proyecto final de máster por autenticación pictórica con XAI[cite: 1].</p>
 
             <div className="flex justify-between mt-3">
               <div className="font-medium mr-4">Ganadora del reto de Tirme - II Circular Innovation Hackathon (Palma de Mallorca)</div>
@@ -856,12 +698,12 @@ export default function Portfolio() {
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Habilidades</h2>
             <ul className="list-disc pl-5 text-sm space-y-1">
-              <li><strong>Ciclo completo del dato:</strong> adquisición, limpieza, análisis, modelado predictivo y visualización.</li>
-              <li><strong>Programación:</strong> Python, R, SQL, control de versiones Git en entornos colaborativos.</li>
-              <li><strong>Big Data & Bases de Datos:</strong> Apache Spark, PostgreSQL, MySQL, MongoDB, Neo4j.</li>
-              <li><strong>ML, Deep Learning & XAI:</strong> scikit-learn, TensorFlow, Keras, Hugging Face, SHAP.</li>
-              <li><strong>Automatización & RPA:</strong> UiPath, n8n, Make, trazabilidad JSON.</li>
-              <li><strong>Diseño & Moda:</strong> Patronaje industrial, técnicas de confección, upcycling, Adobe Illustrator y Photoshop.</li>
+              <li><strong>Ciclo completo del dato:</strong> adquisición, limpieza, análisis, modelado predictivo y visualización[cite: 1].</li>
+              <li><strong>Programación:</strong> Python, R, SQL, control de versiones Git en entornos colaborativos[cite: 1].</li>
+              <li><strong>Big Data & Bases de Datos:</strong> Apache Spark, PostgreSQL, MySQL, MongoDB, Neo4j[cite: 1].</li>
+              <li><strong>ML, Deep Learning & XAI:</strong> scikit-learn, TensorFlow, Keras, Hugging Face, SHAP[cite: 1].</li>
+              <li><strong>Automatización & RPA:</strong> UiPath, n8n, Make, trazabilidad JSON[cite: 1].</li>
+              <li><strong>Diseño & Moda:</strong> Patronaje industrial, técnicas de confección, upcycling, Adobe Illustrator y Photoshop[cite: 1].</li>
             </ul>
           </div>
 
@@ -869,9 +711,9 @@ export default function Portfolio() {
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Idiomas</h2>
             <ul className="text-sm list-none space-y-1">
-              <li><strong>Español:</strong> Nativo</li>
-              <li><strong>Inglés:</strong> B2 (Cambridge)</li>
-              <li><strong>Francés:</strong> B1 (DELF-EOI)</li>
+              <li><strong>Español:</strong> Nativo[cite: 1]</li>
+              <li><strong>Inglés:</strong> B2 (Cambridge)[cite: 1]</li>
+              <li><strong>Francés:</strong> B1 (DELF-EOI)[cite: 1]</li>
             </ul>
           </div>
 
@@ -879,59 +721,103 @@ export default function Portfolio() {
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Descargas</h2>
             <div className="flex flex-wrap gap-2">
-              <a href={`${import.meta.env.BASE_URL}CV_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}CV_ENG_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}CV_mixto.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}portfolio.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mt.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mh.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mx.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
             </div>
           </div>
         </section>
       )}
 
-      {/* === ARTE: Flipbook primero === */}
+      {/* === ARTE: CASCADA INTERAKTIBO TI PANID TI REVISTA / PORTFOLIO === */}
       {view === "art" && pdfImages.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 pt-0 pb-2">
-          <div className="md:hidden landscape:hidden mb-4 rounded-2xl border p-4 bg-amber-50 text-amber-900 text-sm flex items-center gap-3">
-            <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <span>Para una mejor experiencia, <strong>gira tu dispositivo horizontalmente</strong> para ver el portfolio.</span>
+        <section className="max-w-6xl mx-auto px-4 pt-2 pb-8">
+          <div className="flex items-center justify-between mb-4 border-b pb-2">
+            <div>
+              <h2 className="text-xl font-bold tracking-tight">Portfolio Editorial · Ura Wenyers[cite: 2]</h2>
+              <p className="text-xs text-[hsl(215_16%_40%)]">Cascada continua ti panid · I-click ti panid tapno ag-expand</p>
+            </div>
+            <a
+              href={`${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`}
+              target="_blank"
+              rel="noreferrer"
+              className="text-xs border px-3 py-1.5 rounded-xl hover:bg-zinc-100 flex items-center gap-1.5 font-medium"
+            >
+              <FileText className="size-3.5" /> PDF Kompleto
+            </a>
           </div>
 
-          <div ref={wrapRef} className="border rounded-2xl px-3 py-4 bg-white overflow-hidden">
-            {(() => {
-              const innerW = Math.max(wrapW - 24, 360);
-              const pageW = Math.floor(innerW / 2);
-              const pageH = Math.round(pageW * pageAspect);
-              const minPageW = 280;
-              const minPageH = Math.round(minPageW * pageAspect);
-
-              return (
-                <div className="w-full">
-                  <HTMLFlipBook
-                    width={pageW}
-                    height={pageH}
-                    size="stretch"
-                    minWidth={minPageW}
-                    maxWidth={pageW}
-                    minHeight={minPageH}
-                    maxHeight={pageH}
-                    showCover={true}
-                    usePortrait={false}
-                    autoSize={true}
-                    maxShadowOpacity={0.15}
-                    mobileScrollSupport={true}
-                    className="mx-auto"
-                    style={{ background: "transparent", width: "100%" }}
-                  >
-                    <CoverPage />
-                    {flipPages}
-                    <BackCoverPage />
-                  </HTMLFlipBook>
+          {/* Waterfall / Cascada Grid ti Panid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {pdfImages.map((src, index) => (
+              <motion.div
+                key={`page-${index}`}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                onClick={() => setSelectedPage({ src, pageNum: index + 1 })}
+                className="group relative cursor-pointer rounded-2xl border bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
+              >
+                <div className="relative w-full overflow-hidden bg-zinc-50 flex items-center justify-center p-3">
+                  <img
+                    src={src}
+                    alt={`Panid ${index + 1}`}
+                    loading="lazy"
+                    className="w-full h-auto object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 text-white">
+                    <Maximize2 className="size-5" />
+                    <span className="text-xs font-semibold uppercase tracking-wider">Palawaen</span>
+                  </div>
                 </div>
-              );
-            })()}
+                <div className="p-2.5 px-4 bg-zinc-50/70 border-t flex items-center justify-between text-xs text-[hsl(215_16%_40%)]">
+                  <span>Panid {index + 1}</span>
+                  <span className="font-mono text-[10px] bg-zinc-200/80 px-2 py-0.5 rounded-full">
+                    {index === 0 ? "Cover" : `P. ${index + 1}`}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
+          {/* Modal para iti Expanded View ti Panid */}
+          <AnimatePresence>
+            {selectedPage && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedPage(null)}
+                className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm p-4 flex items-center justify-center"
+              >
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="relative max-w-4xl max-h-[92vh] flex flex-col items-center bg-transparent"
+                >
+                  <button
+                    onClick={() => setSelectedPage(null)}
+                    className="absolute -top-10 right-0 text-white hover:text-zinc-300 flex items-center gap-1 text-sm bg-black/40 px-3 py-1 rounded-xl"
+                  >
+                    <X className="size-4" /> Irikep
+                  </button>
+                  <img
+                    src={selectedPage.src}
+                    alt={`Panid ${selectedPage.pageNum}`}
+                    className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl bg-white"
+                  />
+                  <div className="mt-3 text-white text-xs bg-black/60 px-4 py-1.5 rounded-full">
+                    Panid {selectedPage.pageNum} iti {pdfImages.length}
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </section>
       )}
 
@@ -971,47 +857,35 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* GRID EN CASCADA INTERACTIVA */}
+      {/* GRID PROYECTOS (Simple ken Standard a Grid) */}
       {view !== "home" && (
         <section id="projects" className="max-w-6xl mx-auto px-4 py-6">
           <AnimatePresence mode="popLayout">
             {filtered.length === 0 ? (
               <p className="text-[hsl(215_16%_40%)]">No se han encontrado proyectos.</p>
             ) : (
-              <motion.div
-                key={`${view}-${category}-${tag}-${sort}`}
-                variants={cascadeContainerVariants}
-                initial="hidden"
-                animate="visible"
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]"
-              >
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filtered.map((p) => (
                   <motion.div
                     key={p.id}
                     layout
-                    variants={cascadeCardVariants}
-                    whileHover={{
-                      y: -8,
-                      rotateX: 3,
-                      rotateY: -3,
-                      transition: { duration: 0.25, ease: "easeOut" },
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                    className="will-change-transform"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
                   >
                     <article
                       onClick={() => {
                         setActive(p);
                         setOpen(true);
                       }}
-                      className="group aspect-square overflow-hidden rounded-2xl border hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm flex flex-col justify-between"
+                      className="group aspect-square overflow-hidden rounded-2xl border hover:shadow-xl transition-shadow cursor-pointer bg-white/70 flex flex-col"
                     >
-                      <div className="relative h-[46%] overflow-hidden bg-zinc-100">
+                      <div className="relative h-[46%] overflow-hidden">
                         {p.image ? (
                           <img
                             src={p.image}
                             alt={p.title}
-                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             loading="lazy"
                           />
                         ) : (
@@ -1019,28 +893,27 @@ export default function Portfolio() {
                             <span className="text-sm text-[hsl(215_16%_40%)]">Sin imagen</span>
                           </div>
                         )}
-                        <span className="absolute top-2.5 right-2.5 bg-black/60 backdrop-blur-md text-white text-[11px] px-2 py-0.5 rounded-full font-medium">
-                          {p.year}
-                        </span>
                       </div>
 
-                      <div className="h-[54%] p-4 pb-3 flex flex-col justify-between min-h-0">
-                        <div>
-                          <h3
-                            className={`font-semibold leading-tight text-zinc-900 ${
-                              p.title.length > 38 ? "text-base line-clamp-2" : "text-lg line-clamp-1"
-                            }`}
-                          >
-                            {p.title}
-                          </h3>
-                          <div className="text-xs text-[hsl(215_16%_40%)] truncate mt-0.5">{p.role}</div>
-                          <p className="mt-1.5 text-xs text-[hsl(215_16%_28%)] line-clamp-2 leading-relaxed">
-                            {p.blurb}
-                          </p>
+                      <div className="h-[55%] p-4 pb-3 grid grid-rows-[auto_auto_1fr_auto] gap-2 min-h-0">
+                        <h3
+                          className={`font-semibold leading-tight ${
+                            p.title.length > 38 ? "text-base line-clamp-3" : "text-lg line-clamp-2"
+                          }`}
+                        >
+                          {p.title}
+                        </h3>
+                        <div className="text-xs text-[hsl(215_16%_40%)] flex items-center justify-between gap-2 mt-1 flex-none min-w-0">
+                          <span className="truncate flex-1 min-w-0">{p.role}</span>
+                          <span className="shrink-0 font-medium">{p.year}</span>
                         </div>
 
-                        <div className="flex flex-wrap gap-1.5 items-center pt-2 border-t border-zinc-100">
-                          {(p.tags || []).slice(0, 3).map((t) => {
+                        <p className="mt-2 text-sm text-[hsl(215_16%_28%)] line-clamp-3 flex-none">
+                          {p.blurb}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1.5 items-center -mb-1">
+                          {(p.tags || []).map((t) => {
                             const isActive = tag === t;
                             return (
                               <button
@@ -1050,29 +923,26 @@ export default function Portfolio() {
                                   setTag(isActive ? "Todas" : t);
                                   scrollToProjects();
                                 }}
-                                className={`rounded-xl border px-2 py-0.5 text-[11px] transition-colors ${
-                                  isActive ? "bg-black text-white" : "bg-white hover:bg-zinc-100 text-zinc-700"
+                                className={`rounded-2xl border px-2.5 py-0.5 text-xs ${
+                                  isActive ? "bg-black text-white" : "bg-white hover:shadow"
                                 }`}
                               >
                                 {t}
                               </button>
                             );
                           })}
-                          {(p.tags || []).length > 3 && (
-                            <span className="text-[11px] text-zinc-400">+{(p.tags || []).length - 3}</span>
-                          )}
                         </div>
                       </div>
                     </article>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
             )}
           </AnimatePresence>
         </section>
       )}
 
-      {/* MODAL */}
+      {/* MODAL DETALLES */}
       {open && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 backdrop-blur-sm p-4" onClick={() => setOpen(false)}>
           <div
