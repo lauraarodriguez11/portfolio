@@ -27,32 +27,21 @@ const SUGGESTED_TAGS_TECH = [
   "Scikit-learn",
 ];
 const SUGGESTED_TAGS_ART = [
-  "Moda",
-  "Ura Wenyers",
-  "Yute Culture",
+  "Diseño de Moda",
   "Upcycling",
-  "Patronaje Modular",
-  "Accesorios",
+  "Patronaje",
   "Dirección Creativa",
+  "Fotografía",
+  "Estilismo",
+  "Confección", 
+  "Edición digital"
 ];
 
-const CATEGORIES = [
+const CATEGORIES_TECH = [
   { name: "Todas", tags: [] },
   {
     name: "Bases de Datos",
-    tags: [
-      "MySQL",
-      "PostgreSQL",
-      "MongoDB",
-      "Neo4j",
-      "NoSQL",
-      "Modelo E-R",
-      "SQL Scripts",
-      "Triggers",
-      "Vistas",
-      "XML",
-      "SQL",
-    ],
+    tags: ["MySQL", "PostgreSQL", "MongoDB", "Neo4j", "NoSQL", "Modelo E-R", "SQL Scripts", "Triggers", "Vistas", "XML", "SQL"],
   },
   {
     name: "Estadística & Ciencia de Datos",
@@ -60,21 +49,7 @@ const CATEGORIES = [
   },
   {
     name: "Machine Learning & Deep Learning",
-    tags: [
-      "Scikit-learn",
-      "Random Forest",
-      "XGBoost",
-      "PCA",
-      "K-Means",
-      "ARIMA",
-      "Holt-Winters",
-      "CNN",
-      "RNN",
-      "Transformers",
-      "ViT",
-      "NLP",
-      "XAI",
-    ],
+    tags: ["Scikit-learn", "Random Forest", "XGBoost", "PCA", "K-Means", "ARIMA", "Holt-Winters", "CNN", "RNN", "Transformers", "ViT", "NLP", "XAI"],
   },
   {
     name: "Visualización & BI",
@@ -83,6 +58,35 @@ const CATEGORIES = [
   {
     name: "Automatización & RPA",
     tags: ["RPA", "UiPath", "n8n", "Make"],
+  },
+];
+
+// Categorías para Arte
+const CATEGORIES_ART = [
+  { name: "Todas", tags: [] },
+  {
+    name: "Diseño de Moda & Colección",
+    tags: ["Diseño de Moda", "Moda", "Colección", "Yute Culture", "MANÉMANÉ", "Pasarela"],
+  },
+  {
+    name: "Patronaje & Confección",
+    tags: ["Patronaje", "Patronaje Modular", "Confección", "Sastrería", "Moulage"],
+  },
+  {
+    name: "Upcycling & Sostenibilidad",
+    tags: ["Upcycling", "Moda Sostenible", "Premio", "moda-re-", "Zero Waste"],
+  },
+  {
+    name: "Edición & Producción Digital",
+    tags: ["Edición Digital", "Patronaje Digital", "Illustrator", "Photoshop", "Diseño Digital", "Fichas Técnicas"],
+  },
+  {
+    name: "Fotografía & Dirección Creativa",
+    tags: ["Fotografía", "Dirección Creativa", "Styling", "Editorial"],
+  },
+  {
+    name: "Accesorios & Complementos",
+    tags: ["Accesorios", "Modular", "Complementos", "Prototipado"],
   },
 ];
 
@@ -343,12 +347,12 @@ const PROJECTS = [
   },
   {
     id: "balteus",
-    title: "Balteus x Wenyers",
-    role: "Colaboración · Accesorios",
+    title: "Balteus — Hebillas Modulares",
+    role: "Colaboración · Accesorios & Producto",
     year: 2025,
-    tags: ["Accesorios", "Modular", "Diseño", "Prototipado", "Funcionalidad", "Brand Collab"],
+    tags: ["Accesorios", "Modular", "Prototipado", "Edición Digital", "Illustrator"],
     blurb:
-      "Colaboración con la marca Balteus en el diseño de una colección Otoño-Invierno 2025 de hebillas modulares explorando la unión entre estética y funcionalidad.",
+      "Colaboración con la marca Balteus en el diseño de una colección de hebillas de cinturón modulares. Exploración formal, optimización de anclajes y fichas técnicas para producción.",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -356,11 +360,11 @@ const PROJECTS = [
   {
     id: "yute-culture",
     title: "Yute Culture — Colección Cápsula",
-    role: "Dirección Creativa · Diseño de Moda · Patronaje Modular",
+    role: "Diseño de Moda · Patronaje Modular · Textil",
     year: 2026,
-    tags: ["Moda", "Yute Culture", "Ura Wenyers", "Patronaje Modular", "Upcycling", "Estampación", "Dirección Creativa"],
+    tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía", "Dirección Creativa", "Textil"],
     blurb:
-      "Colección cápsula nacida de la deconstrucción del saco de patatas de yute tradicional y el juego fonético 'yute' / 'youth'[cite: 2]. Tensión entre la aspereza rural y la silueta urbana contemporánea[cite: 2]. Incluye piezas modulares con cuellos y sobrefaldas desmontables[cite: 2], volúmenes arquitectónicos[cite: 2] y rapports folclóricos propios[cite: 2].",
+      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'. Prendas con piezas modulares desmontables, exploración de volúmenes globo y desarrollo de estampados continuos por repetición modular.",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -368,11 +372,11 @@ const PROJECTS = [
   {
     id: "re-chulos",
     title: "Re-chulos — Premio al Mejor Proyecto de Upcycling",
-    role: "Upcycling · Concurso San Isidro · Moda Sostenible",
+    role: "Upcycling · Confección · Moda Sostenible",
     year: 2026,
-    tags: ["Upcycling", "Moda Sostenible", "Premio", "moda-re-", "Confección"],
+    tags: ["Upcycling", "Moda Sostenible", "Confección", "Patronaje", "Premio"],
     blurb:
-      "Premio al Mejor Proyecto de Upcycling en el concurso 'Re-Chulos' de San Isidro (Madrid), organizado con moda-re-[cite: 1, 2]. Reinterpretación del traje castizo madrileño confeccionado al 100% con 3 prendas de segunda mano y textiles recuperados, desfilado en pasarela abierta[cite: 2].",
+      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-. Reinterpretación del traje castizo madrileño confeccionado íntegramente a partir de 3 prendas recuperadas y textiles de segunda mano.",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -380,28 +384,27 @@ const PROJECTS = [
   {
     id: "manemane-fall26",
     title: "Cápsula MANÉMANÉ Fall 26",
-    role: "Diseño de Colección · Confección",
+    role: "Diseño de Moda · Confección en Satén",
     year: 2026,
-    tags: ["Diseño", "Confección", "MANÉMANÉ", "Pasarela", "Satén"],
+    tags: ["Diseño de Moda", "Confección", "Patronaje", "Pasarela"],
     blurb:
-      "Propuesta de 10 looks a partir de los recursos conceptuales de Miguel Becer tras su presentación en MBFWM[cite: 2]. Confección física de pantalón estructurado con volantes laterales en satén bicolor[cite: 2].",
+      "Serie de 10 propuestas de diseño inspiradas en el universo de Miguel Becer tras su desfile en MBFWM. Confección artesanal de pantalón sastre con volantes integrados en satén bicolor.",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
   },
   {
     id: "blazer-deconstruccion",
-    title: "Deconstrucción Digital de Blazer",
-    role: "Co-diseño con Santiago Yáñez · Moulage Digital",
+    title: "Deconstrucción de Blazer & Moulage Digital",
+    role: "Moulage · Edición Digital · Patronaje",
     year: 2026,
-    tags: ["Moulage", "Patronaje Digital", "Sastrería", "Experimentación"],
+    tags: ["Edición Digital", "Patronaje", "Moulage", "Sastrería", "Fotografía"],
     blurb:
-      "Experimentación volumétrica partiendo del moulage espontáneo con dos blazers clásicas sobre maniquí y su posterior traducción a entornos digitales mediante manipulación fotográfica[cite: 2].",
+      "Co-diseño junto a Santiago Yáñez. Experimentación volumétrica mediante moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica.",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
   },
-];
 
 // Utility: Debounce
 function useDebouncedValue(value, delay = 250) {
@@ -459,8 +462,34 @@ export default function Portfolio() {
   // State para iti panangpalawa ti panid iti cascada
   const [selectedPage, setSelectedPage] = useState(null);
 
-  const CATEGORY_NAMES = useMemo(() => CATEGORIES.map((c) => c.name), []);
-  const dq = useDebouncedValue(q, 250);
+  const activeCategories = useMemo(() => {
+      return view === "art" ? CATEGORIES_ART : CATEGORIES_TECH;
+    }, [view]);
+
+    const CATEGORY_NAMES = useMemo(() => activeCategories.map((c) => c.name), [activeCategories]);
+
+    // Filtrado reactivo adaptado a la pestaña actual
+    const filtered = useMemo(() => {
+      const norm = (s) => s.toLowerCase();
+      const source = view === "home" ? items : items.filter((p) => p.category === view);
+      const currentCat = activeCategories.find((c) => c.name === category);
+      const matchesCategory = (p) => {
+        if (!currentCat || currentCat.name === "Todas") return true;
+        const pTags = p.tags || [];
+        return pTags.some((t) => currentCat.tags.includes(t));
+      };
+      let list = source.filter((p) => {
+        const haystack = [p.title, p.role, (p.tags || []).join(" ")].map(String).join(" ").toLowerCase();
+        const hitQ = !dq || haystack.includes(norm(dq));
+        const hitTag = tag === "Todas" || (p.tags || []).includes(tag);
+        const hitCategory = matchesCategory(p);
+        return hitQ && hitCategory && hitTag;
+      });
+      if (sort === "recent") list = list.sort((a, b) => b.year - a.year);
+      if (sort === "az") list = list.sort((a, b) => a.title.localeCompare(b.title));
+      return list;
+    }, [dq, tag, sort, items, view, category, activeCategories]);
+    const dq = useDebouncedValue(q, 250);
 
   // PDF cargado
   const pdfImages = usePDFImages(`${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`);
@@ -730,60 +759,34 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* === ARTE: Visor PDF en Cascada Continua (Scroll-Snap Diapositiva por Diapositiva) === */}
+      {/* === ARTE: Visor de Diapositivas sin marcos negros ni superposiciones === */}
       {view === "art" && pdfImages.length > 0 && (
-        <section className="max-w-5xl mx-auto px-4 pt-2 pb-6">
-          {/* Cabecera del visor con contador y botón PDF */}
-          <div className="flex items-center justify-between mb-3 px-1">
-            <div>
-              <h2 className="text-xl font-bold tracking-tight">Portfolio Editorial · Ura Wenyers[cite: 2]</h2>
-              <p className="text-xs text-[hsl(215_16%_40%)]">
-                Desliza verticalmente para avanzar entre diapositivas
-              </p>
-            </div>
-            <a
-              href={`${import.meta.env.BASE_URL}portfolio.pdf`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-xs border px-3 py-1.5 rounded-xl hover:bg-zinc-100 flex items-center gap-1.5 font-medium bg-white"
-            >
-              <FileText className="size-3.5" /> Descargar PDF
-            </a>
-          </div>
-
-          {/* Marco contenedor único tipo presentación */}
-          <div className="relative border rounded-2xl bg-zinc-950 shadow-2xl overflow-hidden">
-            {/* Contenedor con scroll snap vertical */}
+        <section className="max-w-5xl mx-auto px-4 pt-1 pb-6">
+          <div className="border rounded-2xl bg-white shadow-sm overflow-hidden">
             <div 
-              className="h-[82vh] overflow-y-auto scroll-smooth snap-y snap-mandatory divide-y divide-zinc-900 focus:outline-none"
+              className="h-[80vh] overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
               tabIndex={0}
             >
               {pdfImages.map((src, index) => (
                 <div
                   key={`slide-${index}`}
-                  className="w-full h-full snap-start snap-always flex items-center justify-center p-3 md:p-6 bg-zinc-950 relative select-none"
+                  className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none"
                 >
-                  {/* Diapositiva ajustada a pantalla */}
                   <img
                     src={src}
-                    alt={`Diapositiva ${index + 1}`}
+                    alt={`Página ${index + 1}`}
                     loading="lazy"
-                    className="max-w-full max-h-full object-contain rounded-lg shadow-lg pointer-events-none"
+                    className="w-full h-full object-contain pointer-events-none"
                   />
-
-                  {/* Indicador flotante de diapositiva */}
-                  <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full border border-white/10 font-mono">
-                    {index + 1} / {pdfImages.length}
-                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
       )}
-      
-      {/* SEARCH BAR (solo en Tech) */}
-      {view === "tech" && (
+
+      {/* SEARCH BAR + CATEGORÍAS (Tanto para Tech como para Art) */}
+      {view !== "home" && (
         <section className="max-w-6xl mx-auto px-4 pb-2">
           <div className="border rounded-2xl p-4 flex flex-col gap-3 md:grid md:grid-cols-[1fr_auto_auto] items-stretch md:items-center bg-white/70">
             <div className="relative">
@@ -791,7 +794,7 @@ export default function Portfolio() {
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                placeholder="Buscar por título, rol o etiqueta…"
+                placeholder={view === "art" ? "Buscar por proyecto, técnica o disciplina..." : "Buscar por título, rol o tecnología..."}
                 className="w-full pl-9 h-10 rounded-xl border bg-white px-3 outline-none focus:ring-2 focus:ring-black/20"
               />
             </div>
