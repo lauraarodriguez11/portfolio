@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Github, Linkedin, Mail, ExternalLink, Home as HomeIcon, FileText, Loader2, Image as ImageIcon } from "lucide-react";
+import { Search, Github, Linkedin, Mail, ExternalLink, Home as HomeIcon, FileText, Loader2, Image as ImageIcon, Video as VideoIcon, Play } from "lucide-react";
 import * as pdfjsLib from "pdfjs-dist";
 
 // Worker vía CDN para garantizar compatibilidad total en despliegues estáticos con Vite
@@ -36,7 +36,8 @@ const SUGGESTED_TAGS_ART = [
   "Edición Digital",
   "Upcycling",
   "Accesorios",
-  "Textil",
+  "Investigación Textil",
+  "Fashion Film",
 ];
 
 // Categorías para Data & AI (Tech)
@@ -69,7 +70,7 @@ const CATEGORIES_ART = [
   { name: "Todas", tags: [] },
   {
     name: "Diseño de Moda & Colección",
-    tags: ["Diseño de Moda", "Moda", "Colección", "Yute Culture", "MANÉMANÉ", "Pasarela"],
+    tags: ["Diseño de Moda", "Moda", "Colección", "Yute Culture", "MANÉMANÉ", "Pasarela", "GreenWalk Awards", "Utopía"],
   },
   {
     name: "Patronaje & Confección",
@@ -77,24 +78,60 @@ const CATEGORIES_ART = [
   },
   {
     name: "Upcycling & Sostenibilidad",
-    tags: ["Upcycling", "Moda Sostenible", "Premio", "moda-re-", "Zero Waste"],
+    tags: ["Upcycling", "Moda Sostenible", "Premio", "moda-re-", "Zero Waste", "Biomateriales"],
   },
   {
     name: "Edición & Producción Digital",
     tags: ["Edición Digital", "Patronaje Digital", "Illustrator", "Photoshop", "Diseño Digital", "Fichas Técnicas"],
   },
   {
-    name: "Fotografía & Dirección Creativa",
-    tags: ["Fotografía", "Dirección Creativa", "Styling", "Editorial"],
+    name: "Audiovisual & Dirección Creativa",
+    tags: ["Fotografía", "Dirección Creativa", "Styling", "Editorial", "Fashion Film", "Vídeo"],
   },
   {
-    name: "Accesorios & Complementos",
-    tags: ["Accesorios", "Modular", "Complementos", "Prototipado"],
+    name: "Accesorios & Artesanía Textil",
+    tags: ["Accesorios", "Modular", "Complementos", "Prototipado", "Investigación Textil", "Tatuaje sobre Cuero"],
   },
 ];
 
 // ======= Catálogo de Proyectos =======
 const PROJECTS = [
+  {
+    id: "tfm-xai-arte",
+    title: "Autenticación Pictórica mediante IA Explicable (XAI) y LLMs",
+    role: "TFM · Computer Vision · XAI · Ensembles",
+    year: 2025,
+    tags: [
+      "Python",
+      "XAI",
+      "PyTorch",
+      "Transformers",
+      "ViT",
+      "Swin-Tiny",
+      "CNN",
+      "SHAP",
+      "Grad-CAM",
+      "Integrated Gradients",
+      "LIME",
+      "LLM",
+      "ML",
+      "DL",
+    ],
+    blurb:
+      "Trabajo Fin de Máster centrado en la atribución de autoría pictórica entre Goya y Velázquez mediante un sistema híbrido multi-modelo validado con bibliografía histórica razonada. Integra análisis cromático (Random Forest con SHAP TreeExplainer), visión de obra completa (ConvNeXt-Tiny con Grad-CAM y Swin Transformer jerárquico por parches con Integrated Gradients), y análisis facial (ViT CLIP con SmoothGrad/Attention Rollout y embeddings faciales con LIME). Las salidas se consolidan en un meta-modelo de regresión logística regularizada alcanzando un 0.98 de Accuracy y 0.99 de F1-Score, complementado con una capa explicativa final en lenguaje natural generada por un LLM y desplegada en una app interactiva con Streamlit.",
+    image: `${import.meta.env.BASE_URL}cover_tfm.png`,
+    links: [
+      {
+        label: "GitHub Repositorio",
+        href: "https://github.com/FineArtAuthentication/TFM",
+      },
+      {
+        label: "PDF Trabajo Completo",
+        href: `${import.meta.env.BASE_URL}TFM.pdf`,
+      },
+    ],
+    category: "tech",
+  },
   {
     id: "tfg-emociones",
     title: "Clasificación de Emociones mediante Aprendizaje Automático",
@@ -309,6 +346,40 @@ const PROJECTS = [
     category: "tech",
   },
   {
+    id: "greenwalk-awards",
+    title: "GreenWalk Awards V Edición",
+    role: "Convocatoria de Moda Sostenible · Candidatura Oficial",
+    year: 2026,
+    tags: ["GreenWalk Awards", "Moda Sostenible", "Upcycling", "Biomateriales", "Fashion Film", "Dirección Creativa"],
+    blurb:
+      "Candidatura presentada a la 5ª Edición de los GreenWalk Awards. Proyecto integral que aúna patronaje zero-waste, deconstrucción textil de sacos de arpillera y desarrollo de biomateriales moldeados. Incluye la memoria técnica completa en PDF, el lookbook editorial oficial, fashion film y documentación audiovisual del proceso en taller.",
+    image: `${import.meta.env.BASE_URL}greenwalk_cover.png`,
+    gallery: [
+      `${import.meta.env.BASE_URL}greenwalk_lb_1.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_2.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_3.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_4.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_5.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_6.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_7.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_8.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_9.jpg`,
+      `${import.meta.env.BASE_URL}greenwalk_lb_10.jpg`,
+    ],
+pdf: `${import.meta.env.BASE_URL}entrega_final_greenwalk.pdf`,
+    links: [
+      {
+        label: "Ver Fashion Film",
+        href: "https://www.youtube.com", // Sustituye por tu enlace cuando lo tengas
+      },
+      {
+        label: "Vídeo del Proceso",
+        href: "https://www.youtube.com", // Sustituye por tu enlace cuando lo tengas
+      },
+    ],
+    category: "art",
+  },
+  {
     id: "balteus",
     title: "Balteus — Hebillas Modulares",
     role: "Colaboración · Accesorios & Producto",
@@ -332,14 +403,13 @@ const PROJECTS = [
     title: "Yute Culture — Colección Cápsula",
     role: "Dirección Creativa · Concepto & Superficies",
     year: 2026,
-    tags: ["Diseño de Moda", "Dirección Creativa", "Textil", "Edición Digital"],
+    tags: ["Diseño de Moda", "Dirección Creativa", "Edición Digital"],
     blurb:
       "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el juego conceptual 'yute' / 'youth'. Tensión entre aspereza rural y estructura urbana, integrando desarrollo de estampados propios (rapports continuos de inspiración folclórica) y dirección de arte.",
     image: `${import.meta.env.BASE_URL}Lineup.png`,
     gallery: [
       `${import.meta.env.BASE_URL}Moodboard.png`,
     ],
-    pdf: `${import.meta.env.BASE_URL}portfolio.pdf`,
     links: [],
     category: "art",
   },
@@ -348,7 +418,7 @@ const PROJECTS = [
     title: "Yute Culture — Look Modular Verde",
     role: "Patronaje Modular · Confección · Editorial",
     year: 2026,
-    tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía"],
+    tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía", "Edición Digital"],
     blurb:
       "Pieza superior y cuello construidos en dos partes independientes que admiten múltiples configuraciones de estilismo, alterando la silueta en torno al cuerpo. Dirección creativa y diseño: Ura Wenyers. Fotografía: Kerlyn Micaela Cueva y Santiago Yáñez. Modelos: David Rapado y Ura Wenyers. Estilismo: Santiago Yáñez. Asistencia: David Rapado y Mariam Davtyan.",
     image: `${import.meta.env.BASE_URL}yute_verde_cover.PNG`,
@@ -388,7 +458,7 @@ const PROJECTS = [
     title: "Yute Culture — Look Estructural Arpillera",
     role: "Patronaje Estructural · Confección Artesanal",
     year: 2026,
-    tags: ["Diseño de Moda", "Patronaje", "Confección", "Textil", "Fotografía"],
+    tags: ["Diseño de Moda", "Patronaje", "Confección", "Fotografía", "Edición Digital"],
     blurb:
       "Exploración volumétrica sobre yute rígido. Top de tirantes con panel trasero acordonado combinado con pantalón ancho que integra sobrefalda abullonada tipo globo. La densidad del tejido sostiene el volumen arquitectónico de la silueta. Dirección creativa y diseño: Ura Wenyers. Fotografía: Ura Wenyers. Modelo: Lucía Fenoll.",
     image: `${import.meta.env.BASE_URL}yute_arpillera_cover.PNG`,
@@ -420,17 +490,59 @@ const PROJECTS = [
     category: "art",
   },
   {
+    id: "manemane-capsule",
+    title: "Cápsula MANÉMANÉ Fall 26 — Colección",
+    role: "Diseño de Colección · Serie Conceptual",
+    year: 2026,
+    tags: ["Diseño de Moda", "MANÉMANÉ", "Edición Digital"],
+    blurb:
+      "Propuesta de colección de 10 looks articulada a partir de los códigos conceptuales de Miguel Becer tras su presentación en MBFWM. Desarrollo formal en torno a la ligereza, la deconstrucción y el movimiento a través de la serie de figurines 'Levedad'.",
+    image: `${import.meta.env.BASE_URL}Levedad.png`,
+    gallery: [
+      `${import.meta.env.BASE_URL}Levedad.png`,
+    ],
+    links: [],
+    category: "art",
+  },
+  {
+    id: "manemane-fall26",
+    title: "MANÉMANÉ Fall 26 — Pantalón con Aletas",
+    role: "Confección en Satén · Patronaje Sastre",
+    year: 2026,
+    tags: ["Diseño de Moda", "Confección", "Patronaje", "Fotografía"],
+    blurb:
+      "Pieza central de la cápsula MANÉMANÉ. Confección artesanal de pantalón sastre con aletas y volantes laterales ondulantes integrados en satén bicolor, explorando el volumen escultórico en movimiento.",
+    image: `${import.meta.env.BASE_URL}manemane_aletas_1.png`,
+    links: [],
+    category: "art",
+  },
+  {
+    id: "utopia",
+    title: "Utopía — La Piel Especular",
+    role: "Investigación Conceptual · Tatuaje sobre Cuero",
+    year: 2026,
+    tags: ["Diseño de Moda", "Investigación Textil", "Tatuaje sobre Cuero", "Edición Digital", "Dirección Creativa"],
+    blurb:
+      "Propuesta de utopía especulativa basada en un nuevo sistema de habitabilidad humana y comunicación radical. Se plantea una sociedad futura donde la mentira y el aislamiento emocional han sido erradicados: los individuos definen su identidad y subconsciente a través de su piel. Mediante patrones simétricos inspirados en las manchas proyectivas del Test de Rorschach, el cuerpo se convierte en un espejo psicológico para el observador. El proyecto abarca la exploración del límite material (terciopelo y linóleo), la experimentación gráfica con acuarela por transferencia directa, la digitalización y análisis óptico interactivo, y la ejecución física final mediante máquina de tatuar y micropunteado sobre cuero.",
+    image: `${import.meta.env.BASE_URL}utopia_cover.png`,
+    interactivePdf: "UTOPIA.pdf",
+    links: [],
+    category: "art",
+  },
+  {
     id: "re-chulos",
     title: "Re-chulos — Premio al Mejor Proyecto de Upcycling",
     role: "Upcycling · Confección · Moda Sostenible",
     year: 2026,
-    tags: ["Upcycling", "Moda Sostenible", "Confección", "Patronaje", "Premio"],
+    tags: ["Pasarela", "Upcycling", "Moda Sostenible", "Confección", "Patronaje"],
     blurb:
       "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) organizado por moda-re-. Reinterpretación del traje castizo madrileño confeccionado al 100% con tres prendas de segunda mano y textiles recuperados, desfilado en pasarela abierta. Incluye entrevista en la revista Circoolar de moda-re-.",
     image: `${import.meta.env.BASE_URL}RECH.jpeg`,
     gallery: [
       `${import.meta.env.BASE_URL}RECH0.jpeg`,
       `${import.meta.env.BASE_URL}RECH1.jpeg`,
+      `${import.meta.env.BASE_URL}RECH2.jpeg`,
+      `${import.meta.env.BASE_URL}RECH3.jpeg`,
     ],
     links: [
       {
@@ -441,29 +553,15 @@ const PROJECTS = [
     category: "art",
   },
   {
-    id: "manemane-fall26",
-    title: "Cápsula MANÉMANÉ Fall 26 — Pantalón con Aletas",
-    role: "Diseño de Colección · Confección en Satén",
-    year: 2026,
-    tags: ["Diseño de Moda", "Confección", "Patronaje", "Pasarela"],
-    blurb:
-      "Proyecto cápsula desarrollado a partir del universo conceptual de Miguel Becer tras su presentación en MBFWM. Confección técnica de pantalón sastre con aletas y volantes laterales ondulantes integrados en satén bicolor.",
-    image: `${import.meta.env.BASE_URL}manemane_aletas_1.png`,
-    links: [],
-    category: "art",
-  },
-  {
     id: "blazer-deconstruccion",
     title: "Deconstrucción de Blazer & Moulage Digital",
     role: "Moulage · Edición Digital · Patronaje",
     year: 2026,
-    tags: ["Edición Digital", "Patronaje", "Moulage", "Sastrería", "Fotografía"],
+    tags: ["Edición Digital", "Diseño de Moda", "Moulage"],
     blurb:
       "Co-diseño junto a Santiago Yáñez. Moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica.",
     image: `${import.meta.env.BASE_URL}blazer.png`,
-    gallery: [
-      `${import.meta.env.BASE_URL}blazer.png`,
-    ],
+    gallery: [],
     links: [],
     category: "art",
   },
@@ -478,7 +576,7 @@ function useDebouncedValue(value, delay = 250) {
   return v;
 }
 
-// Hook de PDF para calcular imágenes y ratio exacto
+// Hook de PDF reutilizable para calcular imágenes y ratio exacto
 function usePDFImages(pdfFilename = "portfolio.pdf") {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -488,10 +586,14 @@ function usePDFImages(pdfFilename = "portfolio.pdf") {
     let cancelled = false;
     (async () => {
       setLoading(true);
+      if (!pdfFilename) {
+        setLoading(false);
+        return;
+      }
       const candidates = [
         `${import.meta.env.BASE_URL}${pdfFilename}`,
+        `${import.meta.env.BASE_URL}${pdfFilename.toUpperCase()}`,
         `${import.meta.env.BASE_URL}PORTFOLIO.pdf`,
-        `${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`,
       ];
 
       for (const url of candidates) {
@@ -524,7 +626,7 @@ function usePDFImages(pdfFilename = "portfolio.pdf") {
             return;
           }
         } catch {
-          // Intenta con el siguiente candidato
+          // Continúa buscando candidatos
         }
       }
       if (!cancelled) setLoading(false);
@@ -537,6 +639,51 @@ function usePDFImages(pdfFilename = "portfolio.pdf") {
   return { images, loading, aspectRatio };
 }
 
+// Componente para renderizar visores PDF continuos interactivos
+function PDFViewerContinuous({ filename, altTitle }) {
+  const { images, loading, aspectRatio } = usePDFImages(filename);
+
+  return (
+    <div
+      className="border rounded-2xl bg-white shadow-sm overflow-hidden w-full relative"
+      style={{
+        aspectRatio: aspectRatio ? `${aspectRatio}` : "16/9",
+        maxHeight: "75vh",
+      }}
+    >
+      {loading ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-zinc-400 bg-white">
+          <Loader2 className="size-6 animate-spin" />
+          <span className="text-xs uppercase tracking-wider">Cargando {altTitle || "documento"}...</span>
+        </div>
+      ) : images.length > 0 ? (
+        <div
+          className="w-full h-full overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
+          tabIndex={0}
+        >
+          {images.map((src, index) => (
+            <div
+              key={`pdf-page-${index}`}
+              className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none p-0 overflow-hidden"
+            >
+              <img
+                src={src}
+                alt={`Página ${index + 1}`}
+                loading="lazy"
+                className="w-full h-full object-cover pointer-events-none block"
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center p-8 text-center text-sm text-zinc-400 bg-white">
+          No se ha podido cargar el archivo PDF ({filename}). Comprueba que el archivo se encuentre en la carpeta public.
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Portfolio() {
   const [items] = useState(PROJECTS);
   const [q, setQ] = useState("");
@@ -547,14 +694,14 @@ export default function Portfolio() {
   const [view, setView] = useState("home"); // home | tech | art
   const [category, setCategory] = useState("Todas");
 
-  // Estado para la imagen activa en el modal
-  const [activeImage, setActiveImage] = useState("");
+  // Estado para imagen/vídeo activo en el modal
+  const [activeMedia, setActiveMedia] = useState({ type: "image", url: "" });
 
   useEffect(() => {
     if (active) {
-      // Prioridad: imagen directa -> primera de galleries -> primera de gallery
       const firstGalleryImg = active.galleries?.[0]?.images?.[0];
-      setActiveImage(active.image || firstGalleryImg || (active.gallery && active.gallery[0]) || "");
+      const defaultImg = active.image || firstGalleryImg || (active.gallery && active.gallery[0]) || "";
+      setActiveMedia({ type: "image", url: defaultImg });
     }
   }, [active]);
 
@@ -572,9 +719,6 @@ export default function Portfolio() {
 
   const CATEGORY_NAMES = useMemo(() => activeCategories.map((c) => c.name), [activeCategories]);
   const dq = useDebouncedValue(q, 250);
-
-  // Visor de PDF con cálculo de aspect ratio
-  const { images: pdfImages, loading: pdfLoading, aspectRatio } = usePDFImages("portfolio.pdf");
 
   const scrollToProjects = () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
 
@@ -679,47 +823,11 @@ export default function Portfolio() {
       {/* === ATELIER: VISOR DE DIAPOSITIVAS ANTES DE LAS SUGGESTED TAGS === */}
       {view === "art" && (
         <section className="max-w-5xl mx-auto px-6 pt-4 pb-4">
-          <div
-            className="border rounded-2xl bg-white shadow-sm overflow-hidden w-full relative"
-            style={{
-              aspectRatio: aspectRatio ? `${aspectRatio}` : "16/9",
-              maxHeight: "85vh",
-            }}
-          >
-            {pdfLoading ? (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-zinc-400 bg-white">
-                <Loader2 className="size-6 animate-spin" />
-                <span className="text-xs uppercase tracking-wider">Cargando Portfolio...</span>
-              </div>
-            ) : pdfImages.length > 0 ? (
-              <div
-                className="w-full h-full overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
-                tabIndex={0}
-              >
-                {pdfImages.map((src, index) => (
-                  <div
-                    key={`slide-${index}`}
-                    className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none p-0 overflow-hidden"
-                  >
-                    <img
-                      src={src}
-                      alt={`Diapositiva ${index + 1}`}
-                      loading="lazy"
-                      className="w-full h-full object-cover pointer-events-none block"
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center p-8 text-center text-sm text-zinc-400 bg-white">
-                No se ha podido cargar el archivo PDF. Comprueba que el archivo se encuentre en la carpeta public.
-              </div>
-            )}
-          </div>
+          <PDFViewerContinuous filename="portfolio.pdf" altTitle="Portfolio" />
         </section>
       )}
 
-      {/* SUGGESTED TAGS (después del portfolio en Atelier) */}
+      {/* SUGGESTED TAGS */}
       {view !== "home" && (
         <section className="max-w-6xl mx-auto px-6 pt-2 pb-4">
           <div className="flex flex-wrap gap-2">
@@ -914,7 +1022,7 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* GRID PROYECTOS (PASO 3: Contador inteligente de fotos en tarjetas) */}
+      {/* GRID PROYECTOS */}
       {view !== "home" && (
         <section id="projects" className="max-w-6xl mx-auto px-4 py-6">
           <AnimatePresence mode="popLayout">
@@ -923,7 +1031,6 @@ export default function Portfolio() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filtered.map((p) => {
-                  // Cálculo de fotos totales considerando tanto 'galleries' como 'gallery'
                   const totalFotos = p.galleries
                     ? p.galleries.reduce((acc, g) => acc + (g.images?.length || 0), 0)
                     : p.gallery?.length || 0;
@@ -957,12 +1064,23 @@ export default function Portfolio() {
                             </div>
                           )}
 
-                          {/* PASO 3: Indicador de fotos totales */}
-                          {totalFotos > 1 && (
-                            <div className="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
-                              <ImageIcon className="size-3" /> {totalFotos} fotos
-                            </div>
-                          )}
+                          <div className="absolute bottom-2 right-2 flex gap-1 items-center">
+                            {p.interactivePdf && (
+                              <div className="bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+                                <FileText className="size-3" /> PDF Dossier
+                              </div>
+                            )}
+                            {p.videos && p.videos.length > 0 && (
+                              <div className="bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+                                <VideoIcon className="size-3" /> {p.videos.length} vídeo{p.videos.length > 1 ? "s" : ""}
+                              </div>
+                            )}
+                            {totalFotos > 1 && (
+                              <div className="bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+                                <ImageIcon className="size-3" /> {totalFotos} fotos
+                              </div>
+                            )}
+                          </div>
                         </div>
 
                         <div className="h-[55%] p-4 pb-3 grid grid-rows-[auto_auto_1fr_auto] gap-2 min-h-0">
@@ -1013,7 +1131,7 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* MODAL DETALLES MULTIFOTO (PASO 2: Múltiples Galerías y Visor Activo) */}
+      {/* MODAL DETALLES MULTIMEDIA (PDF INTERACTIVO, VÍDEOS, GALERÍAS) */}
       {open && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 backdrop-blur-sm p-4" onClick={() => setOpen(false)}>
           <div
@@ -1037,19 +1155,66 @@ export default function Portfolio() {
                 </div>
 
                 <div className="p-4 overflow-y-auto space-y-4">
-                  {/* Visor principal de la imagen actualmente seleccionada */}
-                  {activeImage && (
+                  {/* Visor interactivo si el proyecto es un Dossier PDF (como Utopía) */}
+                  {active.interactivePdf ? (
+                    <div className="w-full pt-1">
+                      <PDFViewerContinuous filename={active.interactivePdf} altTitle={active.title} />
+                    </div>
+                  ) : (
+                    /* Visor estándar para Imagen o Vídeo */
                     <div className="rounded-xl overflow-hidden ring-1 ring-[hsl(214.3_31.8%_91.4%)] bg-zinc-50 flex items-center justify-center p-1">
-                      <img
-                        src={activeImage}
-                        alt={active.title}
-                        className="w-full h-auto max-h-[52vh] object-contain mx-auto rounded-lg shadow-sm"
-                        loading="lazy"
-                      />
+                      {activeMedia.type === "video" ? (
+                        <video
+                          key={activeMedia.url}
+                          controls
+                          autoPlay
+                          className="w-full h-auto max-h-[52vh] rounded-lg shadow-sm bg-black"
+                        >
+                          <source src={activeMedia.url} type="video/mp4" />
+                          Tu navegador no soporta el reproductor de vídeo.
+                        </video>
+                      ) : (
+                        activeMedia.url && (
+                          <img
+                            src={activeMedia.url}
+                            alt={active.title}
+                            className="w-full h-auto max-h-[52vh] object-contain mx-auto rounded-lg shadow-sm"
+                            loading="lazy"
+                          />
+                        )
+                      )}
                     </div>
                   )}
 
-                  {/* PASO 2: Múltiples Galerías divididas por categorías / títulos */}
+                  {/* Sección de Vídeos si existen */}
+                  {active.videos && active.videos.length > 0 && (
+                    <div className="space-y-2 pt-1">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-600 block border-b pb-1">
+                        Contenido Audiovisual
+                      </span>
+                      <div className="flex gap-2">
+                        {active.videos.map((vid, vIdx) => {
+                          const isPlaying = activeMedia.type === "video" && activeMedia.url === vid.url;
+                          return (
+                            <button
+                              key={vIdx}
+                              onClick={() => setActiveMedia({ type: "video", url: vid.url })}
+                              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border transition-all ${
+                                isPlaying
+                                  ? "bg-black text-white border-black shadow-md"
+                                  : "bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border-zinc-200"
+                              }`}
+                            >
+                              <Play className="size-3.5 fill-current" />
+                              {vid.title}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Múltiples Galerías divididas por títulos */}
                   {active.galleries && active.galleries.length > 0 && (
                     <div className="space-y-4 pt-1">
                       {active.galleries.map((sec, secIdx) => (
@@ -1067,9 +1232,9 @@ export default function Portfolio() {
                             {sec.images.map((imgUrl, imgIdx) => (
                               <button
                                 key={imgIdx}
-                                onClick={() => setActiveImage(imgUrl)}
+                                onClick={() => setActiveMedia({ type: "image", url: imgUrl })}
                                 className={`relative shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
-                                  activeImage === imgUrl
+                                  activeMedia.type === "image" && activeMedia.url === imgUrl
                                     ? "border-black scale-95 shadow-md ring-2 ring-black/10"
                                     : "border-transparent opacity-70 hover:opacity-100"
                                 }`}
@@ -1087,17 +1252,21 @@ export default function Portfolio() {
                     </div>
                   )}
 
-                  {/* Galería simple (para proyectos que usan gallery plana) */}
-                  {!active.galleries && active.gallery && active.gallery.length > 1 && (
+                  {/* Galería simple (si no es PDF interactivo) */}
+                  {!active.interactivePdf && !active.galleries && active.gallery && active.gallery.length > 1 && (
                     <div>
-                      <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block mb-2">Galería del proyecto</span>
+                      <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block mb-2">
+                        {active.id === "greenwalk-awards" ? "Lookbook Editorial" : "Galería del proyecto"}
+                      </span>
                       <div className="flex gap-2 overflow-x-auto pb-2">
                         {active.gallery.map((imgUrl, idx) => (
                           <button
                             key={idx}
-                            onClick={() => setActiveImage(imgUrl)}
+                            onClick={() => setActiveMedia({ type: "image", url: imgUrl })}
                             className={`relative shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                              activeImage === imgUrl ? "border-black scale-95 shadow-md" : "border-transparent opacity-70 hover:opacity-100"
+                              activeMedia.type === "image" && activeMedia.url === imgUrl
+                                ? "border-black scale-95 shadow-md"
+                                : "border-transparent opacity-70 hover:opacity-100"
                             }`}
                           >
                             <img src={imgUrl} alt={`Foto ${idx + 1}`} className="w-full h-full object-cover" />
@@ -1109,7 +1278,7 @@ export default function Portfolio() {
 
                   <p className="text-sm leading-relaxed text-zinc-800">{active.blurb}</p>
 
-                  {/* Enlace para ver/descargar PDF si existe */}
+                  {/* Enlace para ver/descargar PDF si existe y no es ya interactivo */}
                   {active.pdf && (
                     <div className="pt-2">
                       <a
@@ -1118,7 +1287,7 @@ export default function Portfolio() {
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 rounded-xl border border-zinc-900 bg-zinc-900 text-white px-3.5 py-2 text-xs font-medium hover:bg-black transition-colors"
                       >
-                        <FileText className="size-4" /> Ver dossier completo (PDF)
+                        <FileText className="size-4" /> {active.id === "greenwalk-awards" ? "Ver Entrega Final (PDF)" : "Ver dossier completo (PDF)"}
                       </a>
                     </div>
                   )}
