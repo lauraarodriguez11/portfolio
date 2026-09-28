@@ -397,7 +397,7 @@ const PROJECTS = [
         title: "V01",
         images: [
           `${import.meta.env.BASE_URL}yute_arp_ed_1.PNG`,
-          `${import.meta.env.BASE_URL}yute_arp_ed_2.png`,
+          `${import.meta.env.BASE_URL}yute_arp_ed_2.PNG`,
           `${import.meta.env.BASE_URL}yute_arp_ed_3.PNG`,
           `${import.meta.env.BASE_URL}yute_arp_ed_4.PNG`,
           `${import.meta.env.BASE_URL}yute_arp_ed_5.PNG`,
@@ -427,8 +427,9 @@ const PROJECTS = [
     tags: ["Upcycling", "Moda Sostenible", "Confección", "Patronaje", "Premio"],
     blurb:
       "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) organizado por moda-re-. Reinterpretación del traje castizo madrileño confeccionado al 100% con tres prendas de segunda mano y textiles recuperados, desfilado en pasarela abierta. Incluye entrevista en la revista Circoolar de moda-re-.",
-    image: `${import.meta.env.BASE_URL}RECH0.jpeg`,
+    image: `${import.meta.env.BASE_URL}RECH.jpeg`,
     gallery: [
+      `${import.meta.env.BASE_URL}RECH0.jpeg`,
       `${import.meta.env.BASE_URL}RECH1.jpeg`,
     ],
     links: [
