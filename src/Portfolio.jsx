@@ -870,7 +870,7 @@ export default function Portfolio() {
                 Asistencia de vestuario y cambios rápidos en desfiles oficiales de la temporada SS27 para Dolores Cortés (OMODA Madrid es Moda) y Apolineo Studio (MBFWM).
               </li>
               <li>
-                Cuidado integral de prendas, orden de salida en backstage y coordinación bajo alta presión con regiduría, peluquería, maquillaje y equipos de estilismo[cite: 4].
+                Cuidado integral de prendas, orden de salida en backstage y coordinación bajo alta presión con regiduría, peluquería, maquillaje y equipos de estilismo.
               </li>
             </ul>
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">
