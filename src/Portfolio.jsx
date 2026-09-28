@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Github, Linkedin, Mail, ExternalLink, Home as HomeIcon, FileText, Loader2 } from "lucide-react";
+import { Search, Github, Linkedin, Mail, ExternalLink, Home as HomeIcon, FileText, Loader2, Image as ImageIcon } from "lucide-react";
 import * as pdfjsLib from "pdfjs-dist";
 
 // Worker vía CDN para garantizar compatibilidad total en despliegues estáticos con Vite
@@ -315,8 +315,11 @@ const PROJECTS = [
     year: 2025,
     tags: ["Accesorios", "Modular", "Prototipado", "Edición Digital", "Illustrator"],
     blurb:
-      "Colaboración con la marca Balteus en el diseño de una colección de hebillas modulares[cite: 2]. Exploración formal, optimización de anclajes y dibujo técnico para producción[cite: 2].",
+      "Colaboración con la marca Balteus en el diseño de una colección de hebillas modulares. Exploración formal, optimización de anclajes y dibujo técnico para producción[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
+    gallery: [
+      `${import.meta.env.BASE_URL}balteus.webp`,
+    ],
     links: [],
     category: "art",
   },
@@ -329,6 +332,10 @@ const PROJECTS = [
     blurb:
       "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'[cite: 2]. Siluetas modulares con piezas desmontables[cite: 2], volúmenes globo[cite: 2] y estampación textil modular[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
+    gallery: [
+      `${import.meta.env.BASE_URL}balteus.webp`,
+    ],
+    pdf: `${import.meta.env.BASE_URL}portfolio.pdf`,
     links: [],
     category: "art",
   },
@@ -341,6 +348,9 @@ const PROJECTS = [
     blurb:
       "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-[cite: 1, 2]. Traje castizo contemporáneo confeccionado al 100% con 3 prendas recuperadas y textiles de segunda mano[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
+    gallery: [
+      `${import.meta.env.BASE_URL}balteus.webp`,
+    ],
     links: [],
     category: "art",
   },
@@ -353,6 +363,9 @@ const PROJECTS = [
     blurb:
       "Propuesta de 10 looks inspirados en los códigos de Miguel Becer tras su presentación en MBFWM[cite: 2]. Confección técnica de pantalón sastre con volantes integrados en satén bicolor[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
+    gallery: [
+      `${import.meta.env.BASE_URL}balteus.webp`,
+    ],
     links: [],
     category: "art",
   },
@@ -365,6 +378,9 @@ const PROJECTS = [
     blurb:
       "Co-diseño junto a Santiago Yáñez[cite: 2]. Moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
+    gallery: [
+      `${import.meta.env.BASE_URL}balteus.webp`,
+    ],
     links: [],
     category: "art",
   },
@@ -379,10 +395,11 @@ function useDebouncedValue(value, delay = 250) {
   return v;
 }
 
-// Hook de PDF ultra-robusto con múltiples alternativas de nombre
+// Hook de PDF para calcular imágenes y ratio exacto
 function usePDFImages(pdfFilename = "portfolio.pdf") {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [aspectRatio, setAspectRatio] = useState(16 / 9); // Fallback panorámico
 
   useEffect(() => {
     let cancelled = false;
@@ -407,12 +424,15 @@ function usePDFImages(pdfFilename = "portfolio.pdf") {
           for (let i = 1; i <= pdf.numPages; i++) {
             const page = await pdf.getPage(i);
             const viewport = page.getViewport({ scale: 1.5 });
+            if (i === 1 && viewport.width && viewport.height) {
+              setAspectRatio(viewport.width / viewport.height);
+            }
             const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d");
             canvas.width = viewport.width;
             canvas.height = viewport.height;
             await page.render({ canvasContext: ctx, viewport }).promise;
-            out.push(canvas.toDataURL("image/webp", 0.9));
+            out.push(canvas.toDataURL("image/webp", 0.95));
           }
 
           if (!cancelled && out.length > 0) {
@@ -421,7 +441,7 @@ function usePDFImages(pdfFilename = "portfolio.pdf") {
             return;
           }
         } catch {
-          // Prueba con la siguiente opción de nombre
+          // Intenta con el siguiente candidato
         }
       }
       if (!cancelled) setLoading(false);
@@ -431,7 +451,7 @@ function usePDFImages(pdfFilename = "portfolio.pdf") {
     };
   }, [pdfFilename]);
 
-  return { images, loading };
+  return { images, loading, aspectRatio };
 }
 
 export default function Portfolio() {
@@ -444,7 +464,16 @@ export default function Portfolio() {
   const [view, setView] = useState("home"); // home | tech | art
   const [category, setCategory] = useState("Todas");
 
-  // Título dinámico de la pestaña del navegador
+  // Estado para la imagen activa en el modal
+  const [activeImage, setActiveImage] = useState("");
+
+  useEffect(() => {
+    if (active) {
+      setActiveImage(active.image || (active.gallery && active.gallery[0]) || "");
+    }
+  }, [active]);
+
+  // Título dinámico en pestaña
   useEffect(() => {
     if (view === "home") document.title = "URA WENYERS · Archive";
     else if (view === "tech") document.title = "URA WENYERS · Data & AI";
@@ -459,8 +488,8 @@ export default function Portfolio() {
   const CATEGORY_NAMES = useMemo(() => activeCategories.map((c) => c.name), [activeCategories]);
   const dq = useDebouncedValue(q, 250);
 
-  // Visor de PDF
-  const { images: pdfImages, loading: pdfLoading } = usePDFImages("portfolio.pdf");
+  // Visor de PDF con cálculo de aspect ratio
+  const { images: pdfImages, loading: pdfLoading, aspectRatio } = usePDFImages("portfolio.pdf");
 
   const scrollToProjects = () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
 
@@ -717,36 +746,42 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* === ATELIER: Visor Vertical de Diapositivas sin bordes negros ni números === */}
+      {/* === ATELIER: Visor Vertical de Diapositivas sin márgenes arriba ni abajo === */}
       {view === "art" && (
         <section className="max-w-5xl mx-auto px-4 pt-1 pb-6">
-          <div className="border rounded-2xl bg-white shadow-sm overflow-hidden min-h-[60vh] flex items-center justify-center">
+          <div
+            className="border rounded-2xl bg-white shadow-sm overflow-hidden w-full relative"
+            style={{
+              aspectRatio: aspectRatio ? `${aspectRatio}` : "16/9",
+              maxHeight: "85vh",
+            }}
+          >
             {pdfLoading ? (
-              <div className="flex flex-col items-center gap-2 py-20 text-zinc-400">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-zinc-400 bg-white">
                 <Loader2 className="size-6 animate-spin" />
                 <span className="text-xs uppercase tracking-wider">Cargando Atelier...</span>
               </div>
             ) : pdfImages.length > 0 ? (
-              <div 
-                className="w-full h-[82vh] overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
+              <div
+                className="w-full h-full overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
                 tabIndex={0}
               >
                 {pdfImages.map((src, index) => (
                   <div
                     key={`slide-${index}`}
-                    className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none p-0"
+                    className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none p-0 overflow-hidden"
                   >
                     <img
                       src={src}
                       alt={`Diapositiva ${index + 1}`}
                       loading="lazy"
-                      className="w-full h-full object-contain pointer-events-none"
+                      className="w-full h-full object-cover pointer-events-none block"
                     />
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="p-8 text-center text-sm text-zinc-400">
+              <div className="absolute inset-0 flex items-center justify-center p-8 text-center text-sm text-zinc-400 bg-white">
                 No se ha podido cargar el archivo PDF. Comprueba que el archivo se encuentre en la carpeta public.
               </div>
             )}
@@ -826,6 +861,11 @@ export default function Portfolio() {
                             <span className="text-sm text-[hsl(215_16%_40%)]">Sin imagen</span>
                           </div>
                         )}
+                        {p.gallery && p.gallery.length > 1 && (
+                          <div className="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+                            <ImageIcon className="size-3" /> {p.gallery.length} fotos
+                          </div>
+                        )}
                       </div>
 
                       <div className="h-[55%] p-4 pb-3 grid grid-rows-[auto_auto_1fr_auto] gap-2 min-h-0">
@@ -875,7 +915,7 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* MODAL DETALLES */}
+      {/* MODAL DETALLES MULTIFOTO Y PDF */}
       {open && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 backdrop-blur-sm p-4" onClick={() => setOpen(false)}>
           <div
@@ -887,26 +927,63 @@ export default function Portfolio() {
           >
             {active && (
               <>
-                <div className="p-4 border-b sticky top-0 bg-white z-10">
-                  <h2 id="project-title" className="text-xl font-semibold">{active.title}</h2>
-                  <div className="text-xs text-[hsl(215_16%_40%)] flex gap-2 mt-1">
-                    <span>{active.role}</span>
-                    <span>•</span>
-                    <span>{active.year}</span>
+                <div className="p-4 border-b sticky top-0 bg-white z-10 flex items-center justify-between">
+                  <div>
+                    <h2 id="project-title" className="text-xl font-semibold">{active.title}</h2>
+                    <div className="text-xs text-[hsl(215_16%_40%)] flex gap-2 mt-1">
+                      <span>{active.role}</span>
+                      <span>•</span>
+                      <span>{active.year}</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-4 overflow-y-auto">
-                  {active.image && (
-                    <div className="rounded-xl overflow-hidden ring-1 ring-[hsl(214.3_31.8%_91.4%)]">
-                      <img src={active.image} alt={active.title} className="w-full h-auto object-cover" loading="lazy" />
+                <div className="p-4 overflow-y-auto space-y-4">
+                  {/* Visor principal de la imagen seleccionada */}
+                  {activeImage && (
+                    <div className="rounded-xl overflow-hidden ring-1 ring-[hsl(214.3_31.8%_91.4%)] bg-zinc-50">
+                      <img src={activeImage} alt={active.title} className="w-full h-auto max-h-[50vh] object-contain mx-auto" loading="lazy" />
                     </div>
                   )}
 
-                  <p className="mt-3 text-sm leading-relaxed">{active.blurb}</p>
+                  {/* Carrusel/Miniaturas de la Galería Multifoto */}
+                  {active.gallery && active.gallery.length > 1 && (
+                    <div>
+                      <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block mb-2">Galería del proyecto</span>
+                      <div className="flex gap-2 overflow-x-auto pb-2">
+                        {active.gallery.map((imgUrl, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setActiveImage(imgUrl)}
+                            className={`relative shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                              activeImage === imgUrl ? "border-black scale-95 shadow-md" : "border-transparent opacity-70 hover:opacity-100"
+                            }`}
+                          >
+                            <img src={imgUrl} alt={`Foto ${idx + 1}`} className="w-full h-full object-cover" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <p className="text-sm leading-relaxed text-zinc-800">{active.blurb}</p>
+
+                  {/* Enlace para ver/descargar PDF si existe */}
+                  {active.pdf && (
+                    <div className="pt-2">
+                      <a
+                        href={active.pdf}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-xl border border-zinc-900 bg-zinc-900 text-white px-3.5 py-2 text-xs font-medium hover:bg-black transition-colors"
+                      >
+                        <FileText className="size-4" /> Ver dossier completo (PDF)
+                      </a>
+                    </div>
+                  )}
 
                   {(active.tags?.length ?? 0) > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-zinc-100">
                       {active.tags.map((t) => (
                         <button
                           key={t}
@@ -915,7 +992,7 @@ export default function Portfolio() {
                             setTag(t);
                             scrollToProjects();
                           }}
-                          className="rounded-2xl border px-2.5 py-0.5 text-xs bg-white hover:shadow"
+                          className="rounded-xl border px-2.5 py-0.5 text-xs bg-white hover:shadow"
                         >
                           {t}
                         </button>
@@ -923,7 +1000,7 @@ export default function Portfolio() {
                     </div>
                   )}
 
-                  <div className="mt-6 pb-2 flex items-center justify-between gap-4">
+                  <div className="pt-4 flex items-center justify-between gap-4 border-t border-zinc-100">
                     <div className="flex flex-wrap gap-2">
                       {(active.links?.length ?? 0) > 0 &&
                         active.links.map((l) => (
@@ -932,9 +1009,9 @@ export default function Portfolio() {
                             href={l.href}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]"
+                            className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)] text-xs"
                           >
-                            <ExternalLink className="size-4" />
+                            <ExternalLink className="size-3.5" />
                             {l.label}
                           </a>
                         ))}
@@ -942,7 +1019,7 @@ export default function Portfolio() {
 
                     <button
                       onClick={() => setOpen(false)}
-                      className="rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)] shrink-0"
+                      className="rounded-2xl border px-4 py-2 hover:bg-[hsl(214.3_31.8%_95%)] text-xs font-medium ml-auto"
                     >
                       Cerrar
                     </button>
