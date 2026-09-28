@@ -578,7 +578,7 @@ function useDebouncedValue(value, delay = 250) {
 }
 
 // Hook de PDF reutilizable para calcular imágenes y ratio exacto
-function usePDFImages(pdfFilename = "portfolio.pdf") {
+function usePDFImages(pdfFilename = "PORTFOLIO_compressed.pdf") {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [aspectRatio, setAspectRatio] = useState(16 / 9);
@@ -594,7 +594,7 @@ function usePDFImages(pdfFilename = "portfolio.pdf") {
       const candidates = [
         `${import.meta.env.BASE_URL}${pdfFilename}`,
         `${import.meta.env.BASE_URL}${pdfFilename.toUpperCase()}`,
-        `${import.meta.env.BASE_URL}PORTFOLIO.pdf`,
+        `${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`,
       ];
 
       for (const url of candidates) {
@@ -824,7 +824,7 @@ export default function Portfolio() {
       {/* === ATELIER: VISOR DE DIAPOSITIVAS ANTES DE LAS SUGGESTED TAGS === */}
       {view === "art" && (
         <section className="max-w-5xl mx-auto px-6 pt-4 pb-4">
-          <PDFViewerContinuous filename="portfolio.pdf" altTitle="Portfolio" />
+          <PDFViewerContinuous filename="PORTFOLIO_compressed.pdf" altTitle="Portfolio" />
         </section>
       )}
 
@@ -978,10 +978,10 @@ export default function Portfolio() {
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Descargas</h2>
             <div className="flex flex-wrap gap-2">
-              <a href={`${import.meta.env.BASE_URL}CV_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}CV_ENG_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}CV_mixto.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}portfolio.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mt.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mh.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mx.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
             </div>
           </div>
         </section>
