@@ -75,11 +75,11 @@ const CATEGORIES_ART = [
   },
   {
     name: "Patronaje & Confección",
-    tags: ["Patronaje", "Patronaje Modular", "Confección", "Sastrería", "Moulage"],
+    tags: ["Patronaje", "Patronaje Modular", "Confección", "Sastrería"],
   },
   {
     name: "Upcycling & Sostenibilidad",
-    tags: ["Upcycling", "Moda Sostenible", "Premio", "moda-re-", "Zero Waste", "Biomateriales"],
+    tags: ["Upcycling", "Moda Sostenible", "Premio",, "Zero Waste", "Biomateriales"],
   },
   {
     name: "Edición & Producción Digital",
@@ -351,7 +351,7 @@ const PROJECTS = [
     title: "GreenWalk Awards V Edición",
     role: "Convocatoria de Moda Sostenible · Candidatura Oficial",
     year: 2026,
-    tags: ["Moda Sostenible", "Upcycling", "Biomateriales", "Fashion Film", "Dirección Creativa", "Illustrator", "InDesign", "Photoshop"],
+    tags: ["Moda Sostenible", "Upcycling", "Biomateriales", "Fashion Film", "Dirección Creativa", "Illustrator", "Premiere", "InDesign", "Photoshop", "Diseño de Moda"],
     blurb:
       "Candidatura presentada a la 5ª Edición de los GreenWalk Awards. Proyecto integral que aúna patronaje zero-waste, deconstrucción textil de sacos de arpillera y desarrollo de biomateriales moldeados. Incluye la memoria técnica completa en PDF, el lookbook editorial oficial, fashion film y documentación audiovisual del proceso en taller.",
     image: `${import.meta.env.BASE_URL}greenwalk_cover.png`,
@@ -404,7 +404,7 @@ const PROJECTS = [
     title: "Yute Culture — Colección Cápsula",
     role: "Dirección Creativa · Concepto & Superficies",
     year: 2026,
-    tags: ["Diseño de Moda", "Patronaje", "Confección"],
+    tags: ["Diseño de Moda"],
     blurb:
       "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el juego conceptual 'yute' / 'youth'. Tensión entre aspereza rural y estructura urbana, integrando desarrollo de estampados propios (rapports continuos de inspiración folclórica) y dirección de arte.",
     image: `${import.meta.env.BASE_URL}Lineup.png`,
@@ -510,7 +510,7 @@ const PROJECTS = [
     title: "MANÉMANÉ Fall 26 — Pantalón con Aletas",
     role: "Confección en Satén · Patronaje Sastre",
     year: 2026,
-    tags: ["Diseño de Moda", "Confección", "Patronaje", "Fotografía"],
+    tags: ["Diseño de Moda", "Confección", "Patronaje", "Fotografía", "Photoshop"],
     blurb:
       "Pieza central de la cápsula MANÉMANÉ. Confección artesanal de pantalón sastre con aletas y volantes laterales ondulantes integrados en satén bicolor, explorando el volumen escultórico en movimiento.",
     image: `${import.meta.env.BASE_URL}manemane_aletas_1.png`,
@@ -522,7 +522,7 @@ const PROJECTS = [
     title: "Utopía — La Piel Especular",
     role: "Investigación Conceptual · Tatuaje sobre Cuero",
     year: 2026,
-    tags: ["Diseño de Moda", "Investigación Textil", "Tatuaje sobre Cuero", "Dirección Creativa"],
+    tags: ["Investigación Textil", "Tatuaje sobre Cuero", "Dirección Creativa"],
     blurb:
       "Propuesta de utopía especulativa basada en un nuevo sistema de habitabilidad humana y comunicación radical. Se plantea una sociedad futura donde la mentira y el aislamiento emocional han sido erradicados: los individuos definen su identidad y subconsciente a través de su piel. Mediante patrones simétricos inspirados en las manchas proyectivas del Test de Rorschach, el cuerpo se convierte en un espejo psicológico para el observador. El proyecto abarca la exploración del límite material (terciopelo y linóleo), la experimentación gráfica con acuarela por transferencia directa, la digitalización y análisis óptico interactivo, y la ejecución física final mediante máquina de tatuar y micropunteado sobre cuero.",
     image: `${import.meta.env.BASE_URL}utopia_cover.png`,
@@ -812,12 +812,12 @@ export default function Portfolio() {
         >
           {view === "home" && "Ura Wenyers · Dossier"}
           {view === "tech" && "Data Science & Machine Learning"}
-          {view === "art" && "Atelier · Moda & Artesanía Técnica"}
+          {view === "art" && "Moda & Arte"}
         </motion.h1>
         <p className="mt-3 w-full text-[hsl(215_16%_40%)]">
           {view === "home" && <>Creative Technologist | Data Scientist with a Passion for Fashion.</>}
-          {view === "tech" && <>Desarrollo de modelos predictivos, interpretabilidad (XAI) y automatización de procesos complejos.</>}
-          {view === "art" && <>Construcción técnica, experimentación textil con biomateriales, upcycling y colecciones modulares.</>}
+          {view === "tech" && <>Desarrollo de modelos predictivos, interpretabilidad (<strong>XAI</strong>) y automatización de procesos complejos.</>}
+          {view === "art" && <>Proyectos de <strong>diseño de moda</strong>, <strong>patronaje</strong>, <strong>confección</strong> y exploración visual.</>}
         </p>
       </section>
 
