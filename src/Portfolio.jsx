@@ -785,7 +785,7 @@ export default function Portfolio() {
                 view === "art" ? "bg-black text-white" : "hover:bg-[hsl(214.3_31.8%_95%)]"
               }`}
             >
-              Atelier
+              Fashion
             </button>
           </nav>
 
