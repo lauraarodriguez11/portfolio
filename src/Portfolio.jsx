@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Github, Linkedin, Mail, ExternalLink, Star, Home as HomeIcon, FileText, Maximize2, X } from "lucide-react";
+import { Search, Github, Linkedin, Mail, ExternalLink, Star, Home as HomeIcon, FileText } from "lucide-react";
 import * as pdfjsLib from "pdfjs-dist";
 import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
-// Fuentes
+// Importar fuentes de Google
 const styleSheet = document.createElement("style");
 styleSheet.textContent = `
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Source+Sans+3:wght@300;400;600;700&family=Space+Grotesk:wght@700&display=swap');
@@ -15,6 +15,7 @@ document.head.appendChild(styleSheet);
 
 const GH_USERNAME = "lauraarodriguez11";
 
+// Sugerencias por pestaña
 const SUGGESTED_TAGS_TECH = [
   "Python",
   "SQL",
@@ -26,22 +27,36 @@ const SUGGESTED_TAGS_TECH = [
   "RPA",
   "Scikit-learn",
 ];
+
 const SUGGESTED_TAGS_ART = [
   "Diseño de Moda",
-  "Upcycling",
   "Patronaje",
-  "Dirección Creativa",
+  "Confección",
   "Fotografía",
-  "Estilismo",
-  "Confección", 
-  "Edición digital"
+  "Edición Digital",
+  "Upcycling",
+  "Accesorios",
+  "Textil",
 ];
 
+// Categorías para Tech
 const CATEGORIES_TECH = [
   { name: "Todas", tags: [] },
   {
     name: "Bases de Datos",
-    tags: ["MySQL", "PostgreSQL", "MongoDB", "Neo4j", "NoSQL", "Modelo E-R", "SQL Scripts", "Triggers", "Vistas", "XML", "SQL"],
+    tags: [
+      "MySQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Neo4j",
+      "NoSQL",
+      "Modelo E-R",
+      "SQL Scripts",
+      "Triggers",
+      "Vistas",
+      "XML",
+      "SQL",
+    ],
   },
   {
     name: "Estadística & Ciencia de Datos",
@@ -49,7 +64,21 @@ const CATEGORIES_TECH = [
   },
   {
     name: "Machine Learning & Deep Learning",
-    tags: ["Scikit-learn", "Random Forest", "XGBoost", "PCA", "K-Means", "ARIMA", "Holt-Winters", "CNN", "RNN", "Transformers", "ViT", "NLP", "XAI"],
+    tags: [
+      "Scikit-learn",
+      "Random Forest",
+      "XGBoost",
+      "PCA",
+      "K-Means",
+      "ARIMA",
+      "Holt-Winters",
+      "CNN",
+      "RNN",
+      "Transformers",
+      "ViT",
+      "NLP",
+      "XAI",
+    ],
   },
   {
     name: "Visualización & BI",
@@ -90,6 +119,7 @@ const CATEGORIES_ART = [
   },
 ];
 
+// ======= Proyectos =======
 const PROJECTS = [
   {
     id: "tfg-emociones",
@@ -364,7 +394,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño de Moda", "Patronaje", "Patronaje Modular", "Confección", "Fotografía", "Dirección Creativa", "Textil"],
     blurb:
-      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'. Prendas con piezas modulares desmontables, exploración de volúmenes globo y desarrollo de estampados continuos por repetición modular.",
+      "Colección cápsula nacida de la deconstrucción del saco de patatas tradicional en yute y el concepto 'yute' / 'youth'[cite: 2]. Prendas con piezas modulares desmontables[cite: 2], exploración de volúmenes globo[cite: 2] y desarrollo de estampados continuos por repetición modular[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -376,7 +406,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Upcycling", "Moda Sostenible", "Confección", "Patronaje", "Premio"],
     blurb:
-      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-. Reinterpretación del traje castizo madrileño confeccionado íntegramente a partir de 3 prendas recuperadas y textiles de segunda mano.",
+      "Primer premio en el certamen 'Re-Chulos' de San Isidro (Madrid) en colaboración con moda-re-[cite: 1, 2]. Reinterpretación del traje castizo madrileño confeccionado íntegramente a partir de 3 prendas recuperadas y textiles de segunda mano[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -388,7 +418,7 @@ const PROJECTS = [
     year: 2026,
     tags: ["Diseño de Moda", "Confección", "Patronaje", "Pasarela"],
     blurb:
-      "Serie de 10 propuestas de diseño inspiradas en el universo de Miguel Becer tras su desfile en MBFWM. Confección artesanal de pantalón sastre con volantes integrados en satén bicolor.",
+      "Serie de 10 propuestas de diseño inspiradas en el universo de Miguel Becer tras su desfile en MBFWM[cite: 2]. Confección artesanal de pantalón sastre con volantes integrados en satén bicolor[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
@@ -400,11 +430,12 @@ const PROJECTS = [
     year: 2026,
     tags: ["Edición Digital", "Patronaje", "Moulage", "Sastrería", "Fotografía"],
     blurb:
-      "Co-diseño junto a Santiago Yáñez. Experimentación volumétrica mediante moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica.",
+      "Co-diseño junto a Santiago Yáñez[cite: 2]. Experimentación volumétrica mediante moulage espontáneo con blazers sobre maniquí y su posterior traslación al formato digital mediante manipulación fotográfica[cite: 2].",
     image: `${import.meta.env.BASE_URL}balteus.webp`,
     links: [],
     category: "art",
   },
+];
 
 // Utility: Debounce
 function useDebouncedValue(value, delay = 250) {
@@ -416,7 +447,7 @@ function useDebouncedValue(value, delay = 250) {
   return v;
 }
 
-// Utility: PDF a listaan ti imahen
+// Utility: PDF a lista de imágenes
 function usePDFImages(pdfUrl) {
   const [images, setImages] = useState([]);
   useEffect(() => {
@@ -459,40 +490,16 @@ export default function Portfolio() {
   const [view, setView] = useState("home"); // home | tech | art
   const [category, setCategory] = useState("Todas");
 
-  // State para iti panangpalawa ti panid iti cascada
-  const [selectedPage, setSelectedPage] = useState(null);
-
+  // Selección de categorías según la pestaña actual
   const activeCategories = useMemo(() => {
-      return view === "art" ? CATEGORIES_ART : CATEGORIES_TECH;
-    }, [view]);
+    return view === "art" ? CATEGORIES_ART : CATEGORIES_TECH;
+  }, [view]);
 
-    const CATEGORY_NAMES = useMemo(() => activeCategories.map((c) => c.name), [activeCategories]);
+  const CATEGORY_NAMES = useMemo(() => activeCategories.map((c) => c.name), [activeCategories]);
+  const dq = useDebouncedValue(q, 250);
 
-    // Filtrado reactivo adaptado a la pestaña actual
-    const filtered = useMemo(() => {
-      const norm = (s) => s.toLowerCase();
-      const source = view === "home" ? items : items.filter((p) => p.category === view);
-      const currentCat = activeCategories.find((c) => c.name === category);
-      const matchesCategory = (p) => {
-        if (!currentCat || currentCat.name === "Todas") return true;
-        const pTags = p.tags || [];
-        return pTags.some((t) => currentCat.tags.includes(t));
-      };
-      let list = source.filter((p) => {
-        const haystack = [p.title, p.role, (p.tags || []).join(" ")].map(String).join(" ").toLowerCase();
-        const hitQ = !dq || haystack.includes(norm(dq));
-        const hitTag = tag === "Todas" || (p.tags || []).includes(tag);
-        const hitCategory = matchesCategory(p);
-        return hitQ && hitCategory && hitTag;
-      });
-      if (sort === "recent") list = list.sort((a, b) => b.year - a.year);
-      if (sort === "az") list = list.sort((a, b) => a.title.localeCompare(b.title));
-      return list;
-    }, [dq, tag, sort, items, view, category, activeCategories]);
-    const dq = useDebouncedValue(q, 250);
-
-  // PDF cargado
-  const pdfImages = usePDFImages(`${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`);
+  // Carga de diapositivas del PDF
+  const pdfImages = usePDFImages(`${import.meta.env.BASE_URL}portfolio.pdf`);
 
   const scrollToProjects = () => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
 
@@ -504,7 +511,7 @@ export default function Portfolio() {
   const filtered = useMemo(() => {
     const norm = (s) => s.toLowerCase();
     const source = view === "home" ? items : items.filter((p) => p.category === view);
-    const currentCat = CATEGORIES.find((c) => c.name === category);
+    const currentCat = activeCategories.find((c) => c.name === category);
     const matchesCategory = (p) => {
       if (!currentCat || currentCat.name === "Todas") return true;
       const pTags = p.tags || [];
@@ -520,17 +527,17 @@ export default function Portfolio() {
     if (sort === "recent") list = list.sort((a, b) => b.year - a.year);
     if (sort === "az") list = list.sort((a, b) => a.title.localeCompare(b.title));
     return list;
-  }, [dq, tag, sort, items, view, category]);
+  }, [dq, tag, sort, items, view, category, activeCategories]);
 
   useEffect(() => {
-    if (open || selectedPage) {
+    if (open) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = prev;
       };
     }
-  }, [open, selectedPage]);
+  }, [open]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-[hsl(0_0%_98%)] text-black">
@@ -592,7 +599,7 @@ export default function Portfolio() {
           )}
           {view === "art" && (
             <>
-              Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y experimentación textil con enfoque vanguardista[cite: 2].
+              Exploro <strong>diseño de moda</strong>, <strong>dirección artística</strong> y experimentación textil con enfoque de vanguardia.
             </>
           )}
         </p>
@@ -750,31 +757,31 @@ export default function Portfolio() {
           <div className="rounded-2xl border p-4 bg-white/70">
             <h2 className="text-lg font-semibold mb-2">Descargas</h2>
             <div className="flex flex-wrap gap-2">
-              <a href={`${import.meta.env.BASE_URL}CV_mt.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}CV_mh.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}CV_mx.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
-              <a href={`${import.meta.env.BASE_URL}PORTFOLIO_compressed.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_ENG_LR.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV in English (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}CV_mixto.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> CV híbrido (PDF)</a>
+              <a href={`${import.meta.env.BASE_URL}portfolio.pdf`} className="inline-flex items-center gap-2 rounded-2xl border px-3 py-2 hover:bg-[hsl(214.3_31.8%_95%)]" target="_blank" rel="noreferrer"><FileText className="size-4" /> Portfolio Moda (PDF)</a>
             </div>
           </div>
         </section>
       )}
 
-      {/* === ARTE: Visor de Diapositivas sin marcos negros ni superposiciones === */}
+      {/* === ARTE: Visor Vertical de Diapositivas Limpio === */}
       {view === "art" && pdfImages.length > 0 && (
         <section className="max-w-5xl mx-auto px-4 pt-1 pb-6">
           <div className="border rounded-2xl bg-white shadow-sm overflow-hidden">
             <div 
-              className="h-[80vh] overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
+              className="h-[82vh] overflow-y-auto scroll-smooth snap-y snap-mandatory focus:outline-none"
               tabIndex={0}
             >
               {pdfImages.map((src, index) => (
                 <div
                   key={`slide-${index}`}
-                  className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none"
+                  className="w-full h-full snap-start snap-always flex items-center justify-center bg-white select-none p-0"
                 >
                   <img
                     src={src}
-                    alt={`Página ${index + 1}`}
+                    alt={`Diapositiva ${index + 1}`}
                     loading="lazy"
                     className="w-full h-full object-contain pointer-events-none"
                   />
@@ -785,7 +792,7 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* SEARCH BAR + CATEGORÍAS (Tanto para Tech como para Art) */}
+      {/* SEARCH BAR + CATEGORÍAS (Para Tech y para Art) */}
       {view !== "home" && (
         <section className="max-w-6xl mx-auto px-4 pb-2">
           <div className="border rounded-2xl p-4 flex flex-col gap-3 md:grid md:grid-cols-[1fr_auto_auto] items-stretch md:items-center bg-white/70">
@@ -821,7 +828,7 @@ export default function Portfolio() {
         </section>
       )}
 
-      {/* GRID PROYECTOS (Simple ken Standard a Grid) */}
+      {/* GRID PROYECTOS */}
       {view !== "home" && (
         <section id="projects" className="max-w-6xl mx-auto px-4 py-6">
           <AnimatePresence mode="popLayout">
