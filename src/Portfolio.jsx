@@ -888,7 +888,7 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Minería de Datos · Python · R · Estadística · Machine Learning</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Programa Jóven Talento - Correos (Equipo DALIA)</div>
+              <div className="font-medium mr-4">Programa Jóven Talento | Correos (Equipo DALIA)</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Febrero - Agosto 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
@@ -899,7 +899,7 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: UiPath · n8n · Make · JSON · Git · RPA</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Colaboración de diseño - Balteus</div>
+              <div className="font-medium mr-4">Colaboración de diseño | Balteus</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo - Julio 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
@@ -922,7 +922,7 @@ export default function Portfolio() {
             <h2 className="text-lg font-semibold mb-2">Educación</h2>
 
             <div className="flex justify-between mt-2">
-              <div className="font-medium mr-4">Título Superior en Diseño de Moda - Universidad Europea | IADE</div>
+              <div className="font-medium mr-4">Título Superior en Diseño de Moda | Universidad Europea | IADE</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2025 - En curso</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
@@ -931,7 +931,7 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: Dibujo técnico · Patronaje · Estilismo · Photoshop · Illustrator</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Máster en Big Data, Data Science e IA - Universidad Complutense de Madrid</div>
+              <div className="font-medium mr-4">Máster en Big Data, Data Science e IA | Universidad Complutense de Madrid</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2024 - 2025</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
@@ -940,7 +940,7 @@ export default function Portfolio() {
             <div className="mt-2 text-xs text-[hsl(215_16%_40%)]">Stack: SQL · NoSQL · Python · ML · DL · NLP · Spark · MLflow · Explainable AI</div>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Grado en Matemáticas - Universidad de Extremadura</div>
+              <div className="font-medium mr-4">Grado en Matemáticas | Universidad de Extremadura</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">2019 - 2024</div>
             </div>
             <ul className="list-disc pl-5 mt-1 text-sm space-y-1">
@@ -954,7 +954,7 @@ export default function Portfolio() {
             <h2 className="text-lg font-semibold mb-2">Premios y Reconocimientos</h2>
 
             <div className="flex justify-between mt-2">
-              <div className="font-medium mr-4">Premio al Mejor Proyecto de Upcycling — Concurso 'Re-Chulos' de San Isidro</div>
+              <div className="font-medium mr-4">Premio al Mejor Proyecto de Upcycling | Concurso 'Re-Chulos' de San Isidro</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Mayo 2026</div>
             </div>
             <p className="text-sm mt-1">Concurso de moda sostenible organizado con moda-re- reinterpretando el traje castizo madrileño.</p>
@@ -966,7 +966,7 @@ export default function Portfolio() {
             <p className="text-sm mt-1">Reconocimiento al mejor proyecto final de máster por autenticación pictórica con XAI.</p>
 
             <div className="flex justify-between mt-3">
-              <div className="font-medium mr-4">Ganadora del reto de Tirme - II Circular Innovation Hackathon (Palma de Mallorca)</div>
+              <div className="font-medium mr-4">Ganadora del reto de Tirme | II Circular Innovation Hackathon (Palma de Mallorca)</div>
               <div className="text-xs text-[hsl(215_16%_40%)] whitespace-nowrap">Noviembre 2024</div>
             </div>
             <p className="text-sm mt-1">Propuesta de solución tecnológica circular con impacto en sostenibilidad y trazabilidad de residuos.</p>
